@@ -188,3 +188,15 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+/* */
+
+.d-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+} 
+
+.autos-tarjetas {
+  margin: 20px auto;
+  width: 80%;
+}

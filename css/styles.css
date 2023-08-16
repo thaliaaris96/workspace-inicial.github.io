@@ -229,7 +229,7 @@ a.custom-card:hover {
 }
 .perfil-boton {
   padding: 10px 20px;
-  background-color: #e97d03;
+  background-color: #f18406;
   color: white;
   border: none;
   border-radius: 5px;
@@ -237,7 +237,7 @@ a.custom-card:hover {
 }
 
 .perfil-boton:hover {
-  background-color: #f1942a;
+  background-color: #ce7a1b;
   color: black;
 }
 

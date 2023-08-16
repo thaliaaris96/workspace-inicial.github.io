@@ -200,3 +200,63 @@ a.custom-card:hover {
   margin: 20px auto;
   width: 80%;
 }
+
+.perfil-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0eded;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Verdana', serif
+}
+.perfil-foto {
+  width: 180px;
+  height: 200px;
+  padding: 5px;
+  border-radius: 15%;
+  object-fit: cover;
+  margin-bottom: 40px;
+}
+.perfil-nombre {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.perfil-info {
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+.perfil-boton {
+  padding: 10px 20px;
+  background-color: #e97d03;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.perfil-boton:hover {
+  background-color: #f1942a;
+  color: black;
+}
+
+.idioma-container {
+  display: flex;
+  padding: 10px;
+  background-color: #f4f4f4;
+}
+
+.pais-container {
+  display: flex;
+  padding: 10px;
+  background-color: #f4f4f4;
+}
+
+label {
+  margin-right: 10px;
+}
+
+select {
+  padding: 5px;
+}

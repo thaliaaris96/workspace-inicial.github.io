@@ -194,7 +194,7 @@ a.custom-card:hover {
 .d-grid {
   display: grid;
   grid-template-columns: 50% 50%;
-} 
+}
 
 .autos-tarjetas {
   margin: 20px auto;
@@ -210,6 +210,7 @@ a.custom-card:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: 'Verdana', serif
 }
+
 .perfil-foto {
   width: 180px;
   height: 200px;
@@ -218,15 +219,18 @@ a.custom-card:hover {
   object-fit: cover;
   margin-bottom: 40px;
 }
+
 .perfil-nombre {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
+
 .perfil-info {
   font-size: 15px;
   margin-bottom: 25px;
 }
+
 .perfil-boton {
   padding: 10px 20px;
   background-color: #e97d03;

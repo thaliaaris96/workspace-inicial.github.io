@@ -205,7 +205,7 @@ a.custom-card:hover {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f0eded;
+  background-color: #eee7e1;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: 'Verdana', serif
@@ -236,7 +236,7 @@ a.custom-card:hover {
   background-color: #e97d03;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -248,13 +248,11 @@ a.custom-card:hover {
 .idioma-container {
   display: flex;
   padding: 10px;
-  background-color: #f4f4f4;
 }
 
 .pais-container {
   display: flex;
   padding: 10px;
-  background-color: #f4f4f4;
 }
 
 label {

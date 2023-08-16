@@ -9,8 +9,9 @@ fetch(apiUrl)
     .then(
         function (datoProductos) {
             const autosProductos = datoProductos.products; // Array en el JSON se llama productos
-            let autosHTML = "";
-            autosHTML == ` ${datoProductos.catName} `;
+            let titulo = datoProductos.catName;
+            let tituloProducto = document.getElementById("tituloProducto");
+            tituloProducto.textContent = titulo;
 
             let productosHTML = "";
             autosProductos.forEach((producto) => {

@@ -191,6 +191,20 @@ a.custom-card:hover {
 
 /* */
 
+.titulo-producto {
+  text-align: center;
+  font-family: 'Verdana', serif;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+@media (min-width: 768px) {
+  .titulo-producto {
+    font-size: 40px;
+  }
+}
+
 .d-grid {
   display: grid;
   grid-template-columns: 50% 50%;

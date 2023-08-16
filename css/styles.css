@@ -205,7 +205,11 @@ a.custom-card:hover {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+
   background-color: #eee7e1;
+
+  background-color: #f0eded;
+
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: 'Verdana', serif
@@ -237,10 +241,19 @@ a.custom-card:hover {
   color: white;
   border: none;
   border-radius: 10px;
+
+.perfil-boton {
+  padding: 10px 20px;
+  background-color: #f18406;
+  color: white;
+  border: none;
+  border-radius: 5px;
+
   cursor: pointer;
 }
 
 .perfil-boton:hover {
+
   background-color: #f1942a;
   color: black;
 }
@@ -253,6 +266,23 @@ a.custom-card:hover {
 .pais-container {
   display: flex;
   padding: 10px;
+
+  background-color: #ce7a1b;
+  color: black;
+}
+
+.pais-container {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  background-color: #f4f4f4;
+}
+
+.idioma-container {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  background-color: #f4f4f4;
 }
 
 label {

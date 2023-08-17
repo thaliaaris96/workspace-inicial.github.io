@@ -191,6 +191,20 @@ a.custom-card:hover {
 
 /* */
 
+.titulo-producto {
+  text-align: center;
+  font-family: 'Verdana', serif;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+@media (min-width: 768px) {
+  .titulo-producto {
+    font-size: 40px;
+  }
+}
+
 .d-grid {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -201,6 +215,112 @@ a.custom-card:hover {
   width: 80%;
 }
 
+/* */
+
+.img-login {
+  width: 60%;
+  margin-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+  .img-login {
+    width: 40%;
+  }
+}
+
+.formIngreso {
+  display: grid;
+  font-family: 'Verdana', serif;
+  border: #f09100 3px solid;
+  border-radius: 10px;
+  padding-top: 30px;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .formIngreso {
+    width: 50%;
+  }
+  
+}
+
+.formIngreso h2 {
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.formIngreso .seccionLogin {
+  display: grid;
+  grid-template-columns: 100%;
+}
+
+.formIngreso .camposLogin {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.formIngreso .Recuerdame {
+  margin: 10px auto;
+}
+
+.formIngreso .Recuerdame input {
+  margin-right: 5px;
+}
+
+.formIngreso .botonLogin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botonLogin input {
+  text-align: center;
+  width: 60%;
+  color: white;
+  background-color: #f09100;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  padding: 6px;
+}
+
+.botonLogin input:hover {
+  cursor: pointer;
+  background-color: #ffb23f;
+  color: #000000;
+}
+
+.redireciones{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5px 0 15px 0;
+}
+
+.redireciones a {
+  margin-top: 10px;
+  text-decoration: none;
+  color: #000000;
+  font-size: 15px;
+}
+
+.redireciones a:nth-child(1) {
+  margin-bottom: 10px;
+}
+
+.JAP-FOOTER-LOGIN {
+  margin: 0 auto;
+  text-align: center;
+}
+=======
 .perfil-container {
   max-width: 800px;
   margin: 0 auto;
@@ -292,3 +412,4 @@ label {
 select {
   padding: 5px;
 }
+

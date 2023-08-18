@@ -361,7 +361,7 @@ a.custom-card:hover {
   color: white;
   border: none;
   border-radius: 10px;
-
+}
 .perfil-boton {
   padding: 10px 20px;
   background-color: #f18406;
@@ -411,5 +411,10 @@ label {
 
 select {
   padding: 5px;
+}
+
+.imgPerfil {
+  height: 30px;
+  width: 35px;
 }
 

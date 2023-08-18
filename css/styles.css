@@ -316,6 +316,8 @@ a.custom-card:hover {
   margin-bottom: 10px;
 }
 
+/* */
+
 .JAP-FOOTER-LOGIN {
   margin: 0 auto;
   text-align: center;
@@ -323,13 +325,9 @@ a.custom-card:hover {
 
 .perfil-container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 25px;
   padding: 20px;
-
-  background-color: #eee7e1;
-
-  background-color: #f0eded;
-
+  background-color: #f8eee3;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: 'Verdana', serif
@@ -368,41 +366,23 @@ a.custom-card:hover {
   color: white;
   border: none;
   border-radius: 5px;
-
   cursor: pointer;
 }
 
 .perfil-boton:hover {
-
   background-color: #f1942a;
   color: black;
 }
 
 .idioma-container {
   display: flex;
-  padding: 10px;
+  padding: 0px 0px 5px 0px;
 }
 
 .pais-container {
   display: flex;
-  padding: 10px;
-
-  background-color: #ce7a1b;
   color: black;
-}
-
-.pais-container {
-  display: flex;
-  margin-bottom: 10px;
-  align-items: center;
-  background-color: #f4f4f4;
-}
-
-.idioma-container {
-  display: flex;
-  margin-bottom: 10px;
-  align-items: center;
-  background-color: #f4f4f4;
+  padding: 0px 0px 5px 0px;
 }
 
 label {
@@ -412,6 +392,8 @@ label {
 select {
   padding: 5px;
 }
+
+/* */
 
 .imgPerfil {
   height: 30px;

@@ -12,3 +12,10 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+document.addEventListener("DOMContentLoaded",function(){
+    if(localStorage.getItem('registro') != 'true'){
+        alert("Usted no ha iniciado sesión.")
+        window.location.href = 'login.html'
+    }
+})

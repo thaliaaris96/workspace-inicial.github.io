@@ -191,32 +191,6 @@ a.custom-card:hover {
 
 /* */
 
-.titulo-producto {
-  text-align: center;
-  font-family: 'Verdana', serif;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  font-size: 25px;
-}
-
-@media (min-width: 768px) {
-  .titulo-producto {
-    font-size: 40px;
-  }
-}
-
-.d-grid {
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
-
-.autos-tarjetas {
-  margin: 20px auto;
-  width: 80%;
-}
-
-/* */
-
 .img-login {
   width: 60%;
   margin-bottom: 80px;
@@ -398,4 +372,171 @@ select {
 .imgPerfil {
   height: 30px;
   width: 35px;
+}
+
+
+/* */
+
+.titulo-producto {
+  text-align: center;
+  font-family: 'Verdana', serif;
+  margin-top: 30px;
+  margin-bottom: 110px;
+  font-size: 25px;
+}
+
+@media (min-width: 375px) {
+  .titulo-producto {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .titulo-producto {
+    margin-bottom: 50px;
+  }
+}
+
+.TarjetaProducto {
+  display: grid;
+  margin-bottom: 120px;
+  background-color: rgba(255, 169, 63, 0.515);
+}
+
+.descripcionProducto {
+  font-size: 13px;
+}
+
+@media (min-width: 375px) {
+  .TarjetaProducto {
+    margin-bottom: 150px;
+  }
+
+  .descripcionProducto {
+    font-size: 15px;
+  }
+}
+
+
+
+@media (min-width: 768px) {
+  .TarjetaProducto {
+    margin-bottom: 50px;
+  }
+
+  .InfoProducto {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    align-items: center;
+  }	
+}
+
+@media (min-width: 991px) {
+  .InfoProducto {
+    grid-template-columns: 35% 65%;
+  }	
+}
+
+@media (min-width: 1200px) {
+  .InfoProducto {
+    grid-template-columns: 30% 70%;
+  }	
+}
+
+.ImagenProducto { 
+  width: 100%;
+  margin: -70px auto 15px auto;
+}
+
+@media (min-width: 375px) {
+  .ImagenProducto { 
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .ImagenProducto { 
+    width: 300px;
+    height: 200px;
+    margin: 0 15px 0 0;
+  }
+}
+
+.Descripcion {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.Descripcion > h3{
+  margin-bottom: 20px;
+}
+
+.Descripcion h3 {
+  font-weight: bold;
+  text-align: center;
+}
+
+.Descripcion p > span {
+  font-weight: bold;
+}
+
+.ComprarProducto p {
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .ComprarProducto p {
+    width: 85%;
+  }
+}
+
+.ComprarProducto p > span {
+  font-weight: bold;
+}
+
+.botonComprar {
+  text-align: center;
+  border-radius: 5px;
+}	
+
+@media (max-width: 768px) {
+  .botonComprar {
+    display: block;
+    width: 50%;
+    margin: 25px auto;
+    padding: 5px 0;
+  }	
+}
+
+@media (min-width: 768px) {
+  .ComprarProducto {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 30px 0;
+    padding-top: 30px;
+    border-top: 1px solid black;
+  }
+
+  .ComprarProducto p {
+    margin: auto 0;
+    font-size: 17px;
+  }
+
+  .botonComprar {
+    width: 250px;
+  }
+
+  .botonComprar:hover {
+    cursor: pointer;
+    background-color: #ffb23f;
+  }
+}
+
+@media (min-width: 1200px) {
+  .botonComprar {
+    width: 350px;
+  }
 }

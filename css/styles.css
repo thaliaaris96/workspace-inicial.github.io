@@ -298,10 +298,11 @@ a.custom-card:hover {
 }
 
 .perfil-container {
-  max-width: 800px;
-  margin: 25px;
+  display: inline-flexbox;
+  max-width: 90%;
+  margin: 35px;
   padding: 20px;
-  background-color: #f8eee3;
+  background-color: rgba(255, 169, 63, 0.515);;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: 'Verdana', serif
@@ -311,7 +312,7 @@ a.custom-card:hover {
   width: 180px;
   height: 200px;
   padding: 5px;
-  border-radius: 15%;
+  border-radius: 25px;
   object-fit: cover;
   margin-bottom: 40px;
 }
@@ -327,16 +328,10 @@ a.custom-card:hover {
   margin-bottom: 25px;
 }
 
+
 .perfil-boton {
   padding: 10px 20px;
-  background-color: #e97d03;
-  color: white;
-  border: none;
-  border-radius: 10px;
-}
-.perfil-boton {
-  padding: 10px 20px;
-  background-color: #f18406;
+  background-color: #f09100;
   color: white;
   border: none;
   border-radius: 5px;
@@ -344,7 +339,7 @@ a.custom-card:hover {
 }
 
 .perfil-boton:hover {
-  background-color: #f1942a;
+  background-color: #ffb23f;
   color: black;
 }
 

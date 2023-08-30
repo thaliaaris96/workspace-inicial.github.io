@@ -395,7 +395,14 @@ select {
 .TarjetaProducto {
   display: grid;
   margin-bottom: 120px;
-  background-color: rgba(255, 169, 63, 0.515);
+  background-color: rgb(247, 247, 247);
+  border: #000000 solid 0.1px;
+  
+}
+
+.TarjetaProducto:hover
+{
+  background-color: #f0900015;
 }
 
 .descripcionProducto {
@@ -495,6 +502,7 @@ select {
 .botonComprar {
   text-align: center;
   border-radius: 5px;
+  border: 1px solid #000000;
 }	
 
 @media (max-width: 768px) {

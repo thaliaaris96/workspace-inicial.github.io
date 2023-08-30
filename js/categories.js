@@ -140,4 +140,10 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showCategoriesList();
     });
+    let mmail = localStorage.getItem('mail');
+    let spanM = document.getElementById('mailNB');
+    if (mmail != null)
+    {
+    spanM.innerHTML = `${mmail}`;
+    }
 });

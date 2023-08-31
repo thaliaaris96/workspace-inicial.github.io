@@ -24,4 +24,4 @@ document.addEventListener("DOMContentLoaded",function(){
         alert("Usted no ha iniciado sesión.")
         window.location.href = 'login.html'
     }
-})
+});

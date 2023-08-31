@@ -33,12 +33,12 @@ function sortCategories(criteria, array){
     }
 
     return result;
-}
+};
 
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
-}
+};
 
 function showCategoriesList(){
 
@@ -69,7 +69,7 @@ function showCategoriesList(){
 
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
-}
+};
 
 function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
@@ -82,7 +82,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 
     //Muestro las categorías ordenadas
     showCategoriesList();
-}
+};
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los

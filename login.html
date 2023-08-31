@@ -1,84 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <title>eMercado - Todo lo que busques está aquí</title>
-        
-        <link
-        href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
-        rel="stylesheet"
-        />
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <link rel="shortcut icon" href="img/PestañaICONO.ico"/>
-        <style>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>eMercado - Todo lo que busques está aquí</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="img/PestañaICONO.ico" />
+    <style>
         body {
             background-color: rgb(248, 249, 250);
         }
-        </style>
-    </head>
+    </style>
+</head>
 
-    <body>
-        <main class="mt-5">
-            <center>
-                <img class="img-login" src="img/e-mercado-claro.png" alt="imagen_login">
-                <img class="img-login d-none" src="img/e-mercado-oscuro.png" alt="imagen_login">
-            </center>
+<body>
+    <main class="mt-5">
+        <center>
+            <img class="img-login" src="img/e-mercado-claro.png" alt="imagen_login">
+            <img class="img-login d-none" src="img/e-mercado-oscuro.png" alt="imagen_login">
+        </center>
 
-            <form class="formIngreso">
-                <h2>Login</h2>
-                <div class="seccionLogin">
-                    <div class="camposLogin">
-                        <label for="Mail">Mail</label>
-                        <input type="email" name="Mail" id="Mail" required>
-                    </div>
-                    <div class="camposLogin">
-                        <label for="Contraseña">Contraseña</label>
-                        <input type="password" name="Contraseña" id="Contraseña" required>
-                    </div>
+        <form class="formIngreso">
+            <h2>Login</h2>
+            <div class="seccionLogin">
+                <div class="camposLogin">
+                    <label for="Mail">Mail</label>
+                    <input type="email" name="Mail" id="Mail" required>
                 </div>
-                <div class="Recuerdame">
-                    <input type="checkbox" name="Recordar" id="Recordar">
-                    <label for="Recordar">Recuerdame</label>
+                <div class="camposLogin">
+                    <label for="Contraseña">Contraseña</label>
+                    <input type="password" name="Contraseña" id="Contraseña" required>
                 </div>
-                <div class="botonLogin">
-                    <input type="submit" name="ingresar" id="login" value="Ingresar">
-                </div>
-                <div class="redireciones">
-                    <a href="">¿Olvidaste tu contraseña?</a>
-                    <a href="">No tengo una cuenta</a>
-                </div>
-            </form>
+            </div>
+            <div class="Recuerdame">
+                <input type="checkbox" name="Recordar" id="Recordar">
+                <label for="Recordar">Recuerdame</label>
+            </div>
+            <div class="botonLogin">
+                <input type="submit" name="ingresar" id="login" value="Ingresar">
+            </div>
+            <div class="redireciones">
+                <a href="">¿Olvidaste tu contraseña?</a>
+                <a href="">No tengo una cuenta</a>
+            </div>
+        </form>
 
-            <form class="formRegistro d-none">
-                <div class="camposRegistro">
+        <form class="formRegistro d-none">
+            <div class="camposRegistro">
                 <label for="Mail">Mail</label>
                 <input type="email" name="Mail" id="Mail" required />
-                </div>
-                <div class="camposRegistro">
+            </div>
+            <div class="camposRegistro">
                 <label for="Contraseña">Contraseña</label>
                 <input type="password" name="Contraseña" id="Contraseña" required />
-                </div>
-                <div class="botonRegistro">
-                <input type="submit" name="ingresar" id="ingresar" value="Ingresar" />
-                </div>
-                <div class="olvidasteContraseña">
-                <a href="">Ya tengo cuenta</a>
-                </div>
-            </form>
-        </main>
-        
-        <footer class="text-muted">
-            <div class="container JAP-FOOTER-LOGIN">
-                <p>
-                Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
-                </p>
             </div>
-        </footer>
-        <script src="js/login.js"></script>
-    </body>
+            <div class="botonRegistro">
+                <input type="submit" name="ingresar" id="ingresar" value="Ingresar" />
+            </div>
+            <div class="olvidasteContraseña">
+                <a href="">Ya tengo cuenta</a>
+            </div>
+        </form>
+    </main>
+
+    <footer class="text-muted">
+        <div class="container JAP-FOOTER-LOGIN">
+            <p>
+                Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a
+                    Programar</a>
+            </p>
+        </div>
+    </footer>
+    <script src="js/login.js"></script>
+</body>
+
 </html>

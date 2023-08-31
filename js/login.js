@@ -8,7 +8,7 @@ if (localStorage.getItem('recordarDatos') === 'true') {
   mailInput.value = localStorage.getItem('guardadoMail');
   contraseñaInput.value = localStorage.getItem('guardadoContraseña');
   chkRecordar.checked = true;
-}
+};
 
 
 formulario.addEventListener('submit', function(event) {
@@ -16,7 +16,7 @@ formulario.addEventListener('submit', function(event) {
 
   let mail = mailInput.value;
   let contraseña = contraseñaInput.value;
-
+  localStorage.setItem('mail', mailInput.value);
   if (chkRecordar.checked) {
     
     localStorage.setItem('registro', 'true');
@@ -30,11 +30,7 @@ formulario.addEventListener('submit', function(event) {
     localStorage.removeItem('guardadoContraseña');
     localStorage.setItem('registro', 'true');
   }
-  
-    
     window.location.href = 'index.html';
-    
-  
 });
 
 
@@ -47,10 +43,9 @@ function checkSession() {
         
         window.location.href = 'login.html';
     } else if (loggedIn && isLoginPage) {
-        
         window.location.href = 'index.html';
     }
-}
+};
 
 
 window.addEventListener('load', checkSession);

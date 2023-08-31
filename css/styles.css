@@ -372,15 +372,27 @@ select {
 
 /* */
 
+.ElContenedor {
+  margin-top: 90px;
+}
+
+@media (min-width: 768px) {
+  .ElContenedor {
+    margin-top: 20px;
+  }
+}
+
+/* */
+
 .titulo-producto {
   text-align: center;
   font-family: 'Verdana', serif;
   margin-top: 30px;
-  margin-bottom: 110px;
+  margin-bottom: 20px;
   font-size: 25px;
 }
 
-@media (min-width: 375px) {
+@media (min-width: 768px) {
   .titulo-producto {
     font-size: 40px;
   }
@@ -448,6 +460,7 @@ select {
 .ImagenProducto { 
   width: 100%;
   margin: -70px auto 15px auto;
+  border: 1px solid #000000;
 }
 
 @media (min-width: 375px) {
@@ -464,6 +477,7 @@ select {
     width: 300px;
     height: 200px;
     margin: 0 15px 0 0;
+    border: none;
   }
 }
 
@@ -530,11 +544,7 @@ select {
 
   .botonComprar {
     width: 250px;
-  }
-
-  .botonComprar:hover {
-    cursor: pointer;
-    background-color: #ffb23f;
+    height: 35px;
   }
 }
 

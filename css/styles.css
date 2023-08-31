@@ -553,3 +553,39 @@ select {
     width: 350px;
   }
 }
+
+/*imagen pa cerrar sesion */
+.cerrarSes {
+  height: 30px;
+  width: 35px;
+}
+
+/*imagen de mode pal cambio del modo oscuro */
+.mode {
+  height: 30px;
+  width: 35px;
+}
+
+/*Colorcito pal los link de olvidaste tu contraseña y no tengo cuenta */
+body.modo-oscuro {
+  background-color: #0D1117;
+  color: white;
+}
+
+/*Colorcito pal los link de olvidaste tu contraseña y no tengo cuenta */
+.modo-oscuro .redireciones a {
+  color: #f09100; 
+}
+
+/*Colorcito pal link de jap del footer */
+.modo-oscuro footer a {
+  color: #f09100; 
+}
+
+.modo-oscuro #img-claro {
+  display: none; 
+}
+
+.modo-oscuro #img-oscuro {
+  display: block; 
+}

@@ -218,7 +218,7 @@ a.custom-card:hover {
   .formIngreso {
     width: 50%;
   }
-  
+
 }
 
 .formIngreso h2 {
@@ -247,7 +247,7 @@ a.custom-card:hover {
   margin-right: 5px;
 }
 
-.formIngreso .botonLogin{
+.formIngreso .botonLogin {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -270,7 +270,7 @@ a.custom-card:hover {
   color: #000000;
 }
 
-.redireciones{
+.redireciones {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -297,12 +297,15 @@ a.custom-card:hover {
   text-align: center;
 }
 
+/*Perfil usuario */
+
 .perfil-container {
   display: inline-flexbox;
   max-width: 90%;
   margin: 35px;
   padding: 20px;
-  background-color: rgba(255, 169, 63, 0.515);;
+  background-color: rgba(255, 169, 63, 0.515);
+  ;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: 'Verdana', serif
@@ -352,6 +355,30 @@ a.custom-card:hover {
   display: flex;
   color: black;
   padding: 0px 0px 5px 0px;
+}
+
+@media (max-width: 768px) {
+  .perfil-container {
+    /* Ajustes de estilo para pantallas más pequeñas */
+  }
+  .perfil-foto {
+    /* Ajustes de estilo para pantallas más pequeñas */
+  }
+  .perfil-nombre {
+    /* Ajustes de estilo para pantallas más pequeñas */
+  }
+  .perfil-info {
+    /* Ajustes de estilo para pantallas más pequeñas */
+  }
+  .perfil-boton {
+    /* Ajustes de estilo para pantallas más pequeñas */
+  }
+  .idioma-container {
+    /* Ajustes de estilo para pantallas más pequeñas */
+  }
+  .pais-container {
+    /* Ajustes de estilo para pantallas más pequeñas */
+  }
 }
 
 label {
@@ -409,11 +436,10 @@ select {
   margin-bottom: 120px;
   background-color: rgb(247, 247, 247);
   border: #000000 solid 0.1px;
-  
+
 }
 
-.TarjetaProducto:hover
-{
+.TarjetaProducto:hover {
   background-color: #f0900015;
 }
 
@@ -442,29 +468,29 @@ select {
     display: grid;
     grid-template-columns: 45% 55%;
     align-items: center;
-  }	
+  }
 }
 
 @media (min-width: 991px) {
   .InfoProducto {
     grid-template-columns: 35% 65%;
-  }	
+  }
 }
 
 @media (min-width: 1200px) {
   .InfoProducto {
     grid-template-columns: 30% 70%;
-  }	
+  }
 }
 
-.ImagenProducto { 
+.ImagenProducto {
   width: 100%;
   margin: -70px auto 15px auto;
   border: 1px solid #000000;
 }
 
 @media (min-width: 375px) {
-  .ImagenProducto { 
+  .ImagenProducto {
     width: 85%;
     display: flex;
     justify-content: center;
@@ -473,7 +499,7 @@ select {
 }
 
 @media (min-width: 768px) {
-  .ImagenProducto { 
+  .ImagenProducto {
     width: 300px;
     height: 200px;
     margin: 0 15px 0 0;
@@ -486,7 +512,7 @@ select {
   margin: 0 auto;
 }
 
-.Descripcion > h3{
+.Descripcion>h3 {
   margin-bottom: 20px;
 }
 
@@ -495,7 +521,7 @@ select {
   text-align: center;
 }
 
-.Descripcion p > span {
+.Descripcion p>span {
   font-weight: bold;
 }
 
@@ -509,7 +535,7 @@ select {
   }
 }
 
-.ComprarProducto p > span {
+.ComprarProducto p>span {
   font-weight: bold;
 }
 
@@ -517,7 +543,7 @@ select {
   text-align: center;
   border-radius: 5px;
   border: 1px solid #000000;
-}	
+}
 
 @media (max-width: 768px) {
   .botonComprar {
@@ -525,7 +551,7 @@ select {
     width: 50%;
     margin: 25px auto;
     padding: 5px 0;
-  }	
+  }
 }
 
 @media (min-width: 768px) {
@@ -574,18 +600,18 @@ body.modo-oscuro {
 
 /*Colorcito pal los link de olvidaste tu contraseña y no tengo cuenta */
 .modo-oscuro .redireciones a {
-  color: #f09100; 
+  color: #f09100;
 }
 
 /*Colorcito pal link de jap del footer */
 .modo-oscuro footer a {
-  color: #f09100; 
+  color: #f09100;
 }
 
 .modo-oscuro #img-claro {
-  display: none; 
+  display: none;
 }
 
 .modo-oscuro #img-oscuro {
-  display: block; 
+  display: block;
 }

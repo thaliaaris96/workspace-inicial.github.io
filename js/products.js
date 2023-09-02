@@ -49,20 +49,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("rangeFilterPrice").addEventListener("click", function () {
         minPrice = document.getElementById("rangeFilterPriceMin").value;
         maxPrice = document.getElementById("rangeFilterPriceMax").value;
-
-        if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0) {
+    
+        if ((minPrice !== undefined) && (minPrice !== "") && (parseInt(minPrice) >= 0)) {
             minPrice = parseInt(minPrice);
+        } else {
+            minPrice = 0; 
         }
-        else {
-            minPrice = undefined;
-        }
-
-        if ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0) {
+    
+        if ((maxPrice !== undefined) && (maxPrice !== "") && (parseInt(maxPrice) >= 0)) {
             maxPrice = parseInt(maxPrice);
+        } else {
+            maxPrice = Number.MAX_SAFE_INTEGER; 
         }
-        else {
-            maxPrice = undefined;
-        }
+        
         showProductsList(currentProductsArray);
     });
 

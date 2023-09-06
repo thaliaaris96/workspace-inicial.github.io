@@ -105,13 +105,20 @@ function sortProductos(criteria, array) {
     showProductsList(result);
 };
 
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+};
+
 function showProductsList(array) {
     let htmlContentToAppend = "";
     for (let i = 0; i < array.length; i++) {
         let producto = array[i];
 
-        if (((minPrice == undefined) || (minPrice != undefined && parseFloat(producto.cost) >= minPrice) && ((maxPrice == undefined) || maxPrice != undefined && parseFloat(producto.cost) <= maxPrice))) {
+        if (((minPrice == undefined) || (minPrice != undefined && parseFloat(producto.cost) >= minPrice) &&
+           ((maxPrice == undefined) || maxPrice != undefined && parseFloat(producto.cost) <= maxPrice))) {
             htmlContentToAppend += `
+                <div onclick="setProdID(${producto.id})" class="list-group-item list-group-item-action cursor-active">
                     <div class="TarjetaProducto">
                         <div class="InfoProducto"> 
                             <img class="ImagenProducto" src="${producto.image}" alt="${producto.name}">
@@ -126,6 +133,7 @@ function showProductsList(array) {
                             <button class="botonComprar">Comprar</button>
                         </div>
                     </div>
+                </div>
             `;
         }
     }

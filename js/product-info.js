@@ -75,17 +75,6 @@ document.addEventListener("DOMContentLoaded", function(){
     contenedor.appendChild(divAux);  
 });
 
-btnSendComentario.addEventListener("click", function(e){
-    e.preventDefault();
-    /* let ArrAux = new Array(); */
-    let divAux = document.createElement("div");
-    let valorComentario = InputComentario.value;
-    divAux.classList.add("Comentario");
-    localStorage.setItem('comentario', valorComentario);
-    divAux.innerHTML = `${localStorage.getItem('comentario')}`;
-    contenedor.appendChild(divAux);
-    InputComentario.value = "";
-});
 
 function convertirPuntuacionEnEstrellas(puntuacion) {
     let estrellasHTML = '';
@@ -99,6 +88,24 @@ function convertirPuntuacionEnEstrellas(puntuacion) {
     return estrellasHTML;
 }
 
+btnSendComentario.addEventListener("click", function(e){
+    e.preventDefault();
+    let divAux = document.createElement("div");
+    let valorComentario = InputComentario.value;
+    let puntuacion = document.getElementById("puntuacion").value; 
+    let mailUsuario = localStorage.getItem('mail'); 
+
+    let comentario = `
+        <p><strong>Usuario:</strong> ${mailUsuario}</p>
+        <p><strong>Puntuación:</strong> ${convertirPuntuacionEnEstrellas(puntuacion)}</p>
+        <p><strong>Comentario:</strong> ${valorComentario}</p>
+    `;
+    divAux.classList.add("Comentario");
+    localStorage.setItem('comentario', comentario);
+    divAux.innerHTML = comentario;
+    contenedor.appendChild(divAux);
+    InputComentario.value = "";
+});
 /*
 
 }

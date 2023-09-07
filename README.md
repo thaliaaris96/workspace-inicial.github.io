@@ -15,7 +15,7 @@ http://127.0.0.1:5500/index.html
 <li>Guardar regstro</li>
 <li>Buscar articulos a tiempo real</li>
 <li>Ordenar por orden alfábetico de manera ascendente, descendente y por relevancia</li>
-<li></li>
+<li>Ver y realizar nuevos comentarios</li>
 </ul>
 <h2>Proximas Funcionalidades</h2>
 <ul>

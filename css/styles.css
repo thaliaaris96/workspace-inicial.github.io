@@ -658,3 +658,10 @@ body.modo-oscuro {
   margin-top: 100px;
 }
 
+.checked {
+  color: #f09100;
+}
+
+.nochecked {
+  color: #f3e4c5;
+}

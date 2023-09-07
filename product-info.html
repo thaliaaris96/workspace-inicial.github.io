@@ -11,6 +11,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link rel="shortcut icon" href="img/PestañaICONO.ico"/>
+  <!---->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -32,8 +34,7 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">
-              <img class="imgPerfil" src="img/img_perfil.png" alt="login">
+            <a class="nav-link" id="mailNB" href="login.html">
             </a>
           </li>
         </ul>
@@ -42,6 +43,15 @@
   </nav>
   <main>
     <div id="contenedorProductInfo" class="container"></div>
+    <section class="agregarComentario">
+      <div>
+        <label for="comentarioUsu"></label>
+        <input type="text" name="" id="comentarioUsu">
+      </div>
+      <div>
+        <input id="btnComentario" type="button" value="Enviar Comentario">
+      </div>
+    </section>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -62,6 +72,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <script src="js/login.js"></script>
 </body>
 
 </html>

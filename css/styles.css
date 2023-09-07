@@ -655,7 +655,8 @@ body.modo-oscuro {
 }
 
 .agregarComentario {
-  margin-top: 100px;
+  margin-top: 10%;
+  margin-left: 5%;
 }
 
 .checked {

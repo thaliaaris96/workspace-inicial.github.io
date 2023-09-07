@@ -651,11 +651,12 @@ body.modo-oscuro {
 }
 
 .contenedorComentario {
+  margin-left: 0;
   margin-top: 70px;
 }
 
 .agregarComentario {
-  margin-top: 10%;
+  margin-top: 2%;
   margin-left: 5%;
 }
 

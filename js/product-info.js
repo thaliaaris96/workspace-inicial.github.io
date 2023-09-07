@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 comentarios += `
                     <div class="Comentario">
                         <p><strong>Usuario:</strong> ${data2[i].user}</p>
-                        <p><strong>Puntuacion:</strong> ${data2[i].score}</p>
+                        <p><strong>Puntuación:</strong> ${convertirPuntuacionEnEstrellas(data2[i].score)}</p>
                         <p><strong>Comentario:</strong> ${data2[i].description}</p>
                         <p><strong>Fecha:</strong> ${data2[i].dateTime}</p>
                     </div>
@@ -87,7 +87,17 @@ btnSendComentario.addEventListener("click", function(e){
     InputComentario.value = "";
 });
 
-
+function convertirPuntuacionEnEstrellas(puntuacion) {
+    let estrellasHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= puntuacion) {
+            estrellasHTML += '<span class="fa fa-star checked"></span>';
+        } else {
+            estrellasHTML += '<span class="fa fa-star nochecked"></span>';
+        }
+    }
+    return estrellasHTML;
+}
 
 /*
 

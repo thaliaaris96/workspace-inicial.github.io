@@ -4,11 +4,10 @@ let contenedor = document.getElementById("contenedorProductInfo");
 let contenidoProducto = "";
 let InputComentario = document.getElementById("comentarioUsu");
 let btnSendComentario = document.getElementById("btnComentario");
-/* console.log(localStorage.getItem('prodID')); */
+/* */
 
-document.addEventListener("DOMContentLoaded", function(){
-
-    fetch(URLProducto) 
+function FetchURLProducto(){
+    return ( fetch(URLProducto) 
         .then (function(response) {
             return response.json();
         })
@@ -44,37 +43,63 @@ document.addEventListener("DOMContentLoaded", function(){
         })
         .catch(function(error){
             console.error("Ocurrio el siguiente error: ", error);
-        }); 
+        })); 
+}
 
-    fetch(URLComentario)
-        .then (function(response2) {
-            return response2.json();
-        })
-        .then(function(data2){
-            let comentarios = ``;
-            for (let i = 0; i < data2.length; i++){
-                comentarios += `
-                    <div class="Comentario">
-                        <p><strong>Usuario:</strong> ${data2[i].user}</p>
-                        <p><strong>Puntuación:</strong> ${convertirPuntuacionEnEstrellas(data2[i].score)}</p>
-                        <p><strong>Comentario:</strong> ${data2[i].description}</p>
-                        <p><strong>Fecha:</strong> ${data2[i].dateTime}</p>
-                    </div>
-                `;
-            }
-            contenidoProducto += `
-                <section class="contenedorComentario">
-                ` + comentarios + `
-                </section>
+function FetchURLComentario(){
+    return (
+        fetch(URLComentario)
+    .then (function(response2) {
+        return response2.json();
+    })
+    .then(function(data2){
+        let comentarios = ``;
+        for (let i = 0; i < data2.length; i++){
+            comentarios += `
+                <div class="Comentario">
+                    <p>
+                        <strong class="nombreComentario">${data2[i].user}</strong>
+                        <br>
+                        <span>Fecha del comentario: ${data2[i].dateTime}
+                    </p>
+                    <p>
+                        <strong>Comentario:</strong>
+                        <br>
+                        <span>${data2[i].description}</span>
+                    </p>
+                    
+                    <p>
+                        <strong>
+                        La puntuacion de ${data2[i].user} es la siguiente: ${convertirPuntuacionEnEstrellas(data2[i].score)}
+                        </strong>
+                    </p>
+                </div>
             `;
-            contenedor.innerHTML = contenidoProducto;
-        })
-        .catch(function(error2){
-            console.error("Ocurrio el siguiente error: ", error2);
-        });
-    contenedor.appendChild(divAux);  
-});
+        }
+        contenidoProducto += `
+            <section class="contenedorComentario">
+            ` + comentarios + `
+            </section>
+        `;
+        contenedor.innerHTML = contenidoProducto;
+        contenedor.appendChild(divAux); 
+    })
+    .catch(function(error2){
+        console.error("Ocurrio el siguiente error: ", error2);
+    }));
+}
 
+document.addEventListener("DOMContentLoaded", function(){
+    console.log("Carga de FetchURLProducto()");
+    FetchURLProducto()
+        .then(function () {
+            console.log("Carga de FetchURLComentario()");
+            return FetchURLComentario();
+        })
+        .catch(function (error) {
+            console.error("Ha ocurrido algo con la carga de FetchURLComentario(): ", error);
+        });
+});
 
 function convertirPuntuacionEnEstrellas(puntuacion) {
     let estrellasHTML = '';
@@ -90,29 +115,49 @@ function convertirPuntuacionEnEstrellas(puntuacion) {
 
 btnSendComentario.addEventListener("click", function(e){
     e.preventDefault();
-    let divAux = document.createElement("div");
+    /* */
+    let fechaActual = new Date();
+    let fecha = fechaActual.toLocaleDateString();
+    let hora = fechaActual.toLocaleTimeString();
+    /* */
     let valorComentario = InputComentario.value;
+    let divAux = document.createElement("div");
     let puntuacion = document.getElementById("puntuacion").value; 
     let mailUsuario = localStorage.getItem('mail'); 
+    let contenedorDeComentario = document.getElementsByClassName("contenedorComentario");
 
     let comentario = `
-        <p><strong>Usuario:</strong> ${mailUsuario}</p>
-        <p><strong>Puntuación:</strong> ${convertirPuntuacionEnEstrellas(puntuacion)}</p>
-        <p><strong>Comentario:</strong> ${valorComentario}</p>
+        <p>
+            <strong class="nombreComentario">${mailUsuario}</strong>
+            <br>
+            <span>Fecha del comentario: ${fecha} ${hora} 
+        </p>
+        <p>
+            <strong>Comentario:</strong>
+            <br>
+            <span>${valorComentario}</span>
+        </p>
+        <p>
+            <strong>
+            La puntuacion de ${mailUsuario} es la siguiente: ${convertirPuntuacionEnEstrellas(puntuacion)}
+            </strong>
+        </p>
     `;
+
     divAux.classList.add("Comentario");
-    localStorage.setItem('comentario', comentario);
     divAux.innerHTML = comentario;
-    contenedor.appendChild(divAux);
-    InputComentario.value = "";
+    if (valorComentario.length == 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Algo no esta bien',
+            text: 
+            'El comentario no puede estar vacio, porfavor para evotar esto le pedimos que rellene el campo del comentario para que el mismo pueda ser publicado correctamente.',
+        });
+        console.error("El comentario no puede estar vacio");
+    } else {
+        localStorage.setItem('comentario', comentario);
+        contenedorDeComentario[0].appendChild(divAux);
+        console.log("Comentario enviado");
+        InputComentario.value = "";
+    }
 });
-/*
-
-}
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
-
-*/

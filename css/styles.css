@@ -5,6 +5,10 @@
   font-family: 'Verdana', serif !important;
 }
 
+.navBarAUX { /* Este Auxiliar es para product-info.html */
+  justify-content: space-evenly;
+}
+
 .jumbotron .display-4 {
   font-weight: bold;
 }
@@ -554,9 +558,19 @@ select {
   }
 }
 
+/* */
+
+.navDelLogin {
+  background-color: #212529;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mode {
-  height: 30px;
-  width: 35px;
+  height: 60px;
+  width: 60px;
 }
 
 body.modo-oscuro {
@@ -618,7 +632,7 @@ body.modo-oscuro {
 
 .continuacionImagenes {
   text-align: center;
-  margin: 45px 0;
+  margin-bottom: 45px;
   border: 1px solid #000000;
   border-radius: 5px;
 }
@@ -650,12 +664,30 @@ body.modo-oscuro {
   }
 }
 
+/* Comentario del JS*/
+
 .contenedorComentario {
+  max-height: 2000px;
+  overflow: auto;
   margin-top: 70px;
 }
 
-.agregarComentario {
-  margin-top: 100px;
+.Comentario {
+  border: 0.2px solid #353535;
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 20px;
+  background-color: #f3e4c5;
+  color: #000000;
+  font-size: 13px;
+}
+
+.Comentario p:last-child {
+  margin: 0;
+}
+
+.nombreComentario{
+  font-size: 14px;
 }
 
 .checked {
@@ -664,4 +696,93 @@ body.modo-oscuro {
 
 .nochecked {
   color: #f3e4c5;
+}
+
+/* */
+
+.agregarComentario {
+  display: grid;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.ComentarioAgregado {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ComentarioAgregado label {
+  margin: 10px auto 0 auto;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ComentarioAgregado textarea {
+  max-width: 95%;
+  min-width: 95%;
+  max-height: 250px;
+  min-height: 250px;
+  margin: 15px auto 0 auto;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+@media (min-width: 768px) {
+  .ComentarioAgregado textarea {
+    max-width: 80%;
+    min-width: 80%;
+    max-height: 170px;
+    min-height: 170px;
+  }
+}
+
+.OpcionesDelComentarioAgregado {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px auto;
+}
+
+@media (min-width: 768px) {
+  .OpcionesDelComentarioAgregado {
+    flex-direction: row;
+  }
+}
+
+.OpcionesDelComentarioAgregado label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 0;
+}
+
+@media (min-width: 768px) {
+  .OpcionesDelComentarioAgregado label {
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .OpcionesDelComentarioAgregado label {
+    margin-bottom: 10px;
+  }
+}
+
+.OpcionesDelComentarioAgregado select {
+  width: 200px;
+  border: 1px solid #000000;
+}
+
+.EnviarComentarioAgregado {
+  width: 80%;
+  margin: 0 auto 30px auto;
+}
+
+.EnviarComentarioAgregado input {
+  width: 100%;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 5px;
 }

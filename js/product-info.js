@@ -8,7 +8,7 @@ let btnSendComentario = document.getElementById("btnComentario");
 
 function FetchURLProducto(){
     return ( fetch(URLProducto) 
-        .then (function(response) {
+        .then ( function(response) {
             return response.json();
         })
         .then(function(data){
@@ -33,7 +33,7 @@ function FetchURLProducto(){
                 </section>
                 <hr>
                 <section class="continuacionImagenes">
-                    <p><strong>Las siguientes imagenes son meramente ilustrativas</strong></p>
+                    <p><strong>Las siguientes imágenes son meramente ilustrativas</strong></p>
                 </section>
                 <section class="imagenesDelProducto">
                 ` + InnerImg + `
@@ -70,7 +70,7 @@ function FetchURLComentario(){
                     
                     <p>
                         <strong>
-                        La puntuacion de ${data2[i].user} es la siguiente: ${convertirPuntuacionEnEstrellas(data2[i].score)}
+                        La puntuación de ${data2[i].user} es la siguiente: ${convertirPuntuacionEnEstrellas(data2[i].score)}
                         </strong>
                     </p>
                 </div>
@@ -82,7 +82,6 @@ function FetchURLComentario(){
             </section>
         `;
         contenedor.innerHTML = contenidoProducto;
-        contenedor.appendChild(divAux); 
     })
     .catch(function(error2){
         console.error("Ocurrio el siguiente error: ", error2);
@@ -149,7 +148,7 @@ btnSendComentario.addEventListener("click", function(e){
     if (valorComentario.length == 0) {
         Swal.fire({
             icon: 'error',
-            title: 'Algo no esta bien',
+            title: 'Algo no está bien',
             text: 
             'El comentario no puede estar vacio, porfavor para evotar esto le pedimos que rellene el campo del comentario para que el mismo pueda ser publicado correctamente.',
         });

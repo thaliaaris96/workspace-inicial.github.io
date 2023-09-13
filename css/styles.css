@@ -33,22 +33,48 @@ nav a {
 }
 
 .jumbotron {
-  height: 50vh;
-  padding: 5em inherit;
-  margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: black;
-  font-weight: bold;
+  background-color: #f8f9fa;
+}
+
+.jumbotron #img_jumb_grande {
+  display: none;
+}
+
+.jumbotron #img_jumb_pequeña {
+  height: 150px;
+  margin-top: 60px;
+  width: 100%;
+}
+
+@media (min-width: 400px) {
+  .jumbotron #img_jumb_pequeña {
+    height: 200px;
+    width: 95%;
+  }
+}
+
+@media (min-width: 600px) {
+  .jumbotron #img_jumb_pequeña {
+    height: 300px;
+  }
 }
 
 @media (min-width: 768px) {
-  .jumbotron {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+  .jumbotron #img_jumb_grande {
+      display: block;
+      height: 100%;
+      width: 100%;
+      padding-top: 60px;
+    }
+  
+    .jumbotron #img_jumb_pequeña {
+      display: none;
+    }
+}
+
+@media (min-width: 1630px) {
+  .jumbotron #img_jumb_grande {
+      height: 700px;
   }
 }
 

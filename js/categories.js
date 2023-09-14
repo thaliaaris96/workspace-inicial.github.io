@@ -1,3 +1,4 @@
+// Definición de constantes para criterios de ordenamiento, variable para almacenar el criterio de ordenamiento actual y Variables para filtros de cantidad
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";
@@ -6,9 +7,11 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+// Función para ordenar un arreglo de categorías, que retorna en un resultado según la condición
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
+    // Ordenar de forma ascendente por nombre
     {
         result = array.sort(function(a, b) {
             if ( a.name < b.name ){ return -1; }
@@ -16,12 +19,14 @@ function sortCategories(criteria, array){
             return 0;
         });
     }else if (criteria === ORDER_DESC_BY_NAME){
+         // Ordenar de forma descendente por nombre
         result = array.sort(function(a, b) {
             if ( a.name > b.name ){ return -1; }
             if ( a.name < b.name ){ return 1; }
             return 0;
         });
     }else if (criteria === ORDER_BY_PROD_COUNT){
+        // Ordenar por cantidad de productos (números)
         result = array.sort(function(a, b) {
             let aCount = parseInt(a.productCount);
             let bCount = parseInt(b.productCount);
@@ -35,17 +40,20 @@ function sortCategories(criteria, array){
     return result;
 };
 
+// Función para establecer la categoría seleccionada y redirigir a otra página (Información de Producto)
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
 };
 
+// Función para mostrar la lista de categorías en la página
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
 
+        // Filtrar categorías según cantidad mínima y máxima
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
 
@@ -66,11 +74,12 @@ function showCategoriesList(){
             </div>
             `
         }
-
+         // Actualizar el contenido HTML con las categorías
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
 };
 
+// Función para ordenar y mostrar las categorías
 function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
 
@@ -96,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
+    // Event listeners para botones de ordenamiento
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
@@ -108,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         sortAndShowCategories(ORDER_BY_PROD_COUNT);
     });
 
+     // Event listener para borrar filtros de cantidad
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
@@ -118,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 
+    // Event listener para aplicar filtros de cantidad
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
         //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
         //de productos por categoría.
@@ -140,6 +152,8 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showCategoriesList();
     });
+
+    // Obtener el correo electrónico del almacenamiento local y mostrarlo
     let mmail = localStorage.getItem('mail');
     let spanM = document.getElementById('mailNB');
     if (mmail != null)

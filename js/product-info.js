@@ -1,11 +1,13 @@
+// Obtener URLs de los productos y comentarios basados en el ID de producto almacenado en el local storage
 let URLProducto = `https://japceibal.github.io/emercado-api/products/${localStorage.getItem('prodID')}.json`;
 let URLComentario = `https://japceibal.github.io/emercado-api/products_comments/${localStorage.getItem('prodID')}.json`;
+// Referencias a elementos del DOM
 let contenedor = document.getElementById("contenedorProductInfo");
 let contenidoProducto = "";
 let InputComentario = document.getElementById("comentarioUsu");
 let btnSendComentario = document.getElementById("btnComentario");
-/* */
 
+// Función para obtener y mostrar información del producto desde la URL
 function FetchURLProducto(){
     return ( fetch(URLProducto) 
         .then ( function(response) {
@@ -46,6 +48,7 @@ function FetchURLProducto(){
         })); 
 }
 
+// Función para obtener y mostrar comentarios desde la URL
 function FetchURLComentario(){
     return (
         fetch(URLComentario)
@@ -88,6 +91,7 @@ function FetchURLComentario(){
     }));
 }
 
+// Evento que se ejecuta cuando el documento HTML se ha cargado completamente
 document.addEventListener("DOMContentLoaded", function(){
     console.log("Carga de FetchURLProducto()");
     FetchURLProducto()
@@ -100,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function(){
         });
 });
 
+// Función para convertir la puntuación en estrellas
 function convertirPuntuacionEnEstrellas(puntuacion) {
     let estrellasHTML = '';
     for (let i = 1; i <= 5; i++) {
@@ -112,6 +117,7 @@ function convertirPuntuacionEnEstrellas(puntuacion) {
     return estrellasHTML;
 }
 
+// Evento de click en el botón para enviar un comentario
 btnSendComentario.addEventListener("click", function(e){
     e.preventDefault();
     /* */

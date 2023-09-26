@@ -3,7 +3,9 @@ let URLProducto = `https://japceibal.github.io/emercado-api/products/${localStor
 let URLComentario = `https://japceibal.github.io/emercado-api/products_comments/${localStorage.getItem('prodID')}.json`;
 // Referencias a elementos del DOM
 let contenedor = document.getElementById("contenedorProductInfo");
+let contenedorProdRel = document.getElementById("productosRelacionados");
 let contenidoProducto = "";
+let contenidoProdRel = "";
 let InputComentario = document.getElementById("comentarioUsu");
 let btnSendComentario = document.getElementById("btnComentario");
 
@@ -15,6 +17,7 @@ function FetchURLProducto(){
         })
         .then(function(data){
             let InnerImg = ``;
+            let ProdRel = ``;
             for (let j = 0; j < data.images.length; j++){
                 InnerImg += `
                     <div class="imagenesProducto">
@@ -41,7 +44,21 @@ function FetchURLProducto(){
                 ` + InnerImg + `
                 </section>
             `;
+            
+            for (let m = 0; m < data.relatedProducts.length; m++){
+                // let linkA = `https://japceibal.github.io/emercado-api/products/${data.relatedProducts[m].id}.json`;
+                // let linkA = `https://japceibal.github.io/emercado-api/products/${localStorage.getItem('prodID')}`;
+                ProdRel += `
+                    <a class="ProductoRelacionado">
+                        <img class="imgProdRelacionado" src="${data.relatedProducts[m].image}" alt=""/>
+                        <p class="parrafoProdRelacionado">${data.relatedProducts[m].name}</p>
+                    </a>
+                `;
+            }
             contenedor.innerHTML = contenidoProducto;
+            contenidoProdRel += ProdRel;
+            contenedorProdRel.innerHTML = contenidoProdRel;
+
         })
         .catch(function(error){
             console.error("Ocurrio el siguiente error: ", error);

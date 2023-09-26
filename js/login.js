@@ -65,23 +65,32 @@ const imgModoOscuro = document.getElementById('img-oscuro'); // Imagen de modo o
 const body = document.body;
 
 // Agregar un evento de clic al interruptor del modo oscuro
-modoOscuroToggle.addEventListener('click', () => {
-
+const cambiarModo = () => {
   body.classList.toggle('modo-oscuro');
 
-// Cambiar las imágenes de modo claro y modo oscuro
+  // Cambiar las imágenes de modo claro y modo oscuro
   if (body.classList.contains('modo-oscuro')) {
-    imgModoClaro.classList.add('d-none'); 
-    imgModoOscuro.classList.remove('d-none'); 
+    imgModoClaro.classList.add('d-none');
+    imgModoOscuro.classList.remove('d-none');
+    localStorage.setItem('modo-oscuro', 'true');
   } else {
-    imgModoClaro.classList.remove('d-none'); 
-    imgModoOscuro.classList.add('d-none'); 
+    imgModoClaro.classList.remove('d-none');
+    imgModoOscuro.classList.add('d-none');
+    localStorage.setItem('modo-oscuro', 'false');
   }
-});
+};
+
+// Escuchar el evento de clic en el toggle
+modoOscuroToggle.addEventListener('click', cambiarModo);
 
 // Verificar el modo oscuro al cargar la página
-if (body.classList.contains('modo-oscuro')) {
-  imgModoClaro.classList.add('d-none'); 
+const modoOscuroGuardado = localStorage.getItem('modo-oscuro');
+if (modoOscuroGuardado === 'true') {
+  body.classList.add('modo-oscuro');
+  imgModoClaro.classList.add('d-none');
+  imgModoOscuro.classList.remove('d-none');
 } else {
-  imgModoOscuro.classList.add('d-none'); 
+  body.classList.remove('modo-oscuro');
+  imgModoClaro.classList.remove('d-none');
+  imgModoOscuro.classList.add('d-none');
 }

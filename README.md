@@ -7,7 +7,7 @@
 </p>
 <h2>Uso</h2>
 <p>Accede a la tienda en línea ingresando en tu navegador a: </p>
-hhttps://thaliaaris96.github.io/workspace-inicial.github.io/
+https://thaliaaris96.github.io/workspace-inicial.github.io/
 <h2>Funcionalidades</h2>
 <ul>
 <li>Explorar catálogo de productos</li>

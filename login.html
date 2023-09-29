@@ -19,9 +19,20 @@
 
 <body>
     <nav class="navDelLogin">
-        <a href="#" id="modoOscuroToggle">
-            <img class="mode" src="img/mode.png" alt="Modo Oscuro">
-        </a>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link" id="mailNB" href="login.html">
+              </a>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+              <li><a href="#" id="modoOscuroToggle">
+                <img class="mode" src="img/mode.png" alt="Modo Oscuro">
+            </a></li>
+            </ul>
+          </div>        
     </nav>
     <main class="mt-5">
         <center>
@@ -81,6 +92,8 @@
         </div>
     </footer>
     <script src="js/login.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
 </body>
 
 </html>

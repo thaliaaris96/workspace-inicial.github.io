@@ -12,6 +12,10 @@
 .jumbotron .display-4 {
   font-weight: bold;
 }
+.bbfoto{
+  max-height: 10px; 
+
+}
 
 nav a {
   text-decoration: none;
@@ -596,7 +600,9 @@ select {
 
 .mode {
   height: 60px;
-  width: 60px;
+  width: 60px;  
+  margin: 0 auto; 
+  display: block; 
 }
 
 body.modo-oscuro {
@@ -819,4 +825,13 @@ body.modo-oscuro {
   border: 1px solid #000000;
   border-radius: 5px;
   padding: 5px;
+}
+
+/* */
+
+.productosRelacionados {
+  height: 400px;
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid #000000;
 }

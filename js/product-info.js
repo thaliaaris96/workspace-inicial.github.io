@@ -10,21 +10,25 @@ let InputComentario = document.getElementById("comentarioUsu");
 let btnSendComentario = document.getElementById("btnComentario");
 
 // Función para obtener y mostrar información del producto desde la URL
-function FetchURLProducto(){
-    return ( fetch(URLProducto) 
-        .then ( function(response) {
+function FetchURLProducto() {
+    return (fetch(URLProducto)
+        .then(function (response) {
             return response.json();
         })
-        .then(function(data){
+        .then(function (data) {
             let InnerImg = ``;
             let ProdRel = ``;
-            for (let j = 0; j < data.images.length; j++){
+            for (let j = 0; j < data.images.length; j++) {
+                const activeClass = j === 0 ? 'active' : '';
                 InnerImg += `
-                <div class="carousel-item active" data-bs-interval="10000">
-                <img src="${data.images[j]}" class="d-block w-100" alt="...">
+                <div class="carousel-item ${activeClass}" data-bs-interval="10000"> 
+                    <img src="${data.images[j]}" class="d-block w-75 mx-auto" alt="Image ${j + 1}">
+                    <div class="carousel-caption d-none d-md-block">                     
+                    </div>
                 </div>
                 `;
             }
+
             contenidoProducto += `
                 <section class="nombreDelProducto">
                     <h1>${data.name}</h1>
@@ -41,19 +45,21 @@ function FetchURLProducto(){
                     <p><strong>Las siguientes imágenes son meramente ilustrativas</strong></p>
                 </section>
                 
-                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                <div class="carousel-inner">
-                ` + InnerImg + `
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        ${generateIndicators(data.images.length)}
+                    </div>
+                    <div class="carousel-inner">
+                    ` + InnerImg + `
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             `;
 
@@ -83,6 +89,16 @@ function FetchURLProducto(){
         .catch(function(error){
             console.error("Ocurrio el siguiente error: ", error);
         })); 
+        function generateIndicators(num) {
+            let indicators = '';
+            for (let i = 0; i < num; i++) {
+                const activeClass = i === 0 ? 'active' : '';
+                indicators += `<div class="bbfoto">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="${i}" class="${activeClass} " aria-label="Slide ${i + 1}"></button>
+                </div>`;
+            }
+            return indicators;
+        }
 }
 
 // Función para obtener y mostrar comentarios desde la URL

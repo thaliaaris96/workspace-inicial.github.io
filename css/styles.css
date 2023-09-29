@@ -35,7 +35,9 @@ nav a {
 .jumbotron {
   background-color: #f8f9fa;
 }
-
+.carru {
+  margin: 0 auto;
+}
 .jumbotron #img_jumb_grande {
   display: none;
 }

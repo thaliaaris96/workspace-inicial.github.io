@@ -20,9 +20,9 @@ function FetchURLProducto(){
             let ProdRel = ``;
             for (let j = 0; j < data.images.length; j++){
                 InnerImg += `
-                    <div class="imagenesProducto">
-                        <img src="${data.images[j]}" alt=""/> 
-                    </div>
+                <div class="carousel-item active" data-bs-interval="10000">
+                <img src="${data.images[j]}" class="d-block w-100" alt="...">
+                </div>
                 `;
             }
             contenidoProducto += `
@@ -40,25 +40,45 @@ function FetchURLProducto(){
                 <section class="continuacionImagenes">
                     <p><strong>Las siguientes imágenes son meramente ilustrativas</strong></p>
                 </section>
-                <section class="imagenesDelProducto">
+                
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                <div class="carousel-inner">
                 ` + InnerImg + `
-                </section>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                </div>
             `;
-            
-            for (let m = 0; m < data.relatedProducts.length; m++){
-                // let linkA = `https://japceibal.github.io/emercado-api/products/${data.relatedProducts[m].id}.json`;
-                // let linkA = `https://japceibal.github.io/emercado-api/products/${localStorage.getItem('prodID')}`;
-                ProdRel += `
-                    <a class="ProductoRelacionado">
-                        <img class="imgProdRelacionado" src="${data.relatedProducts[m].image}" alt=""/>
-                        <p class="parrafoProdRelacionado">${data.relatedProducts[m].name}</p>
-                    </a>
-                `;
-            }
+
+            ProdRel += `
+                <a href="product-info.html" id="ProductoRelacionado0">
+                    <img class="imgProdRelacionado" src="${data.relatedProducts[0].image}" alt=""/>
+                    <p class="parrafoProdRelacionado">${data.relatedProducts[0].name}</p>
+                </a>
+                <a href="product-info.html" id="ProductoRelacionado1">
+                    <img class="imgProdRelacionado" src="${data.relatedProducts[1].image}" alt=""/>
+                    <p class="parrafoProdRelacionado">${data.relatedProducts[1].name}</p>
+                 </a>
+            `;
             contenedor.innerHTML = contenidoProducto;
             contenidoProdRel += ProdRel;
             contenedorProdRel.innerHTML = contenidoProdRel;
 
+            let linkProdRel0 = document.getElementById("ProductoRelacionado0");
+            let linkProdRel1 = document.getElementById("ProductoRelacionado1");
+            linkProdRel0.addEventListener("click", function(){
+                localStorage.setItem("prodID", data.relatedProducts[0].id);
+            });
+            linkProdRel1.addEventListener("click", function(){
+                localStorage.setItem("prodID", data.relatedProducts[1].id);
+            });
         })
         .catch(function(error){
             console.error("Ocurrio el siguiente error: ", error);
@@ -183,3 +203,4 @@ btnSendComentario.addEventListener("click", function(e){
         InputComentario.value = "";
     }
 });
+

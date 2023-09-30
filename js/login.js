@@ -72,11 +72,11 @@ const cambiarModo = () => {
   if (body.classList.contains('modo-oscuro')) {
     imgModoClaro.classList.add('d-none');
     imgModoOscuro.classList.remove('d-none');
-    localStorage.setItem('modo-oscuro', 'true');
+    localStorage.setItem('modo-oscuro', 'true');//Guardado en LocalStorage
   } else {
     imgModoClaro.classList.remove('d-none');
     imgModoOscuro.classList.add('d-none');
-    localStorage.setItem('modo-oscuro', 'false');
+    localStorage.setItem('modo-oscuro', 'false');//Guardado en LocalStorage
   }
 };
 

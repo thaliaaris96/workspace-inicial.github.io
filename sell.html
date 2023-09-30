@@ -13,6 +13,7 @@
 </head>
 
 <body>
+   <!-- Barra de Navegación de Vender con menú desplegable, que redirecciona a otras secciones-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -22,18 +23,31 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link active" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="mailNB" href="login.html">
-            </a>
-          </li>
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>          
+          <div class="dropdown">
+            <button class="btn btn-secondary btn-sm" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link" id="mailNB" href="login.html">
+              </a>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+              <li>
+                <a href="#" id="modoOscuroToggle">
+                  <img class="mode" src="img/mode.png" alt="Modo Oscuro">
+                </a>
+              </li>
+            </ul>
+          </div>           
         </ul>
       </div>
     </div>

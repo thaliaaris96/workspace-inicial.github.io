@@ -71,7 +71,7 @@ function FetchURLProducto() {
                 <a href="product-info.html" id="ProductoRelacionado1">
                     <img class="imgProdRelacionado" src="${data.relatedProducts[1].image}" alt=""/>
                     <p class="parrafoProdRelacionado">${data.relatedProducts[1].name}</p>
-                 </a>
+                </a>
             `;
             contenedor.innerHTML = contenidoProducto;
             contenidoProdRel += ProdRel;

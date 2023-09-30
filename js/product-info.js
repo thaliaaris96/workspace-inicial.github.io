@@ -4,10 +4,11 @@ let URLComentario = `https://japceibal.github.io/emercado-api/products_comments/
 // Referencias a elementos del DOM
 let contenedor = document.getElementById("contenedorProductInfo");
 let contenedorProdRel = document.getElementById("productosRelacionados");
-let contenidoProducto = "";
-let contenidoProdRel = "";
 let InputComentario = document.getElementById("comentarioUsu");
 let btnSendComentario = document.getElementById("btnComentario");
+// variables vacías que usarán en funciones para cargar los Productos y Productos Relacionados
+let contenidoProducto = "";
+let contenidoProdRel = "";
 
 // Función para obtener y mostrar información del producto desde la URL
 function FetchURLProducto() {
@@ -15,6 +16,7 @@ function FetchURLProducto() {
         .then(function (response) {
             return response.json();
         })
+        //Acá se procesan los datos de imágenes y se genera HTML dinámico por medio de un for, esto para el carrusel de imágenes
         .then(function (data) {
             let InnerImg = ``;
             let ProdRel = ``;
@@ -28,7 +30,9 @@ function FetchURLProducto() {
                 </div>
                 `;
             }
+            // Este fragmento de código genera dinámicamente el contenido HTML para mostrar la información del producto y productos relacionados en una página web
 
+            // Se crea una variable para almacenar el contenido del producto
             contenidoProducto += `
                 <section class="nombreDelProducto">
                     <h1>${data.name}</h1>
@@ -63,6 +67,7 @@ function FetchURLProducto() {
                 </div>
             `;
 
+            // Se crea una variable para almacenar el contenido de productos relacionados
             ProdRel += `
                 <a href="product-info.html" id="ProductoRelacionado0">
                     <img class="imgProdRelacionado" src="${data.relatedProducts[0].image}" alt=""/>
@@ -73,12 +78,15 @@ function FetchURLProducto() {
                     <p class="parrafoProdRelacionado">${data.relatedProducts[1].name}</p>
                 </a>
             `;
-            contenedor.innerHTML = contenidoProducto;
-            contenidoProdRel += ProdRel;
-            contenedorProdRel.innerHTML = contenidoProdRel;
+            contenedor.innerHTML = contenidoProducto; // Muestra la información del producto
+            contenidoProdRel += ProdRel; // Agrega los productos relacionados al contenido
+            contenedorProdRel.innerHTML = contenidoProdRel; // Muestra los productos relacionados
 
+            // Se obtienen los elementos HTML para los enlaces de productos relacionados
             let linkProdRel0 = document.getElementById("ProductoRelacionado0");
             let linkProdRel1 = document.getElementById("ProductoRelacionado1");
+
+            // Se agrega un evento de click a los enlaces de productos relacionados para navegar entre ellos
             linkProdRel0.addEventListener("click", function(){
                 localStorage.setItem("prodID", data.relatedProducts[0].id);
             });
@@ -89,9 +97,12 @@ function FetchURLProducto() {
         .catch(function(error){
             console.error("Ocurrio el siguiente error: ", error);
         })); 
+
+        // Esta función crea indicadores para el carrusel de imágenes en base al número de imágenes proporcionadas
         function generateIndicators(num) {
             let indicators = '';
             for (let i = 0; i < num; i++) {
+                // Se establece la clase 'active' para el primer indicador
                 const activeClass = i === 0 ? 'active' : '';
                 indicators += `<div class="bbfoto">
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="${i}" class="${activeClass} " aria-label="Slide ${i + 1}"></button>
@@ -201,9 +212,11 @@ btnSendComentario.addEventListener("click", function(e){
             </strong>
         </p>
     `;
-
+    // Se crea un elemento divAux con la clase "Comentario" y se le asigna el contenido del comentario
     divAux.classList.add("Comentario");
     divAux.innerHTML = comentario;
+
+    // Se verifica si el comentario tiene una longitud igual a cero (está vacío), y según la condición aparecerá error o se agrega el comentario
     if (valorComentario.length == 0) {
         Swal.fire({
             icon: 'error',

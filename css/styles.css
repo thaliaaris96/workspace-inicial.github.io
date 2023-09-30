@@ -828,6 +828,14 @@ body.modo-oscuro {
 
 /* */
 
+.tituloProductosRelacionados {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 30px 0;
+  text-transform: uppercase;
+}
+
 .productosRelacionados {
   height: 400px;
   width: 90%;
@@ -865,6 +873,10 @@ body.modo-oscuro {
 }
 
 @media (min-width: 540px) {
+  .tituloProductosRelacionados {
+    font-size: 23px;
+  }
+
   .productosRelacionados p {
     font-size: 15px;
   }

@@ -239,12 +239,26 @@ btnSendComentario.addEventListener("click", function(e){
     }
 });
 
-function toCart(){
+/*function toCart(){
     window.location = "cart.html";
     let idComprado = localStorage.getItem("prodID");
     localStorage.setItem("idComprado", idComprado);
 };
+*/
 
 
+function toCart(){
+    window.location = "cart.html";
+    let idComprado = localStorage.getItem("prodID");
+    console.log(idComprado)
+    if (!localStorage.getItem('idComprado')) {
+
+        const arrayCompras = [];
+        localStorage.setItem('idComprado', JSON.stringify(arrayCompras));
+      }
+    const storedArray = JSON.parse(localStorage.getItem('idComprado'));
+    storedArray.push(idComprado);
+    localStorage.setItem('idComprado', JSON.stringify(storedArray))
+};
 
 

@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link rel="shortcut icon" href="img/PestañaICONO.ico"/>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                   <img class="mode" src="img/mode.png" alt="Modo Oscuro">
                 </a>
               </li>
-            </ul>
+            </div>
           </div>           
         </ul>
       </div>
@@ -59,25 +60,20 @@
     </div>
     <div class="container mt-5" id="container">
       <div class="row justify-content-center">
-          <div class="col-md-6">
-            <form id="formCarrito" class="container text-center border">
-                <div class="row">
-                  <div class="col"></div>
-                  <div class="col">Nombre</div>
-                  <div class="col">Costo</div>
-                  <div class="col">Cantidad</div>
-                  <div class="col">Subtotal</div>
-                </div>
-                <div class="row">
-                  <div class="col" id="imgProdComprar"></div>
-                  <div class="col" id="nomProdComprar"></div>
-                  <div class="col" id="cantProdComprar">
-                    <input type="number" min="0">
-                  </div>
-                  <div class="col" id="subTotalProdComprar"></div>
-                </div>
-            </form>
-          </div>
+        <table  class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Imagen</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Costo</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Subtotal</th>
+              <th scope="col">Borrar</th>
+            </tr>
+          </thead>
+          <tbody id="formCarrito">
+          </tbody>
+        </table>
         </div>
       </div>
       <div class="text-center p-4">
@@ -97,23 +93,30 @@
           </div>
         </div>
       </div>
-      <div class="text-center p-4">
-        <h2 class="text-capitalize">Dirección de envío</h2>
-        <div class="InfoEnvio">
-          <div class="InfocalleEnvio">
-            <label for="calleEnvio">Calle</label>
-            <input id="calleEnvio" name="calleEnvio" type="text">
+      <form id="formularioCompra">
+        <div class="form-row">
+          <div class="form-group col-md-3 contenedorFormCompra">
+            <label for="inputAddress">Pais</label>
+            <input type="text" class="form-control" id="inputAddress">
           </div>
-          <div class="InfoesquinaEnvio">
-            <label for="esquinaEnvio">Esquina</label>
-            <input id="esquinaEnvio" name="esquinaEnvio" type="text">
+          <div class="form-group col-md-3 contenedorFormCompra">
+            <label for="inputCity">Ciudad</label>
+            <input type="text" class="form-control" id="inputCity">
           </div>
-          <div class="InfonumeroEnvio">
-            <label for="numeroEnvio">Número</label>
-            <input id="numeroEnvio" name="numeroEnvio" type="text">
+          <div class="form-group col-md-3 contenedorFormCompra">
+            <label for="inputState">Direccion</label>
+            <input type="text" class="form-control" id="inputCity">
+          </div>
+          <div class="form-group col-md-2 contenedorFormCompra">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+          </div>
+          <div class="form-group contenedorFormCompra">
+            <br>
+            <button type="submit" class="btn btn-primary" id="btnFinalizarCompra">Finalizar compra</button>
           </div>
         </div>
-      </div>
+      </form>
   </main>
   <footer class="text-muted">
     <div class="container">

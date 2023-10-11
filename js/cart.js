@@ -1,65 +1,104 @@
 let URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
+let imagen = document.getElementById("imgProdComprar");
 let nombre = document.getElementById("nomProdComprar");
-let costo = document.getElementById("costProdComprar");
 let cantidad = document.getElementById("cantProdComprar");
+let costo = document.getElementById("costProdComprar");
 let subtotal = document.getElementById("subTotalProdComprar");
+let colEliminar = document.getElementById("elimProdComprar");
+/* */
+
+/* */
 let envio1 = document.getElementById("Seleccionradio1");
 let envio2 = document.getElementById("Seleccionradio2");
 let envio3 = document.getElementById("Seleccionradio3");
-let imagen = document.getElementById("imgProdComprar");
 
-function fetchProductoBase(){
-    return (fetch(URL)
-    .then(function(response){
-        return response.json();
-    }))
-    .then(function(data){
-        nombre.innerHTML = `${data.articles[0].name}`;
-        costo.innerHTML = `${data.articles[0].currency} ${data.articles[0].unitCost}`;
-        cantidad.innerHTML = `${data.articles[0].count}`;
-        imagen.innerHTML = `<img src="${data.articles[0].image}" alt="${data.articles[0].name}">`;
-        subtotal.innerHTML = `${data.articles[0].currency} ${data.articles[0].unitCost}`;
-    })
-    .catch(function(error){
-        console.error("Ocurrio el siguiente error: ", error);
-    }); 
-};
+async function fetchProductoBase() {
+    try {
+        const response = await fetch(URL);
+        const data = await response.json();
+        const product = data.articles[0];
+        console.log(product);
+        let auxRow = document.createElement("tr");
+        auxRow.innerHTML = `
+            <th scope="row" id="imgProdComprar"><img src="${product.image}" alt="${product.name}"></th>
+            <td id="nomProdComprar">${product.name}</td>
+            <td id="costProdComprar">${product.currency} ${product.unitCost}</td>
+            <td id="cantProdComprar">
+                <input id="cantidadDeProductos" type="number" min="1" max="1" value="${product.count}">
+            </td>
+            <td id="subTotalProdComprar">${product.currency} ${product.unitCost}</td>
+            <td id="elimProdComprar">
+                <button id="btnBorrarElemento"><i class='bx bx-trash'></i></button>
+            </td>
+        `;
+        formCarrito.appendChild(auxRow);
+        let btnBorrarElemento = document.getElementById("btnBorrarElemento");
+        btnBorrarElemento.addEventListener("click", function() {
+            formCarrito.removeChild(auxRow);
+        })
+    } catch (error) {
+        console.error("Ocurrió el siguiente error: ", error);
+    }
+}
 
 let arrayComprados = [];
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function() {
     fetchProductoBase();
-    let idComprado = localStorage.getItem("idComprado");
-    arrayComprados.push(idComprado);
-    for(let i = 0; i < arrayComprados.length; i++)
-    {
-        let URLProductos = `https://japceibal.github.io/emercado-api/products/${i}.json`;
-        function fetchProductos() {
-            return (
-                fetch(URLProductos)
-                    .then(function(response){
-                        return response.json();
-                    })
-                    .then (function(data) {
-                        let formCarrito = document.getElementById("formCarrito");
-                        let auxRow = ``;
-                        auxRow.innerHTML = `
-                        <div class="row">
-                            <div class="col" id="imgProdComprar">${data.products.image[0]}</div>
-                            <div class="col" id="nomProdComprar">${data.products.name[0]}</div>
-                            <div class="col" id="costProdComprar">${data.products.costo[0]}</div>
-                            <div class="col" id="cantProdComprar">
-                                <input type="number" min="0" value="1">
-                            </div>
-                            <div class="col" id="subTotalProdComprar"></div>
-                        </div>
-                        `;
-                        formCarrito.appendChild(auxRow);
-                    }) 
-            )
-        }
-    }
+    
+    let idComprado = JSON.parse(localStorage.getItem("idComprado")) || [];
+
+    idComprado.forEach(function(id) {
+        let URLProducto = `https://japceibal.github.io/emercado-api/products/${id}.json`;
+
+        fetch(URLProducto)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                let auxRow = document.createElement("tr");
+
+                if (idComprado) {
+                    auxRow.innerHTML = `
+                        <th scope="row" id="imgProdComprar"><img src="${data.images && data.images[0]}" alt="${data.name}"></th>
+                        <td id="nomProdComprar">${data.name}</td>
+                        <td id="costProdComprar">${data.currency} ${data.cost}</td>
+                        <td id="cantProdComprar">
+                            <input id="cantidadDeProductos" type="number" min="0" value="1">
+                        </td>
+                        <td id="subTotalProdComprar">${data.currency} ${data.cost}</td>
+                        <td id="elimProdComprar">
+                            <button id="btnBorrarElemento"><i class='bx bx-trash'></i></button>
+                        </td>
+                    `;
+                }
+                const cantidadInput = auxRow.querySelector("#cantidadDeProductos");
+                const subTotalElem = auxRow.querySelector("#subTotalProdComprar");
+                const btnBorrarElemento = auxRow.querySelector("#elimProdComprar");
+
+                cantidadInput.addEventListener("input", function() {
+                    const cantidad = parseInt(cantidadInput.value);
+                    const costo = data.cost;
+                    const nuevoSubtotal = cantidad * costo;
+                    subTotalElem.textContent = `${data.currency} ${nuevoSubtotal}`;
+                });
+                formCarrito.appendChild(auxRow);
+                btnBorrarElemento.addEventListener("click", function() {
+                    formCarrito.removeChild(auxRow);
+                    let indice = idComprado.indexOf(id);
+                    if (indice !== -1) {
+                        idComprado.splice(indice, 1);
+                        localStorage.setItem("idComprado", JSON.stringify(idComprado));
+                    }
+                })
+                
+            })
+            .catch(function(error) {
+                console.error("Ocurrió el siguiente error: ", error);
+            });
+    });
 });
+
 
 
 

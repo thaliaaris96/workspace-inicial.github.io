@@ -950,3 +950,36 @@ body.modo-oscuro {
   width: 100px;
   height: 60px;
 }
+
+#cantidadDeProductos
+{
+  width: 60px;
+  text-align: center;
+}
+
+#formularioCompra
+{ 
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.contenedorFormCompra {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #FFE0B2;
+}
+
+#btnFinalizarCompra
+{
+  border-radius: 7px;
+  background-color: #F09100;
+  border-color: #000;
+}

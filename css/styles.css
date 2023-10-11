@@ -946,6 +946,7 @@ body.modo-oscuro {
 
 /* Tabla Bootstrap*/
 
-#imgProdComprar {
-  width: 80%;
+#imgProdComprar > img {
+  width: 100px;
+  height: 60px;
 }

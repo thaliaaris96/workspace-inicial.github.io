@@ -60,45 +60,60 @@
     <div class="container mt-5" id="container">
       <div class="row justify-content-center">
           <div class="col-md-6">
-            <form class="container text-center border">
-              <div class="row">
-                <div class="col img-thumbnail" id="imgProdComprar"></div>
-              </div>
-              <div class="row">
-                <div class="col" id="nomProdComprar">nom</div>
-              </div>
-            </form>
-            <form class="container text-center border">
+            <form id="formCarrito" class="container text-center border">
                 <div class="row">
+                  <div class="col"></div>
+                  <div class="col">Nombre</div>
                   <div class="col">Costo</div>
                   <div class="col">Cantidad</div>
                   <div class="col">Subtotal</div>
                 </div>
                 <div class="row">
-                  <div class="col" id="costProdComprar">cost</div>
+                  <div class="col" id="imgProdComprar"></div>
+                  <div class="col" id="nomProdComprar"></div>
                   <div class="col" id="cantProdComprar">
                     <input type="number" min="0">
                   </div>
-                  <div class="col" id="subTotalProdComprar">sub</div>
+                  <div class="col" id="subTotalProdComprar"></div>
                 </div>
             </form>
           </div>
         </div>
       </div>
       <div class="text-center p-4">
-        <h2 class="text-capitalize">Tipo de Envio</h2>
+        <h2 class="text-capitalize">Tipo de envío</h2>
         <div>
-          <input id="Seleccionradio1" type="radio" value="op1">
-          <label for="Seleccionradio1">Premium de 2 a 5 dias (15%)</label>
-          <input id="Seleccionradio2" type="radio" value="op2">
-          <label for="Seleccionradio2">Express de 5 a 8 dias (7%)</label>
-          <input id="Seleccionradio3" type="radio" value="op3">
-          <label for="Seleccionradio3">Standard de 12 a 15 dias (5%)</label>
+          <div>
+            <input id="Seleccionradio1" type="radio" name="opciones" value="op1">
+            <label for="Seleccionradio1">Premium de 2 a 5 días (15%)</label>
+          </div>
+          <div>
+            <input id="Seleccionradio2" type="radio" name="opciones" value="op2">
+            <label for="Seleccionradio2">Express de 5 a 8 días (7%)</label>
+          </div>
+          <div>
+            <input id="Seleccionradio3" type="radio" name="opciones" value="op3">
+            <label for="Seleccionradio3">Standard de 12 a 15 días (5%)</label>
+          </div>
         </div>
       </div>
       <div class="text-center p-4">
-        <h2 class="text-capitalize">Direccion del Envio</h2>
-      </div>      
+        <h2 class="text-capitalize">Dirección de envío</h2>
+        <div class="InfoEnvio">
+          <div class="InfocalleEnvio">
+            <label for="calleEnvio">Calle</label>
+            <input id="calleEnvio" name="calleEnvio" type="text">
+          </div>
+          <div class="InfoesquinaEnvio">
+            <label for="esquinaEnvio">Esquina</label>
+            <input id="esquinaEnvio" name="esquinaEnvio" type="text">
+          </div>
+          <div class="InfonumeroEnvio">
+            <label for="numeroEnvio">Número</label>
+            <input id="numeroEnvio" name="numeroEnvio" type="text">
+          </div>
+        </div>
+      </div>
   </main>
   <footer class="text-muted">
     <div class="container">

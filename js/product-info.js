@@ -68,7 +68,7 @@ function FetchURLProducto() {
                     </button>
                 </div>
                 <div class="contbtnComprarProducto">
-                    <button id="btnComprarProducto">Comprar producto<br>
+                    <button onclick="toCart()" id="btnComprarProducto">Comprar producto<br>
                     <i id="btnComprar" class='bx bx-cart-add'></i>
                     </button>
                 </div>
@@ -173,12 +173,6 @@ document.addEventListener("DOMContentLoaded", function(){
         .catch(function (error) {
             console.error("Ha ocurrido algo con la carga de FetchURLComentario(): ", error);
         });
-    
-    const btnProdComprar = document.getElementById("btnComprarProducto");
-    btnProdComprar.addEventListener("click", function(){
-        localStorage.setItem("prodID", id);
-        window.location = "cart.html";
-    });
 });
 
 // Función para convertir la puntuación en estrellas
@@ -244,6 +238,12 @@ btnSendComentario.addEventListener("click", function(e){
         InputComentario.value = "";
     }
 });
+
+function toCart(){
+    window.location = "cart.html";
+    let idComprado = localStorage.getItem("prodID");
+    localStorage.setItem("idComprado", idComprado);
+};
 
 
 

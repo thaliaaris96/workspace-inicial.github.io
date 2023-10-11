@@ -6,6 +6,7 @@ let contenedor = document.getElementById("contenedorProductInfo");
 let contenedorProdRel = document.getElementById("productosRelacionados");
 let InputComentario = document.getElementById("comentarioUsu");
 let btnSendComentario = document.getElementById("btnComentario");
+const btnComprar = document.getElementById("btnComprar");
 // variables vacías que usarán en funciones para cargar los Productos y Productos Relacionados
 let contenidoProducto = "";
 let contenidoProdRel = "";
@@ -18,6 +19,7 @@ function FetchURLProducto() {
         })
         //Acá se procesan los datos de imágenes y se genera HTML dinámico por medio de un for, esto para el carrusel de imágenes
         .then(function (data) {
+            let btnProdComprar = document.getElementById("btnComprarProducto");
             let InnerImg = ``;
             let ProdRel = ``;
             for (let j = 0; j < data.images.length; j++) {
@@ -63,6 +65,11 @@ function FetchURLProducto() {
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <div class="contbtnComprarProducto">
+                    <button onclick="toCart()" id="btnComprarProducto">Comprar producto<br>
+                    <i id="btnComprar" class='bx bx-cart-add'></i>
                     </button>
                 </div>
             `;
@@ -194,7 +201,6 @@ btnSendComentario.addEventListener("click", function(e){
     let puntuacion = document.getElementById("puntuacion").value; 
     let mailUsuario = localStorage.getItem('mail'); 
     let contenedorDeComentario = document.getElementsByClassName("contenedorComentario");
-
     let comentario = `
         <p>
             <strong class="nombreComentario">${mailUsuario}</strong>
@@ -232,4 +238,13 @@ btnSendComentario.addEventListener("click", function(e){
         InputComentario.value = "";
     }
 });
+
+function toCart(){
+    window.location = "cart.html";
+    let idComprado = localStorage.getItem("prodID");
+    localStorage.setItem("idComprado", idComprado);
+};
+
+
+
 

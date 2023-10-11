@@ -53,11 +53,67 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="text-center p-4">
+      <h2>Carrito de compras</h2>
+      <p class="lead">Artículos a comprar.</p>
     </div>
+    <div class="container mt-5" id="container">
+      <div class="row justify-content-center">
+          <div class="col-md-6">
+            <form id="formCarrito" class="container text-center border">
+                <div class="row">
+                  <div class="col"></div>
+                  <div class="col">Nombre</div>
+                  <div class="col">Costo</div>
+                  <div class="col">Cantidad</div>
+                  <div class="col">Subtotal</div>
+                </div>
+                <div class="row">
+                  <div class="col" id="imgProdComprar"></div>
+                  <div class="col" id="nomProdComprar"></div>
+                  <div class="col" id="cantProdComprar">
+                    <input type="number" min="0">
+                  </div>
+                  <div class="col" id="subTotalProdComprar"></div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="text-center p-4">
+        <h2 class="text-capitalize">Tipo de envío</h2>
+        <div>
+          <div>
+            <input id="Seleccionradio1" type="radio" name="opciones" value="op1">
+            <label for="Seleccionradio1">Premium de 2 a 5 días (15%)</label>
+          </div>
+          <div>
+            <input id="Seleccionradio2" type="radio" name="opciones" value="op2">
+            <label for="Seleccionradio2">Express de 5 a 8 días (7%)</label>
+          </div>
+          <div>
+            <input id="Seleccionradio3" type="radio" name="opciones" value="op3">
+            <label for="Seleccionradio3">Standard de 12 a 15 días (5%)</label>
+          </div>
+        </div>
+      </div>
+      <div class="text-center p-4">
+        <h2 class="text-capitalize">Dirección de envío</h2>
+        <div class="InfoEnvio">
+          <div class="InfocalleEnvio">
+            <label for="calleEnvio">Calle</label>
+            <input id="calleEnvio" name="calleEnvio" type="text">
+          </div>
+          <div class="InfoesquinaEnvio">
+            <label for="esquinaEnvio">Esquina</label>
+            <input id="esquinaEnvio" name="esquinaEnvio" type="text">
+          </div>
+          <div class="InfonumeroEnvio">
+            <label for="numeroEnvio">Número</label>
+            <input id="numeroEnvio" name="numeroEnvio" type="text">
+          </div>
+        </div>
+      </div>
   </main>
   <footer class="text-muted">
     <div class="container">

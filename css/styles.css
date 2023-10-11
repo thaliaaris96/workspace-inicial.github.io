@@ -5,6 +5,10 @@
   font-family: 'Verdana', serif !important;
 }
 
+.auxNone {
+  display: none;
+}
+
 .navBarAUX { /* Este Auxiliar es para product-info.html */
   justify-content: space-evenly;
 }
@@ -695,6 +699,40 @@ body.modo-oscuro {
   }
 }
 
+/* BotonComprar Producto */
+
+.contbtnComprarProducto {
+  display: flex;
+  width: 50%;
+  margin: 90px auto 0 auto;
+  justify-content: center;
+}
+
+#btnComprarProducto {
+  width: 80%;
+  padding: 10px 0;
+  border: 1px solid #000;
+  border-radius: 7px;
+  background-color: #F09100;
+  margin-top: -40px;
+}
+
+@media (min-width: 768px) {
+  .btnComprarProducto {
+    width: 30%;
+  }
+}
+
+#btnComprarProducto:hover {
+  background-color: #f07400;
+  cursor: pointer;
+}
+
+#btnComprarProducto i
+{
+  font-size: 38px;
+}
+
 /* Comentario del JS*/
 
 .contenedorComentario {
@@ -906,3 +944,9 @@ body.modo-oscuro {
   }
 }
 
+/* Tabla Bootstrap*/
+
+#imgProdComprar > img {
+  width: 100px;
+  height: 60px;
+}

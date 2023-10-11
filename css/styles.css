@@ -951,19 +951,38 @@ body.modo-oscuro {
   height: 60px;
 }
 
-#cantidadDeProductos
-{
+#cantidadDeProductos {
   width: 60px;
   text-align: center;
 }
 
-#formularioCompra
-{ 
+#formularioCompra { 
   margin: 0 auto;
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: column;
-  
+  margin-top: 60px;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+@media (min-width: 1000px) {
+  #formularioCompra {
+      width: 50%;
+    }
+}
+
+.TablaDescuento {
+  margin-top: 30px;
+}
+
+.OpcionASeleccionar {
+  padding: 5px 0;
+}
+
+.row {
+  border: 1px solid #ddd; 
+  padding: 10px; 
 }
 
 .contenedorFormCompra {
@@ -977,9 +996,10 @@ body.modo-oscuro {
   background-color: #FFE0B2;
 }
 
-#btnFinalizarCompra
-{
+#btnFinalizarCompra {
   border-radius: 7px;
   background-color: #F09100;
   border-color: #000;
+  margin-bottom: 20px;
 }
+

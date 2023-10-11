@@ -6,7 +6,7 @@ let costo = document.getElementById("costProdComprar");
 let subtotal = document.getElementById("subTotalProdComprar");
 let colEliminar = document.getElementById("elimProdComprar");
 /* */
-
+let arrayComprados = [];
 /* */
 let envio1 = document.getElementById("Seleccionradio1");
 let envio2 = document.getElementById("Seleccionradio2");
@@ -41,13 +41,8 @@ async function fetchProductoBase() {
     }
 }
 
-let arrayComprados = [];
-
-document.addEventListener("DOMContentLoaded", function() {
-    fetchProductoBase();
-    
+async function fetchOtrosProductos() {
     let idComprado = JSON.parse(localStorage.getItem("idComprado")) || [];
-
     idComprado.forEach(function(id) {
         let URLProducto = `https://japceibal.github.io/emercado-api/products/${id}.json`;
 
@@ -97,8 +92,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.error("Ocurrió el siguiente error: ", error);
             });
     });
+    
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("Carga de fetchProductoBase()");
+    fetchProductoBase()
+        .then(function () {
+            console.log("Carga de fetchOtrosProductos()");
+            return fetchOtrosProductos();
+        })
+        .catch(function (error) {
+            console.error("Ha ocurrido algo con la carga de fetchOtrosProductos();: ", error);
+        });
 });
-
-
-
 

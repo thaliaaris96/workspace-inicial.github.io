@@ -142,7 +142,7 @@ function showProductsList(array) {
                         </div>
                         <div class="ComprarProducto">
                             <p class="descripcionPrecio"><span>Precio:</span> ${producto.cost} ${producto.currency}</p>
-                            <button class="botonComprar">Comprar</button>
+
                         </div>
                     </div>
                 </div>

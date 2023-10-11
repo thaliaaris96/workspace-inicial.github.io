@@ -56,9 +56,9 @@
   <main>
     <div class="text-center p-4">
       <h2>Carrito de compras</h2>
-      <p class="lead">Artículos a comprar.</p>
+      <p class="lead">Artículos a comprar</p>
     </div>
-    <div class="container mt-5" id="container">
+    <div class="container mt-5" id="containerTable">
       <div class="row justify-content-center">
         <table  class="table table-hover">
           <thead>
@@ -76,27 +76,14 @@
         </table>
         </div>
       </div>
-      <div class="text-center p-4">
-        <h2 class="text-capitalize">Tipo de envío</h2>
-        <div>
-          <div>
-            <input id="Seleccionradio1" type="radio" name="opciones" value="op1">
-            <label for="Seleccionradio1">Premium de 2 a 5 días (15%)</label>
-          </div>
-          <div>
-            <input id="Seleccionradio2" type="radio" name="opciones" value="op2">
-            <label for="Seleccionradio2">Express de 5 a 8 días (7%)</label>
-          </div>
-          <div>
-            <input id="Seleccionradio3" type="radio" name="opciones" value="op3">
-            <label for="Seleccionradio3">Standard de 12 a 15 días (5%)</label>
-          </div>
-        </div>
-      </div>
       <form id="formularioCompra">
         <div class="form-row">
+          <div class="text-center p-4">
+            <h4 class="text-capitalize text-center p-4">Datos de envío</h4>
+            <hr>
+          </div>
           <div class="form-group col-md-3 contenedorFormCompra">
-            <label for="inputAddress">Pais</label>
+            <label for="inputAddress">País</label>
             <input type="text" class="form-control" id="inputAddress">
           </div>
           <div class="form-group col-md-3 contenedorFormCompra">
@@ -104,12 +91,30 @@
             <input type="text" class="form-control" id="inputCity">
           </div>
           <div class="form-group col-md-3 contenedorFormCompra">
-            <label for="inputState">Direccion</label>
+            <label for="inputState">Dirección</label>
             <input type="text" class="form-control" id="inputCity">
           </div>
-          <div class="form-group col-md-2 contenedorFormCompra">
+          <div class="form-group col-md-3 contenedorFormCompra">
             <label for="inputZip">Zip</label>
             <input type="text" class="form-control" id="inputZip">
+          </div>
+          <div class="text-center p-4 TablaDescuento">
+            <h4 class="text-capitalize">Tipo de envío</h4>
+            <hr>
+            <div class="OpcionesDeDescuento">
+              <div class="OpcionASeleccionar">
+                <input id="Seleccionradio1" type="radio" name="opciones" value="op1">
+                <label for="Seleccionradio1">Premium de 2 a 5 días (15%)</label>
+              </div>
+              <div class="OpcionASeleccionar">
+                <input id="Seleccionradio2" type="radio" name="opciones" value="op2">
+                <label for="Seleccionradio2">Express de 5 a 8 días (7%)</label>
+              </div>
+              <div class="OpcionASeleccionar">
+                <input id="Seleccionradio3" type="radio" name="opciones" value="op3">
+                <label for="Seleccionradio3">Standard de 12 a 15 días (5%)</label>
+              </div>
+            </div>
           </div>
           <div class="form-group contenedorFormCompra">
             <br>

@@ -1,22 +1,28 @@
+// URL de la API que contiene los datos de los productos en el carrito
 let URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
+
+// Elementos del DOM que se utilizan para mostrar la información del producto
 let imagen = document.getElementById("imgProdComprar");
 let nombre = document.getElementById("nomProdComprar");
 let cantidad = document.getElementById("cantProdComprar");
 let costo = document.getElementById("costProdComprar");
 let subtotal = document.getElementById("subTotalProdComprar");
 let colEliminar = document.getElementById("elimProdComprar");
-/* */
+// Array para almacenar los IDs de los productos comprados
 let arrayComprados = [];
-/* */
+// Elementos de radio para los tipos de envío
 let envio1 = document.getElementById("Seleccionradio1");
 let envio2 = document.getElementById("Seleccionradio2");
 let envio3 = document.getElementById("Seleccionradio3");
-
+// Función asincrónica para obtener el producto base del carrito
 async function fetchProductoBase() {
     try {
+        // Realiza una solicitud a la URL de la API
         const response = await fetch(URL);
         const data = await response.json();
+         // Obtiene el primer producto de la respuesta
         const product = data.articles[0];
+        // Crea una fila de tabla con la información del producto
         console.log(product);
         let auxRow = document.createElement("tr");
         auxRow.innerHTML = `
@@ -31,7 +37,9 @@ async function fetchProductoBase() {
                 <button id="btnBorrarElemento"><i class='bx bx-trash'></i></button>
             </td>
         `;
+        // Agrega la fila de tabla al carrito
         formCarrito.appendChild(auxRow);
+        // Agrega un evento al botón de eliminar para quitar el producto
         let btnBorrarElemento = document.getElementById("btnBorrarElemento");
         btnBorrarElemento.addEventListener("click", function() {
             formCarrito.removeChild(auxRow);
@@ -41,8 +49,11 @@ async function fetchProductoBase() {
     }
 }
 
+// Función para obtener y mostrar otros productos en el carrito
 async function fetchOtrosProductos() {
+     // Obtiene los IDs de productos comprados almacenados en el almacenamiento local
     let idComprado = JSON.parse(localStorage.getItem("idComprado")) || [];
+    // Itera a través de los IDs y obtiene información de los productos
     idComprado.forEach(function(id) {
         let URLProducto = `https://japceibal.github.io/emercado-api/products/${id}.json`;
 
@@ -51,6 +62,7 @@ async function fetchOtrosProductos() {
                 return response.json();
             })
             .then(function(data) {
+                // Crea una fila de tabla con información del producto
                 let auxRow = document.createElement("tr");
 
                 if (idComprado) {
@@ -67,19 +79,24 @@ async function fetchOtrosProductos() {
                         </td>
                     `;
                 }
+                // Obtiene elementos relevantes dentro de la fila
                 const cantidadInput = auxRow.querySelector("#cantidadDeProductos");
                 const subTotalElem = auxRow.querySelector("#subTotalProdComprar");
                 const btnBorrarElemento = auxRow.querySelector("#elimProdComprar");
 
+                // Agrega un evento para actualizar el subtotal cuando se cambia la cantidad
                 cantidadInput.addEventListener("input", function() {
                     const cantidad = parseInt(cantidadInput.value);
                     const costo = data.cost;
                     const nuevoSubtotal = cantidad * costo;
                     subTotalElem.textContent = `${data.currency} ${nuevoSubtotal}`;
                 });
+                // Agrega la fila de tabla al carrito
                 formCarrito.appendChild(auxRow);
+                 // Agrega un evento al botón de eliminar para quitar el producto
                 btnBorrarElemento.addEventListener("click", function() {
                     formCarrito.removeChild(auxRow);
+                    // Actualiza el almacenamiento local para reflejar la eliminación
                     let indice = idComprado.indexOf(id);
                     if (indice !== -1) {
                         idComprado.splice(indice, 1);
@@ -95,6 +112,7 @@ async function fetchOtrosProductos() {
     
 }
 
+// Evento que se dispara cuando la página se carga completamente
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Carga de fetchProductoBase()");
     fetchProductoBase()

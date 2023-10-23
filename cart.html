@@ -81,25 +81,25 @@
       <form id="formularioCompra">
         <div class="form-row justify-content-center">
           <div class="text-center p-4">
-            <h4 class="text-capitalize text-center p-4">Datos de envío</h4>
+            <h4 class="text-capitalize text-center p-4">Dirección de envío</h4>
             <hr>
           </div>
           <div class="form-group col-md-6 contenedorFormCompra">
-            <label for="inputAddress">País</label>
-            <input type="text" class="form-control" id="inputAddress">
+            <label for="inputCalle">Calle</label>
+            <input type="text" class="form-control" id="inputCalle">
           </div>
           <div class="form-group col-md-6 contenedorFormCompra">
-            <label for="inputCity">Ciudad</label>
-            <input type="text" class="form-control" id="inputCity">
+            <label for="inputNumero">Número</label>
+            <input type="text" class="form-control" id="inputNumero">
           </div>
           <div class="form-group col-md-12 contenedorFormCompra">
-            <label for="inputState">Dirección</label>
-            <input type="text" class="form-control" id="inputCity">
+            <label for="inputEsquina">Esquina</label>
+            <input type="text" class="form-control" id="inputEsquina">
           </div>
-          <div class="form-group col-md-6 contenedorFormCompra">
+          <!-- <div class="form-group col-md-6 contenedorFormCompra">
             <label for="inputZip">Zip</label>
             <input type="text" class="form-control" id="inputZip">
-          </div>
+          </div> -->
           <div class="text-center p-4 TablaDescuento">
             <h4 class="text-capitalize">Tipo de envío</h4>
             <hr>
@@ -119,16 +119,15 @@
             </div>
           </div>
         </div>
-        
       </form>
-      <h4 class="text-center p-4">Costos</h4>
       <section class="Costos">
+        <h4 class="text-center p-4 mt-3">Costos</h4>
         <div class="contendorCosto">
           <div>
             <h5>Subtotal</h5>
             <p>Costo unitario del producto por cantidad</p>
           </div>
-          <div class="contendorCostoInterno">
+          <div id="MuestreoSubTotal" class="contendorCostoInterno">
             texto prueba
           </div>
         </div>
@@ -137,7 +136,7 @@
             <h5>Costo de envío</h5>
             <p>Según el tipo de envío</p>
           </div>
-          <div class="contendorCostoInterno">
+          <div id="MuestreoCostoEnvio" class="contendorCostoInterno">
             texto prueba
           </div>
         </div>
@@ -145,7 +144,7 @@
           <div>
             <h5>Total($)</h5>
           </div>
-          <div class="contendorCostoInterno">
+          <div id="MuestreoTotal" class="contendorCostoInterno">
             texto prueba
           </div>
         </div>
@@ -154,15 +153,15 @@
         <br>
         <h4 class="text-capitalize text-center">Forma de pago</h4>
         <p id="FormaDePago">No ha seleccionado</p>           
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#formaModal">
           Seleccionar
         </button>   
         
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="formaModal" tabindex="-1" aria-labelledby="formaModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content rounded" style="background-color: #F6F2ED">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Forma de pago</h5>
+                <h5 class="modal-title" id="formaModalLabel">Forma de pago</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">

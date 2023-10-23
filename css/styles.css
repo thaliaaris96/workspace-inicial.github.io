@@ -1003,3 +1003,34 @@ body.modo-oscuro {
   margin-bottom: 20px;
 }
 
+/* */
+
+.Costos {
+  display: grid;
+}
+
+.contendorCosto {
+  display: grid;
+  margin: 0 auto;
+  width: 80%;
+  border: 1px solid #000;
+  padding: 5px;
+}
+
+.contendorCosto p,
+.contendorCosto h5 {
+  margin: 0;
+}
+
+@media(min-width: 768px) {
+  .contendorCosto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .contendorCostoInterno {
+    text-align: end;
+    margin-right: 20px;
+  }
+}

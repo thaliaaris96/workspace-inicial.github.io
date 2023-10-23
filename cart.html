@@ -118,19 +118,115 @@
               </div>
             </div>
           </div>
-          <div class="form-group contenedorFormCompra">
-            <br>
-            <button type="submit" class="btn btn-primary" id="btnFinalizarCompra">Finalizar compra</button>
+        </div>
+        
+      </form>
+      <h4 class="text-center p-4">Costos</h4>
+      <section class="Costos">
+        <div class="contendorCosto">
+          <div>
+            <h5>Subtotal</h5>
+            <p>Costo unitario del producto por cantidad</p>
+          </div>
+          <div class="contendorCostoInterno">
+            texto prueba
           </div>
         </div>
-      </form>
+        <div class="contendorCosto">
+          <div>
+            <h5>Costo de envío</h5>
+            <p>Según el tipo de envío</p>
+          </div>
+          <div class="contendorCostoInterno">
+            texto prueba
+          </div>
+        </div>
+        <div class="contendorCosto">
+          <div>
+            <h5>Total($)</h5>
+          </div>
+          <div class="contendorCostoInterno">
+            texto prueba
+          </div>
+        </div>
+      </section>
+      <div class="text-center p-4">
+        <br>
+        <h4 class="text-capitalize text-center">Forma de pago</h4>
+        <p id="FormaDePago">No ha seleccionado</p>           
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Seleccionar
+        </button>   
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content rounded" style="background-color: #F6F2ED">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Forma de pago</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="OpcionASeleccionar text-start">
+                  <input id="SeleccionPago1" type="radio" name="opcionesP" value="pago1">
+                  <label for="SeleccionPago1">Tarjeta de crédito</label>
+                  <hr>
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label for="Nombre" class="form-label">Nombre de tarjeta</label>
+                      <input type="text" class="form-control" id="Nombre" placeholder="" value="" required="">
+                      <div class="invalid-feedback">
+                        Se requiere un nombre.
+                      </div>
+                    </div>            
+                    <div class="col-sm-4">
+                      <label for="CodSeg" class="form-label">Código de seg.</label>
+                      <input type="text" class="form-control" id="CodSeg" placeholder="" value="" required="">
+                      <div class="invalid-feedback">
+                        Se requiere código.
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <label for="fecha" class="form-label">Vencimiento (MM/AA)</label>
+                      <input type="text" class="form-control" id="fecha" placeholder="" value="" required="">
+                      <div class="invalid-feedback">
+                        Se requiere fecha.
+                      </div>
+                    </div>
+                </div>
+                <div class="OpcionASeleccionar text-start mt-3">
+                  <input id="SeleccionPago2" type="radio" name="opcionesP" value="pago2">
+                  <label for="SeleccionPago2">Transferencia bancaria</label>
+                  <hr>
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label for="NumeroCuenta" class="form-label">Número de cuenta</label>
+                      <input type="text" class="form-control" id="NumeroCuenta" placeholder="" value="" required="">
+                      <div class="invalid-feedback">
+                        Se requiere un número.
+                      </div>
+                    </div>                     
+                    </div>                      
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>                    
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <br>
+      <div class="form-group contenedorFormCompra">
+        <button type="submit" class="btn btn-primary" id="btnFinalizarCompra">Finalizar compra</button>
+      </div>  
   </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jóvenes a Programar</a></p>
     </div>
   </footer>
   <div id="spinner-wrapper">

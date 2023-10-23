@@ -103,7 +103,27 @@ async function fetchOtrosProductos() {
                         localStorage.setItem("idComprado", JSON.stringify(idComprado));
                     }
                 })
-                
+                function Sumatotal() {
+                    let subtotal = 0;
+                    let porcentajeEnvio = 0;
+                    let costoEnvio = 0;
+                    /* */
+                    if (envio1.checked){
+                        porcentajeEnvio = 0.15; //15%
+                    } else if (envio2.checked){
+                        porcentajeEnvio = 0.07; //7%
+                    } else if (envio3.checked){
+                        porcentajeEnvio = 0.05; //5%
+                    }
+
+                    for (let c = 0; c < idComprado.length; c++){
+                        subtotal += idComprado[c].precio * idComprado[c].cantidad;
+                    }
+                    
+                    costoEnvio = subtotal * porcentajeEnvio;
+                    total = subtotal + costoEnvio;
+                    return total;
+                }
             })
             .catch(function(error) {
                 console.error("Ocurrió el siguiente error: ", error);
@@ -111,6 +131,51 @@ async function fetchOtrosProductos() {
     });
     
 }
+    //habilitar deshabilitar campos del modal
+    let radioTarjeta = document.getElementById("SeleccionPago1");
+    let radioTransferencia = document.getElementById("SeleccionPago2");
+    let nombreTarjeta = document.getElementById("Nombre");
+    let codSeg = document.getElementById("CodSeg");
+    let fecha = document.getElementById("fecha");
+    let numeroCuenta = document.getElementById("NumeroCuenta");
+    let formaDePago = document.getElementById("FormaDePago");
+
+    // agregar event listener para los botones de radio
+    radioTarjeta.addEventListener("change", enableTarjetaFields);
+    radioTransferencia.addEventListener("change", enableTransferenciaFields);
+
+    // funcion para habilitar los campos de tarjeta de credito y deshabilitar los de transferencia bancaria
+    function enableTarjetaFields() {
+        if (radioTarjeta.checked) {
+            nombreTarjeta.removeAttribute("disabled");
+            codSeg.removeAttribute("disabled");
+            fecha.removeAttribute("disabled");
+            numeroCuenta.setAttribute("disabled", "disabled");
+        }
+    }
+
+    // funcion para habilitar los campos de transferencia bancaria y deshabilitar los de tarjeta de credito
+    function enableTransferenciaFields() {
+        if (radioTransferencia.checked) {
+            numeroCuenta.removeAttribute("disabled");
+            nombreTarjeta.setAttribute("disabled", "disabled");
+            codSeg.setAttribute("disabled", "disabled");
+            fecha.setAttribute("disabled", "disabled");
+        }
+    }
+    //mostrar la seleccion en forma de pago
+    radioTarjeta.addEventListener("change", updateFormaDePagoText);
+    radioTransferencia.addEventListener("change", updateFormaDePagoText);
+
+    function updateFormaDePagoText() {
+        if (radioTarjeta.checked) {
+            formaDePago.textContent = "Tarjeta de crédito";
+        } else if (radioTransferencia.checked) {
+            formaDePago.textContent = "Transferencia bancaria";
+        } else {
+            formaDePago.textContent = "No ha seleccionado";
+        }
+    }
 
 // Evento que se dispara cuando la página se carga completamente
 document.addEventListener("DOMContentLoaded", function() {

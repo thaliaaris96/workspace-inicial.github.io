@@ -103,11 +103,26 @@ async function fetchOtrosProductos() {
                         localStorage.setItem("idComprado", JSON.stringify(idComprado));
                     }
                 })
+                
+                let contenedorDelSubTotal = document.getElementById("MuestreoSubTotal");
+                let contenedorDelEnvio = document.getElementById("MuestreoCostoEnvio");
+                let contenedorTotal = document.getElementById("MuestreoTotal");
+                console.log(idComprado);
+                function MostrarSubTotalContenedor() {
+                    let subtotal = 0;
+                    for (let c = 0; c < idComprado.length; c++) {
+                        subtotal += (data.cost/idComprado.length);
+                    }
+                    return subtotal;
+                }
+                contenedorDelSubTotal.innerHTML = `${data.currency} ${MostrarSubTotalContenedor()}`;
+
+                /*
                 function Sumatotal() {
                     let subtotal = 0;
                     let porcentajeEnvio = 0;
                     let costoEnvio = 0;
-                    /* */
+
                     if (envio1.checked){
                         porcentajeEnvio = 0.15; //15%
                     } else if (envio2.checked){
@@ -117,13 +132,17 @@ async function fetchOtrosProductos() {
                     }
 
                     for (let c = 0; c < idComprado.length; c++){
-                        subtotal += idComprado[c].precio * idComprado[c].cantidad;
+                        subtotal += parseInt(data.cost);
                     }
                     
                     costoEnvio = subtotal * porcentajeEnvio;
                     total = subtotal + costoEnvio;
                     return total;
                 }
+                
+                contenedorTotal.innerHTML = `${data.currency} ${Sumatotal()}`;
+                */
+                
             })
             .catch(function(error) {
                 console.error("Ocurrió el siguiente error: ", error);

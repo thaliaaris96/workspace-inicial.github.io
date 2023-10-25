@@ -30,13 +30,22 @@ async function fetchProductoBase() {
             <td id="nomProdComprar">${product.name}</td>
             <td id="costProdComprar">${product.currency} ${product.unitCost}</td>
             <td id="cantProdComprar">
-                <input id="cantidadDeProductos" type="number" min="1" max="1" value="${product.count}">
+                <input id="cantidadDeProductos" type="number" min="1" value="1">
             </td>
             <td id="subTotalProdComprar">${product.currency} ${product.unitCost}</td>
             <td id="elimProdComprar">
                 <button id="btnBorrarElemento"><i class='bx bx-trash'></i></button>
             </td>
         `;
+        const cantidadInput = auxRow.querySelector("#cantidadDeProductos");
+        const subTotalElem = auxRow.querySelector("#subTotalProdComprar");
+        // Agrega un evento para actualizar el subtotal cuando se cambia la cantidad
+        cantidadInput.addEventListener("input", function() {
+            const cantidad = parseInt(cantidadInput.value);
+            const costo = product.unitCost;
+            const nuevoSubtotal = cantidad * costo;
+            subTotalProdComprar.textContent = `${product.currency} ${nuevoSubtotal}`;
+        });
         // Agrega la fila de tabla al carrito
         formCarrito.appendChild(auxRow);
         // Agrega un evento al botón de eliminar para quitar el producto
@@ -71,7 +80,7 @@ async function fetchOtrosProductos() {
                         <td id="nomProdComprar">${data.name}</td>
                         <td id="costProdComprar">${data.currency} ${data.cost}</td>
                         <td id="cantProdComprar">
-                            <input id="cantidadDeProductos" type="number" min="0" value="1">
+                            <input id="cantidadDeProductos" type="number" min="1" value="1">
                         </td>
                         <td id="subTotalProdComprar">${data.currency} ${data.cost}</td>
                         <td id="elimProdComprar">
@@ -90,10 +99,21 @@ async function fetchOtrosProductos() {
                     const costo = data.cost;
                     const nuevoSubtotal = cantidad * costo;
                     subTotalElem.textContent = `${data.currency} ${nuevoSubtotal}`;
+                    subTotalFinal(nuevoSubtotal);
                 });
+
+                let subtotal = 0;
+                function subTotalFinal(nuevoSubtotal)
+                {
+                    subtotal = 0;
+                    subtotal += nuevoSubtotal;
+                    let contenedorSubTotal = document.getElementById("MuestreoSubTotal");
+                    contenedorSubTotal.innerHTML = `${subtotal}`;
+                };
+                
                 // Agrega la fila de tabla al carrito
                 formCarrito.appendChild(auxRow);
-                 // Agrega un evento al botón de eliminar para quitar el producto
+                // Agrega un evento al botón de eliminar para quitar el producto
                 btnBorrarElemento.addEventListener("click", function() {
                     formCarrito.removeChild(auxRow);
                     // Actualiza el almacenamiento local para reflejar la eliminación
@@ -104,18 +124,18 @@ async function fetchOtrosProductos() {
                     }
                 })
                 
-                let contenedorDelSubTotal = document.getElementById("MuestreoSubTotal");
+
                 let contenedorDelEnvio = document.getElementById("MuestreoCostoEnvio");
                 let contenedorTotal = document.getElementById("MuestreoTotal");
                 console.log(idComprado);
-                function MostrarSubTotalContenedor() {
-                    let subtotal = 0;
-                    for (let c = 0; c < idComprado.length; c++) {
-                        subtotal += (data.cost/idComprado.length);
-                    }
-                    return subtotal;
+
+                function dolaresAPesos(dolares) {
+                    return dolares * 39.9;
                 }
-                contenedorDelSubTotal.innerHTML = `${data.currency} ${MostrarSubTotalContenedor()}`;
+
+                function pesosADolares(pesos) {
+                    return pesos / 0.025;
+                }
 
                 /*
                 function Sumatotal() {
@@ -173,7 +193,7 @@ async function fetchOtrosProductos() {
         }
     }
 
-    // funcion para habilitar los campos de transferencia bancaria y deshabilitar los de tarjeta de credito
+    // Función para habilitar los campos de transferencia bancaria y deshabilitar los de tarjeta de crédito
     function enableTransferenciaFields() {
         if (radioTransferencia.checked) {
             numeroCuenta.removeAttribute("disabled");
@@ -182,7 +202,7 @@ async function fetchOtrosProductos() {
             fecha.setAttribute("disabled", "disabled");
         }
     }
-    //mostrar la seleccion en forma de pago
+    // Mostrar la selección en forma de pago
     radioTarjeta.addEventListener("change", updateFormaDePagoText);
     radioTransferencia.addEventListener("change", updateFormaDePagoText);
 
@@ -195,6 +215,74 @@ async function fetchOtrosProductos() {
             formaDePago.textContent = "No ha seleccionado";
         }
     }
+    
+
+    // Validaciones que realiza el botón finalizar compra
+    // document.getElementById('btnFinalizarCompra').addEventListener('click', function() {
+    //     // Obtener valores de los campos
+    //     const calle = document.getElementById('calle').value;
+    //     const numero = document.getElementById('numero').value;
+    //     const esquina = document.getElementById('esquina').value;
+    //     const formaEnvio = document.getElementById('formaEnvio').value;
+    //     const cantidadArticulo = document.getElementById('cantidadArticulo').value;
+    //     const formaPago = document.getElementById('formaPago').value;
+    //     const detallesPago = document.getElementById('detallesPago').value;
+    
+    //     // Realizar validaciones
+    //     if (calle.trim() === '' || numero.trim() === '' || esquina.trim() === '') {
+    //         alert('Los campos calle, número y esquina no pueden estar vacíos.');
+    //         return;
+    //     }
+    
+    //     if (formaEnvio === '') {
+    //         alert('Debes seleccionar una forma de envío.');
+    //         return;
+    //     }
+    
+    //     if (parseInt(cantidadArticulo) <= 0 || isNaN(cantidadArticulo)) {
+    //         alert('La cantidad para cada artículo debe ser mayor a 0.');
+    //         return;
+    //     }
+    
+    //     if (formaPago === '') {
+    //         alert('Debes seleccionar una forma de pago.');
+    //         return;
+    //     }
+    
+    //     // Realizar validaciones específicas para la forma de pago seleccionada
+    //     if (formaPago === 'tarjeta' && detallesPago.trim() === '') {
+    //         alert('Debes proporcionar los detalles de la tarjeta de crédito.');
+    //         return;
+    //     }
+    
+    //     // Si todas las validaciones pasan, puedes ejecutar la lógica para enviar el formulario
+    //     alert('Formulario enviado exitosamente!');
+    // });
+
+    //validacion, verde o rojo
+    (function () {
+        'use strict';
+    
+        // selecciona el elemento por la clase
+        var forms = document.getElementsByClassName('validacion');
+    
+        // agrega un event listener para el boton
+        var finalizarCompraButton = document.getElementById('btnFinalizarCompra');
+        finalizarCompraButton.addEventListener('click', function (event) {
+            // busca a traves de todas las forms con la clase "formularioCompra"
+            for (var i = 0; i < forms.length; i++) {
+                var form = forms[i];
+                // se fija si es valido
+                if (!form.checkValidity()) {
+                    event.preventDefault(); //no deja que se suba el formulario si es invalido
+                    event.stopPropagation();
+                }
+    
+                form.classList.add('was-validated');
+            }
+        });
+    })();
+    
 
 // Evento que se dispara cuando la página se carga completamente
 document.addEventListener("DOMContentLoaded", function() {

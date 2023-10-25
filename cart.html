@@ -78,7 +78,7 @@
         </div>
         </div>
       </div>
-      <form id="formularioCompra">
+      <form id="formularioCompra" class="needs-validation validacion" novalidate>
         <div class="form-row justify-content-center">
           <div class="text-center p-4">
             <h4 class="text-capitalize text-center p-4">Dirección de envío</h4>
@@ -86,20 +86,25 @@
           </div>
           <div class="form-group col-md-6 contenedorFormCompra">
             <label for="inputCalle">Calle</label>
-            <input type="text" class="form-control" id="inputCalle">
+            <input type="text" class="form-control" id="inputCalle" required>
+            <div class="invalid-feedback">
+              Ingresa una calle
+            </div>
           </div>
           <div class="form-group col-md-6 contenedorFormCompra">
             <label for="inputNumero">Número</label>
-            <input type="text" class="form-control" id="inputNumero">
+            <input type="text" class="form-control" id="inputNumero" required>
+            <div class="invalid-feedback">
+              Ingresa un número
+            </div>
           </div>
           <div class="form-group col-md-12 contenedorFormCompra">
             <label for="inputEsquina">Esquina</label>
-            <input type="text" class="form-control" id="inputEsquina">
-          </div>
-          <!-- <div class="form-group col-md-6 contenedorFormCompra">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
-          </div> -->
+            <input type="text" class="form-control" id="inputEsquina" required>
+            <div class="invalid-feedback">
+              Ingresa una esquina
+            </div>
+          </div>          
           <div class="text-center p-4 TablaDescuento">
             <h4 class="text-capitalize">Tipo de envío</h4>
             <hr>
@@ -164,7 +169,8 @@
                 <h5 class="modal-title" id="formaModalLabel">Forma de pago</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body">   
+                <form class="needs-validation validacion" novalidate>             
                 <div class="OpcionASeleccionar text-start">
                   <input id="SeleccionPago1" type="radio" name="opcionesP" value="pago1">
                   <label for="SeleccionPago1">Tarjeta de crédito</label>
@@ -210,6 +216,7 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>                    
               </div>
+            </form>            
             </div>
           </div>
         </div>

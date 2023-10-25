@@ -18,15 +18,17 @@ https://thaliaaris96.github.io/workspace-inicial.github.io/
 <li>Ordenar de los productos por orden alfábetico de manera ascendente, descendente y por relevancia</li>
 <li>Ver y realizar nuevos comentarios</li>
 <li>Modo oscuro en toda la página</li>
-</ul>
-<h2>Proximas Funcionalidades</h2>
-<ul>
-<li>Realizar cambios en el perfil usuario</li>
 <li>Agregar objetos al carrito de compra</li>
+<li>Visualización del total a pagar en tiempo real</li>
 <li>Agregar formas de pago</li>
 </ul>
+<h2>Próximas Funcionalidades</h2>
+<ul>
+<li>Realizar cambios en el perfil usuario</li>
+<li>Apartado para que el usuario pueda vender un producto</li>
+</ul>
 <h2>Contribuidores</h2>
-<p>Agradecemos enormemente a todas las personas que han contribuido al proyecto, estas son: </p>
+<p>Queremos agradecer sinceramente a todas las personas que contribuyeron a este proyecto. Su dedicación y esfuerzo fueron fundamentales. ¡Gracias por hacerlo posible!, estas son: </p>
 <ul>
 <li>https://github.com/catrielmayo</li>
 <li>https://github.com/ignaciodorregolagurara</li>
@@ -38,4 +40,14 @@ https://thaliaaris96.github.io/workspace-inicial.github.io/
 <li>https://github.com/marianogago</li>
 </ul>
 <h2>Algunas imagenes del proyecto (Próximamente)</h2>
-<h2>Proyecto JAP de 2023</h2>
+<h3>LogIn del proyecto en modo oscuro</h3>
+<img src="img/imgProyecto1.jpg" alt="Imagen del Proyecto 1">
+<h3>Página principal responsive<h3>
+<img src="img/imgProyecto2.jpg" alt="Imagen del Proyecto 2">
+<h2>Proyecto Jóvenes a Programar (JAP) de CEIBAL 2023</h2>
+
+<style>
+    h3 {
+        text-align: center;
+    }
+</style>

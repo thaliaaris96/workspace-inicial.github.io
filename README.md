@@ -45,9 +45,3 @@ https://thaliaaris96.github.io/workspace-inicial.github.io/
 <h3>Página principal responsive<h3>
 <img src="img/imgProyecto2.jpg" alt="Imagen del Proyecto 2">
 <h2>Proyecto Jóvenes a Programar (JAP) de CEIBAL 2023</h2>
-
-<style>
-    h3 {
-        text-align: center;
-    }
-</style>

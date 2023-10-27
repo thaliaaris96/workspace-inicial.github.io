@@ -105,22 +105,25 @@
               Ingresa una esquina
             </div>
           </div>          
-          <div class="text-center p-4 TablaDescuento">
+          <div class="text-center p-4 TablaEnvio" id="tipoEnvio">
             <h4 class="text-capitalize">Tipo de envío</h4>
             <hr>
-            <div class="OpcionesDeDescuento">
+            <div class="OpcionesDeEnvio">
               <div class="OpcionASeleccionar">
-                <input id="Seleccionradio1" type="radio" name="opciones" value="op1">
+                <input id="Seleccionradio1" type="radio" name="opciones" value="op1" required>
                 <label for="Seleccionradio1">Premium de 2 a 5 días (15%)</label>
               </div>
               <div class="OpcionASeleccionar">
-                <input id="Seleccionradio2" type="radio" name="opciones" value="op2">
+                <input id="Seleccionradio2" type="radio" name="opciones" value="op2" required>
                 <label for="Seleccionradio2">Express de 5 a 8 días (7%)</label>
               </div>
               <div class="OpcionASeleccionar">
-                <input id="Seleccionradio3" type="radio" name="opciones" value="op3">
+                <input id="Seleccionradio3" type="radio" name="opciones" value="op3" required>
                 <label for="Seleccionradio3">Standard de 12 a 15 días (5%)</label>
               </div>
+            </div>
+            <div class="invalid-feedback" id="tipoEnvioError">
+              Por favor, seleccione un tipo de envío.
             </div>
           </div>
         </div>
@@ -157,11 +160,13 @@
       <div class="text-center p-4">
         <br>
         <h4 class="text-capitalize text-center">Forma de pago</h4>
-        <p id="FormaDePago">No ha seleccionado</p>           
+        <p id="FormaDePago" class="selected-payment">No ha seleccionado</p>
         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#formaModal">
           Seleccionar
-        </button>   
-        
+        </button>
+        <div class="invalid-feedback" id="formaPagoError">
+          Por favor, seleccione una forma de pago.
+        </div>
         <div class="modal fade" id="formaModal" tabindex="-1" aria-labelledby="formaModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content rounded" style="background-color: #F6F2ED">
@@ -223,8 +228,13 @@
         </div>
       </div>
       <br>
+      <div class="alert alert-success d-none text-center alert-dismissible fade show" role="alert">
+        ¡Has comprado con éxito! 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>               
+      </div>
       <div class="form-group contenedorFormCompra">
         <button type="submit" class="btn btn-primary" id="btnFinalizarCompra">Finalizar compra</button>
+      
       </div>  
   </main>
   <footer class="text-muted">

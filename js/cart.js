@@ -179,11 +179,11 @@ async function fetchOtrosProductos() {
     let numeroCuenta = document.getElementById("NumeroCuenta");
     let formaDePago = document.getElementById("FormaDePago");
 
-    // agregar event listener para los botones de radio
+    // Agregar event listener para los botones de radio
     radioTarjeta.addEventListener("change", enableTarjetaFields);
     radioTransferencia.addEventListener("change", enableTransferenciaFields);
 
-    // funcion para habilitar los campos de tarjeta de credito y deshabilitar los de transferencia bancaria
+    // Funcion para habilitar los campos de tarjeta de credito y deshabilitar los de transferencia bancaria
     function enableTarjetaFields() {
         if (radioTarjeta.checked) {
             nombreTarjeta.removeAttribute("disabled");
@@ -259,29 +259,59 @@ async function fetchOtrosProductos() {
     //     alert('Formulario enviado exitosamente!');
     // });
 
-    //validacion, verde o rojo
+    //Validacion
     (function () {
         'use strict';
-    
-        // selecciona el elemento por la clase
+      
+        // Selecciona el elemento por la clase
         var forms = document.getElementsByClassName('validacion');
-    
-        // agrega un event listener para el boton
+      
+        // Agrega un event listener para el botón
         var finalizarCompraButton = document.getElementById('btnFinalizarCompra');
         finalizarCompraButton.addEventListener('click', function (event) {
-            // busca a traves de todas las forms con la clase "formularioCompra"
-            for (var i = 0; i < forms.length; i++) {
-                var form = forms[i];
-                // se fija si es valido
-                if (!form.checkValidity()) {
-                    event.preventDefault(); //no deja que se suba el formulario si es invalido
-                    event.stopPropagation();
-                }
-    
-                form.classList.add('was-validated');
+          var isFormValid = true; // Variable para rastrear si el formulario es válido
+      
+          // Verifica si todos los campos del formulario son válidos
+          for (var i = 0; i < forms.length; i++) {
+            var form = forms[i];
+            // Verifica si es válido
+            if (!form.checkValidity()) {
+              isFormValid = false; // Marca el formulario como inválido si al menos uno de ellos no lo es
+              event.preventDefault(); // No permite que se envíe el formulario si es inválido
+              event.stopPropagation();
             }
+      
+            form.classList.add('was-validated');
+          }
+          var selectedRadioButton = document.querySelector('input[name="opciones"]:checked');
+          var tipoEnvioError = document.getElementById("tipoEnvioError");
+      
+          if (!selectedRadioButton) {
+            isFormValid = false; // Marca el formulario como no valido si falta elegir un radio
+            event.preventDefault(); // No permite que se envíe el formulario si es inválido
+            tipoEnvioError.style.display = "block"; // Muestra el mensaje de error
+          } else {
+            tipoEnvioError.style.display = "none"; // Oculta el mensaje de error
+          }
+          // Verificar si el formulario de pago también es válido
+          let selectedPayment = document.querySelector('input[name="opcionesP"]:checked');
+          let formaPagoError = document.getElementById("formaPagoError");
+      
+          if (!selectedPayment) {
+            isFormValid = false; // Marca el formulario como inválido si no se selecciona una forma de pago
+            event.preventDefault(); // No permite que se envíe el formulario si es inválido
+            formaPagoError.style.display = "block"; // Muestra el mensaje de error
+          } else {
+            formaPagoError.style.display = "none"; // Oculta el mensaje de error si se seleccionó una forma de pago válida
+          }
+      
+          // Si todos los formularios son válidos, muestra la alerta
+          if (isFormValid) {
+            var alertSuccess = document.querySelector('.alert.alert-success');
+            alertSuccess.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta            
+          }
         });
-    })();
+      })();
     
 
 // Evento que se dispara cuando la página se carga completamente

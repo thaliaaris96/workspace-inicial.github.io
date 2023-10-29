@@ -44,7 +44,7 @@ async function fetchProductoBase() {
             const cantidad = parseInt(cantidadInput.value);
             const costo = product.unitCost;
             const nuevoSubtotal = cantidad * costo;
-            subTotalProdComprar.textContent = `${product.currency} ${nuevoSubtotal}`;
+            subTotalElem.textContent = `${product.currency} ${nuevoSubtotal}`;
         });
         // Agrega la fila de tabla al carrito
         formCarrito.appendChild(auxRow);
@@ -52,7 +52,8 @@ async function fetchProductoBase() {
         let btnBorrarElemento = document.getElementById("btnBorrarElemento");
         btnBorrarElemento.addEventListener("click", function() {
             formCarrito.removeChild(auxRow);
-        })
+            arrayComprados.splice(arrayComprados.indexOf(product.id), 1);
+        });
     } catch (error) {
         console.error("Ocurrió el siguiente error: ", error);
     }
@@ -60,57 +61,74 @@ async function fetchProductoBase() {
 
 // Función para obtener y mostrar otros productos en el carrito
 async function fetchOtrosProductos() {
-     // Obtiene los IDs de productos comprados almacenados en el almacenamiento local
-    let idComprado = JSON.parse(localStorage.getItem("idComprado")) || [];
-    // Itera a través de los IDs y obtiene información de los productos
-    idComprado.forEach(function(id) {
-        let URLProducto = `https://japceibal.github.io/emercado-api/products/${id}.json`;
+    // Obtiene los IDs de productos comprados almacenados en el almacenamiento local
+   let idComprado = JSON.parse(localStorage.getItem("idComprado")) || [];
+   // Calcular el total general de los subtotales
+   const subtotales = [];
+   let totalGeneral = 0;
 
-        fetch(URLProducto)
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                // Crea una fila de tabla con información del producto
-                let auxRow = document.createElement("tr");
+   idComprado.forEach(function(id) {
+       let URLProducto = `https://japceibal.github.io/emercado-api/products/${id}.json`;
 
-                if (idComprado) {
-                    auxRow.innerHTML = `
-                        <th scope="row" id="imgProdComprar"><img src="${data.images && data.images[0]}" alt="${data.name}"></th>
-                        <td id="nomProdComprar">${data.name}</td>
-                        <td id="costProdComprar">${data.currency} ${data.cost}</td>
-                        <td id="cantProdComprar">
-                            <input id="cantidadDeProductos" type="number" min="1" value="1">
-                        </td>
-                        <td id="subTotalProdComprar">${data.currency} ${data.cost}</td>
-                        <td id="elimProdComprar">
-                            <button id="btnBorrarElemento"><i class='bx bx-trash'></i></button>
-                        </td>
-                    `;
-                }
-                // Obtiene elementos relevantes dentro de la fila
-                const cantidadInput = auxRow.querySelector("#cantidadDeProductos");
-                const subTotalElem = auxRow.querySelector("#subTotalProdComprar");
-                const btnBorrarElemento = auxRow.querySelector("#elimProdComprar");
+       fetch(URLProducto)
+           .then(function(response) {
+               return response.json();
+           })
+           .then(function(data) {
+               // Crea una fila de tabla con información del producto
+               let auxRow = document.createElement("tr");
 
-                // Agrega un evento para actualizar el subtotal cuando se cambia la cantidad
-                cantidadInput.addEventListener("input", function() {
-                    const cantidad = parseInt(cantidadInput.value);
-                    const costo = data.cost;
-                    const nuevoSubtotal = cantidad * costo;
-                    subTotalElem.textContent = `${data.currency} ${nuevoSubtotal}`;
-                    subTotalFinal(nuevoSubtotal);
-                });
-
-                let subtotal = 0;
-                function subTotalFinal(nuevoSubtotal)
-                {
-                    subtotal = 0;
-                    subtotal += nuevoSubtotal;
-                    let contenedorSubTotal = document.getElementById("MuestreoSubTotal");
-                    contenedorSubTotal.innerHTML = `${subtotal}`;
-                };
+               if (idComprado) {
+                   auxRow.innerHTML = `
+                       <th scope="row" id="imgProdComprar"><img src="${data.images && data.images[0]}" alt="${data.name}"></th>
+                       <td id="nomProdComprar">${data.name}</td>
+                       <td id="costProdComprar">${data.currency} ${data.cost}</td>
+                       <td id="cantProdComprar">
+                           <input id="cantidadDeProductos" type="number" min="1" value="1">
+                       </td>
+                       <td id="subTotalProdComprar">${data.currency} ${data.cost}</td>
+                       <td id="elimProdComprar">
+                           <button id="btnBorrarElemento"><i class='bx bx-trash'></i></button>
+                       </td>
+                   `;
+               }
+               // Obtiene elementos relevantes dentro de la fila
+               const cantidadInput = auxRow.querySelector("#cantidadDeProductos");
+               const subTotalElem = auxRow.querySelector("#subTotalProdComprar");
+               const btnBorrarElemento = auxRow.querySelector("#elimProdComprar");
+               const subtotalCont = document.getElementById("MuestreoSubTotal");
+               const cantidad = parseInt(cantidadInput.value);
+               const costo = data.cost;
+               const nuevoSubtotal = cantidad * costo;
+               subTotalElem.textContent = `${data.currency} ${nuevoSubtotal}`;
+               subtotales[id] = nuevoSubtotal;
+               totalGeneral = subtotales.reduce((total, subtotal) => total + (subtotal || 0), 0);
+               console.log(totalGeneral);
+               subtotalCont.innerHTML = `${data.currency} ${totalGeneral}`;
+               
+               // Agrega un evento para actualizar el subtotal cuando se cambia la cantidad
+               cantidadInput.addEventListener("input", function() {
+                const cantidad = parseInt(cantidadInput.value);
+                let costo = data.cost;
                 
+                // Verificar si la moneda es UYU y dividir el costo si es necesario
+                if (data.currency === "UYU") {
+                  costo /= 39.8;
+                }
+                
+                const nuevoSubtotal = cantidad * costo;
+                subTotalElem.textContent = `USD ${nuevoSubtotal.toFixed(2)}`;
+                subtotales[id] = nuevoSubtotal;
+                totalGeneral = subtotales.reduce((total, subtotal) => total + (subtotal || 0), 0);
+                subtotalCont.innerHTML = `USD ${totalGeneral.toFixed(2)}`;
+                costoEnvio(totalGeneral);
+                
+                let ElGranTotal = 0;
+                ElGranTotal = totalGeneral + costoEnvio(totalGeneral);
+                let contenedorDelGranTotal = document.getElementById("MuestreoTotal");
+                contenedorDelGranTotal.innerHTML = `USD ${ElGranTotal.toFixed(2)}`;
+              });
+              
                 // Agrega la fila de tabla al carrito
                 formCarrito.appendChild(auxRow);
                 // Agrega un evento al botón de eliminar para quitar el producto
@@ -123,46 +141,6 @@ async function fetchOtrosProductos() {
                         localStorage.setItem("idComprado", JSON.stringify(idComprado));
                     }
                 })
-                
-
-                let contenedorDelEnvio = document.getElementById("MuestreoCostoEnvio");
-                let contenedorTotal = document.getElementById("MuestreoTotal");
-                console.log(idComprado);
-
-                function dolaresAPesos(dolares) {
-                    return dolares * 39.9;
-                }
-
-                function pesosADolares(pesos) {
-                    return pesos / 0.025;
-                }
-
-                /*
-                function Sumatotal() {
-                    let subtotal = 0;
-                    let porcentajeEnvio = 0;
-                    let costoEnvio = 0;
-
-                    if (envio1.checked){
-                        porcentajeEnvio = 0.15; //15%
-                    } else if (envio2.checked){
-                        porcentajeEnvio = 0.07; //7%
-                    } else if (envio3.checked){
-                        porcentajeEnvio = 0.05; //5%
-                    }
-
-                    for (let c = 0; c < idComprado.length; c++){
-                        subtotal += parseInt(data.cost);
-                    }
-                    
-                    costoEnvio = subtotal * porcentajeEnvio;
-                    total = subtotal + costoEnvio;
-                    return total;
-                }
-                
-                contenedorTotal.innerHTML = `${data.currency} ${Sumatotal()}`;
-                */
-                
             })
             .catch(function(error) {
                 console.error("Ocurrió el siguiente error: ", error);
@@ -215,49 +193,23 @@ async function fetchOtrosProductos() {
             formaDePago.textContent = "No ha seleccionado";
         }
     }
-    
 
-    // Validaciones que realiza el botón finalizar compra
-    // document.getElementById('btnFinalizarCompra').addEventListener('click', function() {
-    //     // Obtener valores de los campos
-    //     const calle = document.getElementById('calle').value;
-    //     const numero = document.getElementById('numero').value;
-    //     const esquina = document.getElementById('esquina').value;
-    //     const formaEnvio = document.getElementById('formaEnvio').value;
-    //     const cantidadArticulo = document.getElementById('cantidadArticulo').value;
-    //     const formaPago = document.getElementById('formaPago').value;
-    //     const detallesPago = document.getElementById('detallesPago').value;
-    
-    //     // Realizar validaciones
-    //     if (calle.trim() === '' || numero.trim() === '' || esquina.trim() === '') {
-    //         alert('Los campos calle, número y esquina no pueden estar vacíos.');
-    //         return;
-    //     }
-    
-    //     if (formaEnvio === '') {
-    //         alert('Debes seleccionar una forma de envío.');
-    //         return;
-    //     }
-    
-    //     if (parseInt(cantidadArticulo) <= 0 || isNaN(cantidadArticulo)) {
-    //         alert('La cantidad para cada artículo debe ser mayor a 0.');
-    //         return;
-    //     }
-    
-    //     if (formaPago === '') {
-    //         alert('Debes seleccionar una forma de pago.');
-    //         return;
-    //     }
-    
-    //     // Realizar validaciones específicas para la forma de pago seleccionada
-    //     if (formaPago === 'tarjeta' && detallesPago.trim() === '') {
-    //         alert('Debes proporcionar los detalles de la tarjeta de crédito.');
-    //         return;
-    //     }
-    
-    //     // Si todas las validaciones pasan, puedes ejecutar la lógica para enviar el formulario
-    //     alert('Formulario enviado exitosamente!');
-    // });
+    function costoEnvio(totalGeneral) {
+        let botonesRadio = document.querySelectorAll("input[name='opciones']");
+        let subtotalEnvioCont = document.getElementById("MuestreoCostoEnvio");
+        let costoEnvio = 0;
+        if (botonesRadio[0].checked) {
+            costoEnvio = totalGeneral * 0.15;
+        } else if (botonesRadio[1].checked) {
+            costoEnvio = totalGeneral * 0.07;
+        } else if (botonesRadio[2].checked) {
+            costoEnvio = totalGeneral * 0.05;
+        }
+        subtotalEnvioCont.innerHTML = `USD ${costoEnvio.toFixed(2)}`;
+        console.log(costoEnvio);
+
+        return costoEnvio;
+    }
 
     //Validacion
     (function () {
@@ -326,4 +278,3 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("Ha ocurrido algo con la carga de fetchOtrosProductos();: ", error);
         });
 });
-

@@ -8,6 +8,9 @@ let cantidad = document.getElementById("cantProdComprar");
 let costo = document.getElementById("costProdComprar");
 let subtotal = document.getElementById("subTotalProdComprar");
 let colEliminar = document.getElementById("elimProdComprar");
+
+let contenedorTotal = document.getElementById("MuestreoTotal");
+let contenedorDelEnvio = document.getElementById("MuestreoCostoEnvio");
 // Array para almacenar los IDs de los productos comprados
 let arrayComprados = [];
 // Elementos de radio para los tipos de envío
@@ -32,7 +35,7 @@ async function fetchProductoBase() {
             <td id="cantProdComprar">
                 <input id="cantidadDeProductos" type="number" min="1" value="1">
             </td>
-            <td id="subTotalProdComprar">${product.currency} ${product.unitCost}</td>
+            <td id="subTotalProdComprar" class="subTotal">${product.currency} ${product.unitCost}</td>
             <td id="elimProdComprar">
                 <button id="btnBorrarElemento"><i class='bx bx-trash'></i></button>
             </td>
@@ -78,46 +81,46 @@ async function fetchOtrosProductos() {
                     auxRow.innerHTML = `
                         <th scope="row" id="imgProdComprar"><img src="${data.images && data.images[0]}" alt="${data.name}"></th>
                         <td id="nomProdComprar">${data.name}</td>
-                        <td id="costProdComprar">${data.currency} ${data.cost}</td>
+                        <td id="costProdComprar${id}">${data.currency} ${data.cost}</td>
                         <td id="cantProdComprar">
-                            <input id="cantidadDeProductos" type="number" min="1" value="1">
+                            <input id="cantidadDeProductos${id}" class="inpProduct" type="number" min="1" value="1">
                         </td>
-                        <td id="subTotalProdComprar">${data.currency} ${data.cost}</td>
+                        <td id="subTotalProdComprar${id}" class="subTotal">${data.currency} ${data.cost}</td>
                         <td id="elimProdComprar">
                             <button id="btnBorrarElemento"><i class='bx bx-trash'></i></button>
                         </td>
                     `;
                 }
                 // Obtiene elementos relevantes dentro de la fila
-                const cantidadInput = auxRow.querySelector("#cantidadDeProductos");
-                const subTotalElem = auxRow.querySelector("#subTotalProdComprar");
-                const btnBorrarElemento = auxRow.querySelector("#elimProdComprar");
-
-                // Agrega un evento para actualizar el subtotal cuando se cambia la cantidad
-                cantidadInput.addEventListener("input", function() {
-                    const cantidad = parseInt(cantidadInput.value);
-                    const costo = data.cost;
-                    const nuevoSubtotal = cantidad * costo;
-                    subTotalElem.textContent = `${data.currency} ${nuevoSubtotal}`;
-                    subTotalFinal(nuevoSubtotal);
-                });
-
-                let subtotal = 0;
-                function subTotalFinal(nuevoSubtotal)
-                {
-                    subtotal = 0;
-                    subtotal += nuevoSubtotal;
-                    let contenedorSubTotal = document.getElementById("MuestreoSubTotal");
-                    contenedorSubTotal.innerHTML = `${subtotal}`;
-                };
+                const cantidadInput = auxRow.querySelector(`#cantidadDeProductos${id}`);
                 
+                const subTotalElem = auxRow.querySelector(`#subTotalProdComprar${id}`);
+
+                const costoProd = auxRow.querySelector(`costProdComprar${id}`)
+                
+                const btnBorrarElemento = auxRow.querySelector("#elimProdComprar");
+                
+                cantidadInput.addEventListener("input", function() {
+                    
+                    const cantidad = parseInt(cantidadInput.value);
+                    const costoProd = data.cost;                    
+                    const nuevoSubtotal = cantidad * costoProd;
+                    console.log(nuevoSubtotal)
+                    subTotalElem.textContent = `${data.currency} ${nuevoSubtotal}`;
+                });
+         
+               
+
                 // Agrega la fila de tabla al carrito
                 formCarrito.appendChild(auxRow);
                 // Agrega un evento al botón de eliminar para quitar el producto
                 btnBorrarElemento.addEventListener("click", function() {
                     formCarrito.removeChild(auxRow);
+                    console.log("este es el aux",auxRow)
+
                     // Actualiza el almacenamiento local para reflejar la eliminación
                     let indice = idComprado.indexOf(id);
+                    console.log(indice)
                     if (indice !== -1) {
                         idComprado.splice(indice, 1);
                         localStorage.setItem("idComprado", JSON.stringify(idComprado));
@@ -125,9 +128,9 @@ async function fetchOtrosProductos() {
                 })
                 
 
-                let contenedorDelEnvio = document.getElementById("MuestreoCostoEnvio");
-                let contenedorTotal = document.getElementById("MuestreoTotal");
-                console.log(idComprado);
+                
+                
+                
 
                 function dolaresAPesos(dolares) {
                     return dolares * 39.9;
@@ -137,39 +140,100 @@ async function fetchOtrosProductos() {
                     return pesos / 0.025;
                 }
 
-                /*
-                function Sumatotal() {
-                    let subtotal = 0;
-                    let porcentajeEnvio = 0;
-                    let costoEnvio = 0;
-
-                    if (envio1.checked){
-                        porcentajeEnvio = 0.15; //15%
-                    } else if (envio2.checked){
-                        porcentajeEnvio = 0.07; //7%
-                    } else if (envio3.checked){
-                        porcentajeEnvio = 0.05; //5%
-                    }
-
-                    for (let c = 0; c < idComprado.length; c++){
-                        subtotal += parseInt(data.cost);
-                    }
-                    
-                    costoEnvio = subtotal * porcentajeEnvio;
-                    total = subtotal + costoEnvio;
-                    return total;
-                }
                 
-                contenedorTotal.innerHTML = `${data.currency} ${Sumatotal()}`;
-                */
+                
+                    
+                    
+                
+               
                 
             })
             .catch(function(error) {
                 console.error("Ocurrió el siguiente error: ", error);
             });
     });
-    
+    setTimeout(() => {
+        const products = document.getElementsByClassName("subTotal")
+    let subTotal = 0
+    for(let i = 0 ; i<products.length ; i++){
+        let producto = products[i].textContent
+        let product = producto.split(" ")
+        if(product[0]=="UYU"){ 
+            let num = parseInt(product[1])      
+            subTotal+= (num/39)
+         }else{
+                let num = parseInt(product[1]);
+                subTotal += num
+            }
+    }
+        const contSubTotal= document.getElementById("MuestreoSubTotal")
+        contSubTotal.innerHTML = `USD ${subTotal.toFixed()}`
+     
+     
+        let porcentajeEnvio = 0;
+        let costoEnvio = 0;
+        if (envio1.checked){
+            porcentajeEnvio = 0.15; //15%
+        } else if (envio2.checked){
+            porcentajeEnvio = 0.07; //7%
+        } else if (envio3.checked){
+            porcentajeEnvio = 0.05; //5%
+        }
+        console.log(porcentajeEnvio)
+
+        costoEnvio = subTotal * porcentajeEnvio;
+        let total = subTotal + costoEnvio;
+        contenedorDelEnvio.textContent = `USD ${costoEnvio.toFixed()}`
+        
+        contenedorTotal.textContent = `USD  ${total.toFixed()}`;
+          return total;      
+
+    }, 300);
 }
+
+const tagProductos = document.getElementsByTagName("tbody")
+                console.log(tagProductos)
+document.addEventListener("click",function subTotal() {
+                    
+    const products = document.getElementsByClassName("subTotal")
+    let subTotal = 0
+    for(let i = 0 ; i<products.length ; i++){
+        let producto = products[i].textContent
+        let product = producto.split(" ")
+        if(product[0]=="UYU"){ 
+            let num = parseInt(product[1])
+            console.log("Numero",num)
+            
+            subTotal+= (num/39)
+            console.log("SubTotal ",subTotal)
+         }else{
+                let num = parseInt(product[1]);
+                subTotal += num
+            }
+    }
+    const contSubTotal= document.getElementById("MuestreoSubTotal")
+    contSubTotal.innerHTML = `USD ${subTotal.toFixed()}`
+
+    let porcentajeEnvio = 0;
+    let costoEnvio = 0;
+    if (envio1.checked){
+        porcentajeEnvio = 0.15; //15%
+    } else if (envio2.checked){
+        porcentajeEnvio = 0.07; //7%
+    } else if (envio3.checked){
+        porcentajeEnvio = 0.05; //5%
+    }
+    console.log(porcentajeEnvio)
+
+    costoEnvio = subTotal * porcentajeEnvio;
+    let total = subTotal + costoEnvio;
+    contenedorDelEnvio.textContent = `USD ${costoEnvio.toFixed()}`
+    
+    contenedorTotal.textContent = `USD  ${total.toFixed()}`;
+      
+    
+});
+
     //habilitar deshabilitar campos del modal
     let radioTarjeta = document.getElementById("SeleccionPago1");
     let radioTransferencia = document.getElementById("SeleccionPago2");
@@ -327,3 +391,29 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 
+
+
+let seleccion1 = document.getElementById("Seleccionradio1")
+let seleccion2 = document.getElementById("Seleccionradio2")
+let seleccion3 = document.getElementById("Seleccionradio3")
+
+
+seleccion1.addEventListener("change",function(){
+
+    let porcentajeEnvio = 0;
+    let costoEnvio = 0;
+    if (envio1.checked){
+        porcentajeEnvio = 0.15; //15%
+    } else if (envio2.checked){
+        porcentajeEnvio = 0.07; //7%
+    } else if (envio3.checked){
+        porcentajeEnvio = 0.05; //5%
+    }
+    console.log(porcentajeEnvio)
+
+    costoEnvio = subTotal * porcentajeEnvio;
+    let total = subTotal + costoEnvio;
+    contenedorDelEnvio.textContent = `USD ${costoEnvio.toFixed()}`
+    
+    contenedorTotal.textContent = `USD  ${total.toFixed()}`;
+})

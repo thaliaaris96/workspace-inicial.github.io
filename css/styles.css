@@ -951,7 +951,7 @@ body.modo-oscuro {
   height: 60px;
 }
 
-#cantidadDeProductos {
+.subTotal {
   width: 60px;
   text-align: center;
 }

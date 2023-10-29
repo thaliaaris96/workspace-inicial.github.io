@@ -47,7 +47,7 @@ async function fetchProductoBase() {
             const cantidad = parseInt(cantidadInput.value);
             const costo = product.unitCost;
             const nuevoSubtotal = cantidad * costo;
-            subTotalElem.textContent = `${product.currency} ${nuevoSubtotal}`;
+            subTotalProdComprar.textContent = `${product.currency} ${nuevoSubtotal}`;
         });
         // Agrega la fila de tabla al carrito
         formCarrito.appendChild(auxRow);
@@ -55,8 +55,7 @@ async function fetchProductoBase() {
         let btnBorrarElemento = document.getElementById("btnBorrarElemento");
         btnBorrarElemento.addEventListener("click", function() {
             formCarrito.removeChild(auxRow);
-            arrayComprados.splice(arrayComprados.indexOf(product.id), 1);
-        });
+        })
     } catch (error) {
         console.error("Ocurrió el siguiente error: ", error);
     }
@@ -64,15 +63,19 @@ async function fetchProductoBase() {
 
 // Función para obtener y mostrar otros productos en el carrito
 async function fetchOtrosProductos() {
-    // Obtiene los IDs de productos comprados almacenados en el almacenamiento local
-   let idComprado = JSON.parse(localStorage.getItem("idComprado")) || [];
-   // Calcular el total general de los subtotales
-   const subtotales = [];
-   let totalGeneral = 0;
+     // Obtiene los IDs de productos comprados almacenados en el almacenamiento local
+    let idComprado = JSON.parse(localStorage.getItem("idComprado")) || [];
+    // Itera a través de los IDs y obtiene información de los productos
+    idComprado.forEach(function(id) {
+        let URLProducto = `https://japceibal.github.io/emercado-api/products/${id}.json`;
 
-   idComprado.forEach(function(id) {
-       let URLProducto = `https://japceibal.github.io/emercado-api/products/${id}.json`;
-
+        fetch(URLProducto)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                // Crea una fila de tabla con información del producto
+                let auxRow = document.createElement("tr");
 
                 if (idComprado) {
                     auxRow.innerHTML = `
@@ -108,7 +111,6 @@ async function fetchOtrosProductos() {
          
                
 
-
                 // Agrega la fila de tabla al carrito
                 formCarrito.appendChild(auxRow);
                 // Agrega un evento al botón de eliminar para quitar el producto
@@ -124,13 +126,32 @@ async function fetchOtrosProductos() {
                         localStorage.setItem("idComprado", JSON.stringify(idComprado));
                     }
                 })
+                
 
+                
+                
+                
 
+                function dolaresAPesos(dolares) {
+                    return dolares * 39.9;
+                }
+
+                function pesosADolares(pesos) {
+                    return pesos / 0.025;
+                }
+
+                
+                
+                    
+                    
+                
+               
+                
             })
             .catch(function(error) {
                 console.error("Ocurrió el siguiente error: ", error);
             });
-    };
+    });
     setTimeout(() => {
         const products = document.getElementsByClassName("subTotal")
     let subTotal = 0
@@ -258,23 +279,49 @@ document.addEventListener("click",function subTotal() {
             formaDePago.textContent = "No ha seleccionado";
         }
     }
+    
 
-    function costoEnvio(totalGeneral) {
-        let botonesRadio = document.querySelectorAll("input[name='opciones']");
-        let subtotalEnvioCont = document.getElementById("MuestreoCostoEnvio");
-        let costoEnvio = 0;
-        if (botonesRadio[0].checked) {
-            costoEnvio = totalGeneral * 0.15;
-        } else if (botonesRadio[1].checked) {
-            costoEnvio = totalGeneral * 0.07;
-        } else if (botonesRadio[2].checked) {
-            costoEnvio = totalGeneral * 0.05;
-        }
-        subtotalEnvioCont.innerHTML = `USD ${costoEnvio.toFixed(2)}`;
-        console.log(costoEnvio);
-
-        return costoEnvio;
-    }
+    // Validaciones que realiza el botón finalizar compra
+    // document.getElementById('btnFinalizarCompra').addEventListener('click', function() {
+    //     // Obtener valores de los campos
+    //     const calle = document.getElementById('calle').value;
+    //     const numero = document.getElementById('numero').value;
+    //     const esquina = document.getElementById('esquina').value;
+    //     const formaEnvio = document.getElementById('formaEnvio').value;
+    //     const cantidadArticulo = document.getElementById('cantidadArticulo').value;
+    //     const formaPago = document.getElementById('formaPago').value;
+    //     const detallesPago = document.getElementById('detallesPago').value;
+    
+    //     // Realizar validaciones
+    //     if (calle.trim() === '' || numero.trim() === '' || esquina.trim() === '') {
+    //         alert('Los campos calle, número y esquina no pueden estar vacíos.');
+    //         return;
+    //     }
+    
+    //     if (formaEnvio === '') {
+    //         alert('Debes seleccionar una forma de envío.');
+    //         return;
+    //     }
+    
+    //     if (parseInt(cantidadArticulo) <= 0 || isNaN(cantidadArticulo)) {
+    //         alert('La cantidad para cada artículo debe ser mayor a 0.');
+    //         return;
+    //     }
+    
+    //     if (formaPago === '') {
+    //         alert('Debes seleccionar una forma de pago.');
+    //         return;
+    //     }
+    
+    //     // Realizar validaciones específicas para la forma de pago seleccionada
+    //     if (formaPago === 'tarjeta' && detallesPago.trim() === '') {
+    //         alert('Debes proporcionar los detalles de la tarjeta de crédito.');
+    //         return;
+    //     }
+    
+    //     // Si todas las validaciones pasan, puedes ejecutar la lógica para enviar el formulario
+    //     alert('Formulario enviado exitosamente!');
+    // });
 
     //Validacion
     (function () {
@@ -342,7 +389,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(function (error) {
             console.error("Ha ocurrido algo con la carga de fetchOtrosProductos();: ", error);
         });
-
 });
 
 

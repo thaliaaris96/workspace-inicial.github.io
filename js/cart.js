@@ -171,7 +171,7 @@ async function fetchOtrosProductos() {
 }
 
 const tagProductos = document.getElementsByTagName("tbody")
-                console.log(tagProductos)
+
 document.addEventListener("click",function subTotal() {
                     
     const products = document.getElementsByClassName("subTotal")
@@ -278,7 +278,6 @@ document.addEventListener("click",function subTotal() {
               event.preventDefault(); // No permite que se envíe el formulario si es inválido
               event.stopPropagation();
             }
-      
             form.classList.add('was-validated');
           }
           var selectedRadioButton = document.querySelector('input[name="opciones"]:checked');
@@ -343,7 +342,6 @@ seleccion1.addEventListener("change",function(){
 
     costoEnvio = subTotal * porcentajeEnvio;
     let total = subTotal + costoEnvio;
-    contenedorDelEnvio.textContent = `USD ${costoEnvio.toFixed()}`
-    
+    contenedorDelEnvio.textContent = `USD ${costoEnvio.toFixed()}` 
     contenedorTotal.textContent = `USD  ${total.toFixed()}`;
 })

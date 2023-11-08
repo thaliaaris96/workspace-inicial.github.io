@@ -333,8 +333,23 @@ a.custom-card:hover {
   margin: 0 auto;
   text-align: center;
 }
+.perfil-boton {
+  padding: 10px 20px;
+  background-color: #f09100;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-.perfil-container {
+.perfil-boton:hover {
+  background-color: #ffb23f;
+  color: black;
+}
+
+/*Perfil usuario*/
+
+/* .perfil-container {
   display: inline-flexbox;
   max-width: 90%;
   margin: 35px;
@@ -399,12 +414,13 @@ select {
   padding: 5px;
 }
 
-/* */
-
 .imgPerfil {
   height: 30px;
   width: 35px;
-}
+} */
+
+
+/* */
 
 
 /* */
@@ -1033,4 +1049,20 @@ body.modo-oscuro {
     text-align: end;
     margin-right: 20px;
   }
+}
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #f6d365;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+  }
+
+.input_control {
+  width: 80%;
+  margin: 0 auto;
 }

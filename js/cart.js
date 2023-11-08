@@ -321,6 +321,12 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(function (error) {
             console.error("Ha ocurrido algo con la carga de fetchOtrosProductos();: ", error);
         });
+        
+        if(localStorage.getItem('registro') != 'true'){
+            // Si no se ha registrado (basado en el valor en el almacenamiento local), mostrar una alerta y redirigir a "login.html"
+            alert("Usted no ha iniciado sesión.")
+            window.location.href = 'login.html'
+        }
 });
 
 let seleccion1 = document.getElementById("Seleccionradio1")
@@ -345,3 +351,6 @@ seleccion1.addEventListener("change",function(){
     contenedorDelEnvio.textContent = `USD ${costoEnvio.toFixed()}` 
     contenedorTotal.textContent = `USD  ${total.toFixed()}`;
 })
+
+
+

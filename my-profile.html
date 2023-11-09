@@ -8,23 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <link rel="shortcut icon" href="img/PestañaICONO.ico"/>
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
+  <link rel="shortcut icon" href="img/PestañaICONO.ico"/>  
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -67,28 +51,26 @@
     </div>
   </nav>
 
-  <section class="container">
-    <div class="row">
-      <h2 class="mt-5 text-center">Perfil</h2>
-    </div>
-    <hr>
+  <section class="container d-flex justify-content-center">
+    <div class="col-lg-8 col-12">
+      <h2 class="mt-5 text-center gradient-custom" style="border-radius: .5rem; padding: .5rem;">Perfil</h2>
+    </div>    
   </section>
 
   <section class="vh-50 mb-5">
     <div class="container py-5 h-50">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="col col-lg-8 mb-4 mb-lg-0">
           <div class="card mb-2" style="border-radius: .5rem;">
             <div class="row g-0">
               <div class="col-md-4 gradient-custom text-center text-white"
                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                  alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
-                <h5>Nombre*</h5>
+                  alt="Avatar" class="img-fluid my-5" style="width: 80px;" />                
+                <h5 style="color: #000;">Nombre*</h5>
                 <input type="text" name="Nombre" id="inpNombre" class="form-control mb-4 input_control" placeholder="Su Nombre" required>
-                <h5>Apellido*</h5>
+                <h5 style="color: #000;">Apellido*</h5>
                 <input type="text" name="Apellido" id="inpApellido" class="form-control mb-4 input_control" placeholder="Su Apellido" required>
-                <i class="far fa-edit mb-5"></i>
               </div>
               <div class="col-md-8">
                 <div class="card-body p-4">
@@ -114,8 +96,12 @@
                       <input type="text" name="Telefono" id="inpTelefono" class="form-control" placeholder="080012345">
                     </div>
                   </div>
+                  <h6 class="text-center">Imagen de perfil</h6>
+                  <div class="input-group mb-4 input_control">      
+                    <input type="file" class="form-control" id="imgPerfil">                    
+                  </div>
                   <div class="d-flex justify-content-center mt-3">
-                    <button type="button" id-="btnGuardar" class="perfil-boton">Guardar cambios</button>
+                    <button type="button" id="btnGuardar" class="perfil-boton gradient-custom">Guardar cambios</button>
                   </div>
                 </div>
               </div>

@@ -334,17 +334,26 @@ a.custom-card:hover {
   text-align: center;
 }
 .perfil-boton {
-  padding: 10px 20px;
-  background-color: #f09100;
-  color: white;
+  padding: 10px 20px; 
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 5px;  
 }
 
-.perfil-boton:hover {
-  background-color: #ffb23f;
-  color: black;
+.perfil-boton:hover{
+  background-color: hsl(39, 100%, 45%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6d265", endColorstr="#fda284");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#f6d265), to(#fda284));
+  background-image: -moz-linear-gradient(top, #f6d265, #fda284);
+  background-image: -ms-linear-gradient(top, #f6d265, #fda284);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6d265), color-stop(100%, #fda284));
+  background-image: -webkit-linear-gradient(top, #f6d265, #fda284);
+  background-image: -o-linear-gradient(top, #f6d265, #fda284);
+  background-image: linear-gradient(#f6d265, #fda284);
+  border-color: #fda284 #fda284 hsl(39, 100%, 38%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.46);
+  -webkit-font-smoothing: antialiased;
 }
 
 /*Perfil usuario*/

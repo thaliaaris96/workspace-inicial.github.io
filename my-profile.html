@@ -65,7 +65,7 @@
             <div class="row g-0">
               <div class="col-md-4 gradient-custom text-center text-white"
                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                <img id="imagenDePerfil" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                   alt="Avatar" class="img-fluid my-5" style="width: 80px;" />                
                 <h5 style="color: #000;">Nombre(*)</h5>
                 <input type="text" name="Nombre" id="inpNombre" class="form-control mb-4 input_control" placeholder="Su Nombre" required>
@@ -111,6 +111,14 @@
       </div>
     </div>
   </section>
+  <div class="alert alert-success d-none text-center alert-dismissible fade show" role="alert">
+    Cambios guardados correctamente.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>               
+  </div>
+  <div class="alert alert-danger d-none text-center alert-dismissible fade show" role="alert">
+    Por favor, complete todos los campos obligatorios.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>               
+  </div>
 
   <footer class="text-muted mt-5 mt-auto">
     <div class="container">

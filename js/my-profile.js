@@ -234,41 +234,4 @@ function guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPer
       }
     }
   }
-  // Función para guardar datos y mostrar la imagen de perfil
-  function guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil) {
-    // Crear un objeto con los datos
-    var userData = {
-      nombre: nombre,
-      apellido: apellido,
-      segundoNombre: document.getElementById("inpSegundoNombre").value,
-      segundoApellido: document.getElementById("inpSegundoApellido").value,
-      email: email,
-      telefono: telefono,
-      imagenPerfil: imagenPerfil,
-    };
-  
-    // Guardar en el almacenamiento local
-    localStorage.setItem("userData", JSON.stringify(userData));
-  
-    // Informar al usuario que los cambios se han guardado correctamente.    
-    var alertSuccess = document.querySelector('.alert.alert-success');
-    alertSuccess.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta
-  
-    // Mostrar la imagen de perfil
-    mostrarImagenPerfil(imagenPerfil);
-  }
-  
-  // Función para mostrar la imagen de perfil
-    function mostrarImagenPerfil(url) {
-    var imgElement = document.getElementById("imagenDePerfil");
-    if (imgElement) {
-      // Verificar si la URL de la imagen está presente
-      if (url && url.trim() !== "") {
-        imgElement.src = url;
-      } else {
-        // Si no hay URL, mostrar la imagen predeterminada
-        imgElement.src = "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp";
-      }
-    }
-  }  
-
+ 

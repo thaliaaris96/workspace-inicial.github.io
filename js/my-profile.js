@@ -271,4 +271,4 @@ function guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPer
       }
     }
   }  
-});
+

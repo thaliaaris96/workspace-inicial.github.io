@@ -270,13 +270,5 @@ function guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPer
         imgElement.src = "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp";
       }
     }
-  }
-  document.addEventListener("DOMContentLoaded", function() {
-    // Verificar si existe el dato "mail" en el Local Storage
-    var userEmail = localStorage.getItem("mail");
-
-    // Si no existe, redirigir a otra página o mostrar un mensaje de error
-    if (!userEmail) {
-        window.location.href = "login.html"; // Puedes cambiar esto por la página que desees
-    }
+  }  
 });

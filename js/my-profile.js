@@ -217,6 +217,7 @@ function guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPer
       segundoApellido: document.getElementById("inpSegundoApellido").value,
       email: email,
       telefono: telefono,
+      imagenPerfil: imagenPerfil,
     };
   
     // Guardar en el almacenamiento local

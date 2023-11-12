@@ -24,171 +24,144 @@ function ClaseInvalida(input) {
 }
 /** Inicialización **/
 
-document.addEventListener("DOMContentLoaded",function(){
-    // Verificar si el usuario ha iniciado sesión
-    if(localStorage.getItem('registro') != 'true'){
-        alert("Usted no ha iniciado sesión.")
-        window.location.href = 'login.html'
-    }
-
-    // Cargar datos almacenados localmente en el formulario
-    let emailCargado = localStorage.getItem("mail");
-    inputEmail.value = emailCargado;
-    inputNombre.value = localStorage.getItem('Nombre');
-    inputApellido.value = localStorage.getItem('Apellido');
-    inputSegundoNombre.value = localStorage.getItem('SegundoNombre');
-    inputSegundoApellido.value = localStorage.getItem('SegundoApellido');
-    inputTelefono.value = localStorage.getItem('Telefono');
-});
-
-/** Evento de Guardar Datos **/
 document.addEventListener("DOMContentLoaded", function () {
     // Obtener el botón de guardar
-    var btnGuardar = document.getElementById("btnGuardar");    
+    var btnGuardar = document.getElementById("btnGuardar");
     // Agregar un event listener al botón
     btnGuardar.addEventListener("click", function () {
-      // Obtener los valores de los campos
-      var nombre = document.getElementById("inpNombre").value;
-      var apellido = document.getElementById("inpApellido").value;
-      var email = document.getElementById("inpEmail").value;
-      var telefono = document.getElementById("inpTelefono").value;
-      var imagenPerfilInput = document.getElementById("imgPerfil");
-      var alertDanger = document.querySelector('.alert.alert-danger');      
-      // Validar campos obligatorios
-      if (nombre == "") {
-        ClaseInvalida(inputNombre);
-        if (!document.getElementById("mensajeErrorNombre")) {
-            let mensajeError = document.createElement("p");
-            mensajeError.id = "mensajeErrorNombre";
-            mensajeError.classList.add("invalid-feedback");
-            mensajeError.innerHTML = "El nombre es obligatorio";
-            mensajeError.style.marginTop = "-20px";
-            inputNombre.after(mensajeError);
-        }
+        // Obtener los valores de los campos
+        var nombre = document.getElementById("inpNombre").value;
+        var apellido = document.getElementById("inpApellido").value;
+        var email = document.getElementById("inpEmail").value;
+        var telefono = document.getElementById("inpTelefono").value;
+        var imagenPerfilInput = document.getElementById("imgPerfil");
+        var alertDanger = document.querySelector('.alert.alert-danger');
 
-    /*Condicionales para manejar las validaciones */
-    } else {
-        ClaseValida(inputNombre);
-        localStorage.setItem("Nombre", nombre);
-        if (document.getElementById("mensajeErrorNombre")) {
-            document.getElementById("mensajeErrorNombre").remove();
-        }
-    }
-
-    if (apellido == "") {
-        ClaseInvalida(inputApellido);
-        if (!document.getElementById("mensajeErrorApellido")) {
-            let mensajeError = document.createElement("p");
-            mensajeError.id = "mensajeErrorApellido";
-            mensajeError.classList.add("invalid-feedback");
-            mensajeError.innerHTML = "El apellido es obligatorio";
-            mensajeError.style.marginTop = "-20px";
-            inputApellido.after(mensajeError);
-        }
-    } else {
-        ClaseValida(inputApellido);
-        localStorage.setItem("Apellido", apellido);
-        if (document.getElementById("mensajeErrorApellido")) {
-            document.getElementById("mensajeErrorApellido").remove();
-        }
-    }
-
-    if (telefono == "") {
-        if (document.getElementById("mensajeErrorTelefono2")) {
-            document.getElementById("mensajeErrorTelefono2").remove();
-        }
-        ClaseInvalida(inputTelefono);
-        if (!document.getElementById("mensajeErrorTelefono")) {
-            let mensajeError = document.createElement("p");
-            mensajeError.id = "mensajeErrorTelefono";
-            mensajeError.classList.add("invalid-feedback");
-            mensajeError.innerHTML = "El teléfono es obligatorio";
-            inputTelefono.after(mensajeError);
-        }
-    } else {
-        if (isNaN(telefono)) {
-            if (document.getElementById("mensajeErrorTelefono")) {
-                document.getElementById("mensajeErrorTelefono").remove();
-            }
-            ClaseInvalida(inputTelefono);
-            if (!document.getElementById("mensajeErrorTelefono2")) {
+        // Validar campos obligatorios
+        if (nombre == "") {
+            ClaseInvalida(inputNombre);
+            if (!document.getElementById("mensajeErrorNombre")) {
                 let mensajeError = document.createElement("p");
-                mensajeError.id = "mensajeErrorTelefono2";
+                mensajeError.id = "mensajeErrorNombre";
                 mensajeError.classList.add("invalid-feedback");
-                mensajeError.innerHTML = "Solo se permiten números";
-                inputTelefono.after(mensajeError);
+                mensajeError.innerHTML = "El nombre es obligatorio";
+                mensajeError.style.marginTop = "-20px";
+                inputNombre.after(mensajeError);
             }
         } else {
-            ClaseValida(inputTelefono);
-            localStorage.setItem("Telefono", telefono);
-            if (document.getElementById("mensajeErrorTelefono")) {
-                document.getElementById("mensajeErrorTelefono").remove();
+            ClaseValida(inputNombre);            
+            if (document.getElementById("mensajeErrorNombre")) {
+                document.getElementById("mensajeErrorNombre").remove();
             }
+        }
+
+        if (apellido == "") {
+            ClaseInvalida(inputApellido);
+            if (!document.getElementById("mensajeErrorApellido")) {
+                let mensajeError = document.createElement("p");
+                mensajeError.id = "mensajeErrorApellido";
+                mensajeError.classList.add("invalid-feedback");
+                mensajeError.innerHTML = "El apellido es obligatorio";
+                mensajeError.style.marginTop = "-20px";
+                inputApellido.after(mensajeError);
+            }
+        } else {
+            ClaseValida(inputApellido);            
+            if (document.getElementById("mensajeErrorApellido")) {
+                document.getElementById("mensajeErrorApellido").remove();
+            }
+        }
+
+        if (telefono == "") {
             if (document.getElementById("mensajeErrorTelefono2")) {
                 document.getElementById("mensajeErrorTelefono2").remove();
             }
+            ClaseInvalida(inputTelefono);
+            if (!document.getElementById("mensajeErrorTelefono")) {
+                let mensajeError = document.createElement("p");
+                mensajeError.id = "mensajeErrorTelefono";
+                mensajeError.classList.add("invalid-feedback");
+                mensajeError.innerHTML = "El telefono es obligatorio";
+                inputTelefono.after(mensajeError);
+            }
+        } else {
+            if (isNaN(telefono)) {
+                if (document.getElementById("mensajeErrorTelefono")) {
+                    document.getElementById("mensajeErrorTelefono").remove();
+                }
+                ClaseInvalida(inputTelefono);
+                if (!document.getElementById("mensajeErrorTelefono2")) {
+                    let mensajeError = document.createElement("p");
+                    mensajeError.id = "mensajeErrorTelefono2";
+                    mensajeError.classList.add("invalid-feedback");
+                    mensajeError.innerHTML = "Solo se permiten números";
+                    inputTelefono.after(mensajeError);
+                }
+            } else {
+                ClaseValida(inputTelefono);                
+                if (document.getElementById("mensajeErrorTelefono")) {
+                    document.getElementById("mensajeErrorTelefono").remove();
+                }
+                if (document.getElementById("mensajeErrorTelefono2")) {
+                    document.getElementById("mensajeErrorTelefono2").remove();
+                }
+            }
         }
-    }
 
-    if (email === "") {
-        ClaseInvalida(inputEmail);
-        if (!document.getElementById("mensajeErrorEmail")) {
-            let mensajeError = document.createElement("p");
-            mensajeError.id = "mensajeErrorEmail";
-            mensajeError.classList.add("invalid-feedback");
-            mensajeError.innerHTML = "El email es obligatorio";
-            inputEmail.after(mensajeError);
+        if (email === "") {
+            ClaseInvalida(inputEmail);
+            if (!document.getElementById("mensajeErrorEmail")) {
+                let mensajeError = document.createElement("p");
+                mensajeError.id = "mensajeErrorEmail";
+                mensajeError.classList.add("invalid-feedback");
+                mensajeError.innerHTML = "El email es obligatorio";
+                inputEmail.after(mensajeError);
+            }
+        } else if (!validarFormatoEmail(email)) {
+            ClaseInvalida(inputEmail);
+            if (!document.getElementById("mensajeErrorEmailFormato")) {
+                let mensajeError = document.createElement("p");
+                mensajeError.id = "mensajeErrorEmailFormato";
+                mensajeError.classList.add("invalid-feedback");
+                mensajeError.innerHTML = "Formato de correo electrónico inválido";
+                inputEmail.after(mensajeError);
+            }
         } else {
             ClaseValida(inputEmail);
-            localStorage.setItem("mail", email);
             if (document.getElementById("mensajeErrorEmail")) {
                 document.getElementById("mensajeErrorEmail").remove();
             }
+            if (document.getElementById("mensajeErrorEmailFormato")) {
+                document.getElementById("mensajeErrorEmailFormato").remove();
+            }
         }
-    } else if (!validarFormatoEmail(email)) {
-        ClaseInvalida(inputEmail);
-        if (!document.getElementById("mensajeErrorEmailFormato")) {
-            let mensajeError = document.createElement("p");
-            mensajeError.id = "mensajeErrorEmailFormato";
-            mensajeError.classList.add("invalid-feedback");
-            mensajeError.innerHTML = "Formato de correo electrónico inválido";
-            inputEmail.after(mensajeError);
+
+        // Función para validar el formato de correo electrónico (solo "@" requerido)
+        function validarFormatoEmail(email) {
+            // Verificar si hay al menos un carácter antes y después del "@"
+            return /^.*@.*$/.test(email);
         }
-    } else {
-        ClaseValida(inputEmail);
-        localStorage.setItem("mail", email);
-        if (document.getElementById("mensajeErrorEmail")) {
-            document.getElementById("mensajeErrorEmail").remove();
+
+        if (nombre === "" || apellido === "" || email === "" || telefono === "" || !validarFormatoEmail(email)) {
+            alertDanger.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta        
+            return;
+            
         }
-        if (document.getElementById("mensajeErrorEmailFormato")) {
-            document.getElementById("mensajeErrorEmailFormato").remove();
-        }        
-    }
-    
-    // Función para validar el formato de correo electrónico (solo "@" requerido)
-    function validarFormatoEmail(email) {
-        // Verificar si hay al menos un carácter antes y después del "@"
-        return /^.*@.*$/.test(email);
-    }
-      if (nombre === "" || apellido === "" || email === ""||telefono ==="" || !validarFormatoEmail(email)) {
-        alertDanger.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta        
-        return;
-      }
-  
-      // Leer la imagen seleccionada
-      var imagenPerfil = "";
-      if (imagenPerfilInput.files.length > 0) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          imagenPerfil = e.target.result;
-          // Guardar en el almacenamiento local
-          guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
-        };
-        reader.readAsDataURL(imagenPerfilInput.files[0]);
-      } else {
-        // Si no se seleccionó una nueva imagen, solo guardar datos
-        guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
-      }
+
+        // Leer la imagen seleccionada
+        var imagenPerfil = "";
+        if (imagenPerfilInput.files.length > 0) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imagenPerfil = e.target.result;
+                // Guardar en el almacenamiento local
+                guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
+            };
+            reader.readAsDataURL(imagenPerfilInput.files[0]);
+        } else {
+            // Si no se seleccionó una nueva imagen, solo guardar datos
+            guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
+        }
     });
   
     // Cargar datos del almacenamiento local al cargar la página

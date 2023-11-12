@@ -23,6 +23,22 @@ function ClaseInvalida(input) {
     input.classList.add("is-invalid");
 }
 /** Inicialización **/
+document.addEventListener("DOMContentLoaded",function(){
+    // Verificar si el usuario ha iniciado sesión
+    if(localStorage.getItem('registro') != 'true'){
+        alert("Usted no ha iniciado sesión.")
+        window.location.href = 'login.html'
+    }
+
+    // Cargar datos almacenados localmente en el formulario
+    let emailCargado = localStorage.getItem("mail");
+    inputEmail.value = emailCargado;
+    inputNombre.value = localStorage.getItem('Nombre');
+    inputApellido.value = localStorage.getItem('Apellido');
+    inputSegundoNombre.value = localStorage.getItem('SegundoNombre');
+    inputSegundoApellido.value = localStorage.getItem('SegundoApellido');
+    inputTelefono.value = localStorage.getItem('Telefono');
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     // Obtener el botón de guardar
@@ -142,11 +158,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return /^.*@.*$/.test(email);
         }
 
-        if (nombre === "" || apellido === "" || email === "" || telefono === "" || !validarFormatoEmail(email)) {
+         if (nombre === "" || apellido === "" || email === "" || telefono === "" || !validarFormatoEmail(email) || !/^[\d]+$/.test(telefono)) {
             alertDanger.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta        
             return;
-            
         }
+
 
         // Leer la imagen seleccionada
         var imagenPerfil = "";

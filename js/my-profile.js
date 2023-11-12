@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         } else {
             ClaseValida(inputEmail);
+            localStorage.setItem("mail", email)
             if (document.getElementById("mensajeErrorEmail")) {
                 document.getElementById("mensajeErrorEmail").remove();
             }

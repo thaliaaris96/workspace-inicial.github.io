@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Verificar si hay al menos un carácter antes y después del "@"
         return /^.*@.*$/.test(email);
     }
-      if (nombre === "" || apellido === "" || email === ""||telefono ==="") {
+      if (nombre === "" || apellido === "" || email === ""||telefono ==="" || !validarFormatoEmail(email)) {
         alertDanger.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta        
         return;
       }

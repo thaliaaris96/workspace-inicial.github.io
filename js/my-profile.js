@@ -163,39 +163,43 @@ document.addEventListener("DOMContentLoaded", function () {
             alertDanger.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta        
             return;
         }
-
-
+        
         // Leer la imagen seleccionada
-        var imagenPerfil = "";
-        if (imagenPerfilInput.files.length > 0) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                imagenPerfil = e.target.result;
-                // Guardar en el almacenamiento local
-                guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
-            };
-            reader.readAsDataURL(imagenPerfilInput.files[0]);
-        } else {
-            // Si no se seleccionó una nueva imagen, solo guardar datos
-            guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
-        }
-    });
-  
-    // Cargar datos del almacenamiento local al cargar la página
-    var storedData = localStorage.getItem("userData");
-    if (storedData) {
-      var parsedData = JSON.parse(storedData);
-      document.getElementById("inpNombre").value = parsedData.nombre;
-      document.getElementById("inpApellido").value = parsedData.apellido;
-      document.getElementById("inpSegundoNombre").value = parsedData.segundoNombre;
-      document.getElementById("inpSegundoApellido").value = parsedData.segundoApellido;
-      document.getElementById("inpEmail").value = parsedData.email;
-      document.getElementById("inpTelefono").value = parsedData.telefono;
-  
-      // Mostrar la imagen de perfil
-      mostrarImagenPerfil(parsedData.imagenPerfil);
-    }
-  });
+         var imagenPerfil = "";
+         if (imagenPerfilInput.files.length > 0) {
+         var reader = new FileReader();
+         reader.onload = function (e) {
+             imagenPerfil = e.target.result;
+             // Guardar en el almacenamiento local
+             guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
+         };
+         reader.readAsDataURL(imagenPerfilInput.files[0]);
+         } else {
+         // Si no se seleccionó una nueva imagen, solo guardar datos y mostrar la imagen de perfil desde el almacenamiento local
+         var storedData = localStorage.getItem("userData");
+         if (storedData) {
+             var parsedData = JSON.parse(storedData);
+             imagenPerfil = parsedData.imagenPerfil;
+         }
+         guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
+         }
+     });
+   
+     // Cargar datos del almacenamiento local al cargar la página
+     var storedData = localStorage.getItem("userData");
+     if (storedData) {
+       var parsedData = JSON.parse(storedData);
+       document.getElementById("inpNombre").value = parsedData.nombre;
+       document.getElementById("inpApellido").value = parsedData.apellido;
+       document.getElementById("inpSegundoNombre").value = parsedData.segundoNombre;
+       document.getElementById("inpSegundoApellido").value = parsedData.segundoApellido;
+       document.getElementById("inpEmail").value = parsedData.email;
+       document.getElementById("inpTelefono").value = parsedData.telefono;
+   
+       // Mostrar la imagen de perfil
+       mostrarImagenPerfil(parsedData.imagenPerfil);
+     }
+   });
   
   // Función para guardar datos sin afectar la imagen y mostrar la imagen de perfil
 function guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil) {

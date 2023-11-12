@@ -120,6 +120,7 @@ async function fetchOtrosProductos() {
                         localStorage.setItem("idComprado", JSON.stringify(idComprado));
                     }
                 })
+                // Funciones para convertir entre dólares y pesos
                 function dolaresAPesos(dolares) {
                     return dolares * 39.9;
                 }
@@ -128,10 +129,12 @@ async function fetchOtrosProductos() {
                     return pesos / 0.025;
                 }                        
             })
+            // Manejo de errores para la obtención de productos
             .catch(function(error) {
                 console.error("Ocurrió el siguiente error: ", error);
             });
     });
+    // Esperar 300 ms antes de calcular y mostrar el total
     setTimeout(() => {
         const products = document.getElementsByClassName("subTotal")
     let subTotal = 0
@@ -172,6 +175,7 @@ async function fetchOtrosProductos() {
 
 const tagProductos = document.getElementsByTagName("tbody")
 
+// Evento click que calcula el subtotal y actualiza la información visual
 document.addEventListener("click",function subTotal() {
                     
     const products = document.getElementsByClassName("subTotal")
@@ -329,14 +333,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 });
 
+// Obtener elementos de los radios de selección de envío
 let seleccion1 = document.getElementById("Seleccionradio1")
 let seleccion2 = document.getElementById("Seleccionradio2")
 let seleccion3 = document.getElementById("Seleccionradio3")
 
+// Agregar un event listener al primer radio de selección
 seleccion1.addEventListener("change",function(){
 
+    // Inicializar variables para el porcentaje y costo de envío
     let porcentajeEnvio = 0;
     let costoEnvio = 0;
+
+    // Verificar cuál de los radios de envío está seleccionado y asignar el porcentaje correspondiente
     if (envio1.checked){
         porcentajeEnvio = 0.15; //15%
     } else if (envio2.checked){
@@ -345,9 +354,11 @@ seleccion1.addEventListener("change",function(){
         porcentajeEnvio = 0.05; //5%
     }
     console.log(porcentajeEnvio)
-
+    
+    // Calcular el costos
     costoEnvio = subTotal * porcentajeEnvio;
     let total = subTotal + costoEnvio;
+     // Actualizar la información visual con el costo de envío y el total
     contenedorDelEnvio.textContent = `USD ${costoEnvio.toFixed()}` 
     contenedorTotal.textContent = `USD  ${total.toFixed()}`;
 })

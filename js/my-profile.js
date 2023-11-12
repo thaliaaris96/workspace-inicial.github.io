@@ -1,4 +1,6 @@
-/**/
+/** Sección de Variables **/
+
+// Obtener referencias a los elementos del formulario
 let inputNombre = document.getElementById("inpNombre");
 let inputApellido = document.getElementById("inpApellido");
 let inputSegundoNombre = document.getElementById("inpSegundoNombre");
@@ -7,23 +9,29 @@ let inputEmail = document.getElementById("inpEmail");
 let inputTelefono = document.getElementById("inpTelefono");
 let btnGuardar = document.getElementById("btnGuardar");
 
+/** Funciones de Clase **/
+
+// Función para aplicar clases que indican que un campo es válido
 function ClaseValida(input) {
     input.classList.remove("is-invalid");
     input.classList.add("is-valid");
 }
 
+// Función para aplicar clases que indican que un campo es inválido
 function ClaseInvalida(input) {
     input.classList.remove("is-valid");
     input.classList.add("is-invalid");
 }
-/* */
+/** Inicialización **/
 
 document.addEventListener("DOMContentLoaded",function(){
+    // Verificar si el usuario ha iniciado sesión
     if(localStorage.getItem('registro') != 'true'){
         alert("Usted no ha iniciado sesión.")
         window.location.href = 'login.html'
     }
 
+    // Cargar datos almacenados localmente en el formulario
     let emailCargado = localStorage.getItem("mail");
     inputEmail.value = emailCargado;
     inputNombre.value = localStorage.getItem('Nombre');
@@ -33,6 +41,7 @@ document.addEventListener("DOMContentLoaded",function(){
     inputTelefono.value = localStorage.getItem('Telefono');
 });
 
+/** Evento de Guardar Datos **/
 document.addEventListener("DOMContentLoaded", function () {
     // Obtener el botón de guardar
     var btnGuardar = document.getElementById("btnGuardar");    
@@ -56,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
             mensajeError.style.marginTop = "-20px";
             inputNombre.after(mensajeError);
         }
+
+    /*Condicionales para manejar las validaciones */
     } else {
         ClaseValida(inputNombre);
         localStorage.setItem("Nombre", nombre);
@@ -91,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let mensajeError = document.createElement("p");
             mensajeError.id = "mensajeErrorTelefono";
             mensajeError.classList.add("invalid-feedback");
-            mensajeError.innerHTML = "El telefono es obligatorio";
+            mensajeError.innerHTML = "El teléfono es obligatorio";
             inputTelefono.after(mensajeError);
         }
     } else {

@@ -246,18 +246,22 @@ btnSendComentario.addEventListener("click", function(e){
 };
 */
 
-
+// Función para agregar el producto al carrito y redirigir a la página del carrito
 function toCart(){
     window.location = "cart.html";
     let idComprado = localStorage.getItem("prodID");
     console.log(idComprado)
+    // Si no existe un array de compras en el local storage, se crea uno
     if (!localStorage.getItem('idComprado')) {
 
         const arrayCompras = [];
         localStorage.setItem('idComprado', JSON.stringify(arrayCompras));
       }
+    // Se obtiene el array de compras almacenado en el local storage
     const storedArray = JSON.parse(localStorage.getItem('idComprado'));
+    // Se agrega el ID del producto actual al array de compras
     storedArray.push(idComprado);
+    // Se actualiza el array de compras en el local storage
     localStorage.setItem('idComprado', JSON.stringify(storedArray))
 };
 

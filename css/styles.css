@@ -105,7 +105,7 @@ nav a {
 }
 
 footer {
-  padding-top: 3rem;
+  padding-top: 2rem;
   padding-bottom: 3rem;
 }
 
@@ -634,11 +634,16 @@ select {
 }
 
 body.modo-oscuro {
-  background-color: #0D1117;
+  background-color:hsl(240, 16%, 18%);
   color: white;
 }
 
-
+.modo-oscuro h2 {
+  opacity: 0.9;
+}
+.modo-oscuro label{
+  opacity:0.8;
+}
 .modo-oscuro .redireciones a {
   color: #f09100; 
 }
@@ -655,6 +660,93 @@ body.modo-oscuro {
 .modo-oscuro #img-oscuro {
   display: block; 
 }
+.modo-oscuro footer {
+  background-color: hsl(240, 16%, 20%);
+  color: white;
+}
+.modo-oscuro main div {
+  background-color: hsl(240, 16%, 18%);
+  color:white;
+}
+.modo-oscuro main {
+  background-color: hsl(240, 16%, 18%);
+}
+.modo-oscuro .custom-card:hover {
+  border: hsl(240, 16%, 10%) solid 2px;
+  scale:1.05;
+}
+.modo-oscuro .btn {
+  background-color:hsl(240, 16%, 14%);
+  color:white;
+  opacity: 0.8;
+}
+.modo-oscuro .btn:hover {
+  scale:1.1;
+  background-color: hsl(240, 16%, 10%);
+
+}
+.modo-oscuro p {
+  opacity: 60%;
+}
+.modo-oscuro .list-group-item-action:hover {
+  background-color: hsl(240, 16%,17%);
+  scale:1.009;
+}
+
+.modo-oscuro input {
+  background-color: #212529;
+  color:rgb(255, 255, 255);
+  opacity: 85%;
+}
+.modo-oscuro input:focus{
+  background-color: hsl(240, 16%,12%);
+  color:white;
+}
+.modo-oscuro .img-thumbnail {
+  background-color:  hsl(240, 16%,17%);
+  border-color:  hsl(240, 16%,16%);
+ 
+}
+.modo-oscuro thead {
+  color: white;
+  opacity: 0.9;
+}
+.modo-oscuro tbody {
+  color: white;
+  opacity: 0.7;
+}
+.modo-oscuro #tablacart {
+  background-color:  hsl(240, 16%,16%);
+}
+.modo-oscuro .form-row,.modo-oscuro .form-row div  {
+  background-color: hsl(240, 16%,16%);
+}
+.modo-oscuro #containerTable div {
+  background-color: hsl(240, 16%,16%);
+  border-color: hsl(0, 0%, 50%)
+
+}
+.modo-oscuro .Costos div {
+  background-color: hsl(240, 16%,16%);
+}
+.modo-oscuro .table-hover tbody tr:hover {
+  background-color: hsl(240, 16%,12%);
+  color:hsl(29, 100%, 50%);
+}
+.modo-oscuro .col-md-8 {
+  background-color: hsl(240, 16%,22%);
+} 
+.modo-oscuro h6 {
+  opacity: 0.7  ;
+}
+.modo-oscuro .TarjetaProducto:hover {
+  background-color: hsl(240, 16%,18%);
+  border:solid 2px black;
+}
+.modo-oscuro #products-container > div {
+  background-color: hsl(240, 16%,15%)
+}
+
 
 /* */
 

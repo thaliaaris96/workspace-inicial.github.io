@@ -153,3 +153,30 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 });
+
+
+
+    
+const modoOscuroToggle = document.getElementById('modoOscuroToggle');
+
+const body = document.body
+
+// Agregar un evento de clic al interruptor del modo oscuro
+const cambiarModo = () => {
+  body.classList.toggle('modo-oscuro');
+
+  if (body.classList.contains('modo-oscuro')) {
+    localStorage.setItem('modo-oscuro', 'true');//Guardado en LocalStorage
+  } else {
+    localStorage.setItem('modo-oscuro', 'false');//Guardado en LocalStorage
+  }
+};
+modoOscuroToggle.addEventListener('click', cambiarModo);
+
+
+const modoOscuroGuardado = localStorage.getItem('modo-oscuro');
+if (modoOscuroGuardado === 'true') {
+  body.classList.add('modo-oscuro'); 
+} else {
+  body.classList.remove('modo-oscuro');
+}

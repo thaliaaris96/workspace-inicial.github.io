@@ -24,6 +24,11 @@ function ClaseInvalida(input) {
 }
 /** Inicialización **/
 document.addEventListener("DOMContentLoaded",function(){
+    let mmail = localStorage.getItem('mail');
+    let spanM = document.getElementById('mailNB');
+    if (mmail != null) {
+        spanM.innerHTML = `${mmail}`;
+    }
     // Verificar si el usuario ha iniciado sesión
     if(localStorage.getItem('registro') != 'true'){
         alert("Usted no ha iniciado sesión.")
@@ -153,10 +158,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // Función para validar el formato de correo electrónico (solo "@" requerido)
+        // Función para validar el formato de correo electrónico
         function validarFormatoEmail(email) {
-            // Verificar si hay al menos un carácter antes y después del "@"
-            return /^.*@.*$/.test(email);
+        // Expresión regular para validar el formato del correo electrónico
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        // Verificar si el correo electrónico coincide con la expresión regular
+        return regex.test(email);
         }
 
          if (nombre === "" || apellido === "" || email === "" || telefono === "" || !validarFormatoEmail(email) || !/^[\d]+$/.test(telefono)) {

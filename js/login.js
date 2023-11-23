@@ -12,46 +12,46 @@ if (localStorage.getItem('recordarDatos') === 'true') {
 };
 
 // Agregar un evento de envío al formulario
-formulario.addEventListener('submit', function(event) {
-  event.preventDefault(); 
+formulario.addEventListener('submit', function (event) {
+  event.preventDefault();
 
   // Obtener el correo y la contraseña ingresados por el usuario
   let mail = mailInput.value;
   let contraseña = contraseñaInput.value;
   localStorage.setItem('mail', mailInput.value);
 
-    // Verificar si se debe recordar la sesión
+  // Verificar si se debe recordar la sesión
   if (chkRecordar.checked) {
-    
+
     localStorage.setItem('registro', 'true');
     localStorage.setItem('recordarDatos', 'true');
     localStorage.setItem('guardadoMail', mail);
     localStorage.setItem('guardadoContraseña', contraseña);
   } else {
-    
+
     localStorage.removeItem('recordarDatos');
     localStorage.removeItem('guardadoMail');
     localStorage.removeItem('guardadoContraseña');
     localStorage.setItem('registro', 'true');
   }
-    window.location.href = 'index.html';
+  window.location.href = 'index.html';
 });
 
 
 // Función para verificar la sesión del usuario
 function checkSession() {
-    const loggedIn = localStorage.getItem('loggedIn');
-    const isLoginPage = window.location.href.includes('login.html');
+  const loggedIn = localStorage.getItem('loggedIn');
+  const isLoginPage = window.location.href.includes('login.html');
 
-    if (!loggedIn && !isLoginPage) {
-        
-      // Si no está autenticado y no está en la página de inicio de sesión, redirigir a la página de inicio de sesión      
-        window.location.href = 'login.html';
-    } else if (loggedIn && isLoginPage) {
+  if (!loggedIn && !isLoginPage) {
 
-      // Si está autenticado y está en la página de inicio de sesión, redirigir a la página de inicio
-        window.location.href = 'index.html';
-    }
+    // Si no está autenticado y no está en la página de inicio de sesión, redirigir a la página de inicio de sesión      
+    window.location.href = 'login.html';
+  } else if (loggedIn && isLoginPage) {
+
+    // Si está autenticado y está en la página de inicio de sesión, redirigir a la página de inicio
+    window.location.href = 'index.html';
+  }
 };
 
 // Verificar la sesión del usuario cuando la página se carga completamente

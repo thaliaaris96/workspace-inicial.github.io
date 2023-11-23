@@ -23,14 +23,14 @@ function ClaseInvalida(input) {
     input.classList.add("is-invalid");
 }
 /** Inicialización **/
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function () {
     let mmail = localStorage.getItem('mail');
     let spanM = document.getElementById('mailNB');
     if (mmail != null) {
         spanM.innerHTML = `${mmail}`;
     }
     // Verificar si el usuario ha iniciado sesión
-    if(localStorage.getItem('registro') != 'true'){
+    if (localStorage.getItem('registro') != 'true') {
         alert("Usted no ha iniciado sesión.")
         window.location.href = 'login.html'
     }
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 inputNombre.after(mensajeError);
             }
         } else {
-            ClaseValida(inputNombre);            
+            ClaseValida(inputNombre);
             if (document.getElementById("mensajeErrorNombre")) {
                 document.getElementById("mensajeErrorNombre").remove();
             }
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 inputApellido.after(mensajeError);
             }
         } else {
-            ClaseValida(inputApellido);            
+            ClaseValida(inputApellido);
             if (document.getElementById("mensajeErrorApellido")) {
                 document.getElementById("mensajeErrorApellido").remove();
             }
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     inputTelefono.after(mensajeError);
                 }
             } else {
-                ClaseValida(inputTelefono);                
+                ClaseValida(inputTelefono);
                 if (document.getElementById("mensajeErrorTelefono")) {
                     document.getElementById("mensajeErrorTelefono").remove();
                 }
@@ -158,118 +158,118 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // Función para validar el formato de correo electrónico
+        // Función para validar el formato de correo electrónico (solo "@" requerido)
         function validarFormatoEmail(email) {
-        // Expresión regular para validar el formato del correo electrónico
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-        // Verificar si el correo electrónico coincide con la expresión regular
-        return regex.test(email);
+            // Expresión regular para validar el formato del correo electrónico
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Verificar si el correo electrónico coincide con la expresión regular
+            return regex.test(email);
         }
 
-         if (nombre === "" || apellido === "" || email === "" || telefono === "" || !validarFormatoEmail(email) || !/^[\d]+$/.test(telefono)) {
+        if (nombre === "" || apellido === "" || email === "" || telefono === "" || !validarFormatoEmail(email) || !/^[\d]+$/.test(telefono)) {
             alertDanger.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta        
             return;
         }
-        
+
         // Leer la imagen seleccionada
-         var imagenPerfil = "";
-         if (imagenPerfilInput.files.length > 0) {
-         var reader = new FileReader();
-         reader.onload = function (e) {
-             imagenPerfil = e.target.result;
-             // Guardar en el almacenamiento local
-             guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
-         };
-         reader.readAsDataURL(imagenPerfilInput.files[0]);
-         } else {
-         // Si no se seleccionó una nueva imagen, solo guardar datos y mostrar la imagen de perfil desde el almacenamiento local
-         var storedData = localStorage.getItem("userData");
-         if (storedData) {
-             var parsedData = JSON.parse(storedData);
-             imagenPerfil = parsedData.imagenPerfil;
-         }
-         guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
-         }
-     });
-   
-     // Cargar datos del almacenamiento local al cargar la página
-     var storedData = localStorage.getItem("userData");
-     if (storedData) {
-       var parsedData = JSON.parse(storedData);
-       document.getElementById("inpNombre").value = parsedData.nombre;
-       document.getElementById("inpApellido").value = parsedData.apellido;
-       document.getElementById("inpSegundoNombre").value = parsedData.segundoNombre;
-       document.getElementById("inpSegundoApellido").value = parsedData.segundoApellido;
-       document.getElementById("inpEmail").value = parsedData.email;
-       document.getElementById("inpTelefono").value = parsedData.telefono;
-   
-       // Mostrar la imagen de perfil
-       mostrarImagenPerfil(parsedData.imagenPerfil);
-     }
-   });
-  
-  // Función para guardar datos sin afectar la imagen y mostrar la imagen de perfil
+        var imagenPerfil = "";
+        if (imagenPerfilInput.files.length > 0) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imagenPerfil = e.target.result;
+                // Guardar en el almacenamiento local
+                guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
+            };
+            reader.readAsDataURL(imagenPerfilInput.files[0]);
+        } else {
+            // Si no se seleccionó una nueva imagen, solo guardar datos y mostrar la imagen de perfil desde el almacenamiento local
+            var storedData = localStorage.getItem("userData");
+            if (storedData) {
+                var parsedData = JSON.parse(storedData);
+                imagenPerfil = parsedData.imagenPerfil;
+            }
+            guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil);
+        }
+    });
+
+    // Cargar datos del almacenamiento local al cargar la página
+    var storedData = localStorage.getItem("userData");
+    if (storedData) {
+        var parsedData = JSON.parse(storedData);
+        document.getElementById("inpNombre").value = parsedData.nombre;
+        document.getElementById("inpApellido").value = parsedData.apellido;
+        document.getElementById("inpSegundoNombre").value = parsedData.segundoNombre;
+        document.getElementById("inpSegundoApellido").value = parsedData.segundoApellido;
+        document.getElementById("inpEmail").value = parsedData.email;
+        document.getElementById("inpTelefono").value = parsedData.telefono;
+
+        // Mostrar la imagen de perfil
+        mostrarImagenPerfil(parsedData.imagenPerfil);
+    }
+});
+
+// Función para guardar datos sin afectar la imagen y mostrar la imagen de perfil
 function guardarDatosYMostrarImagen(nombre, apellido, email, telefono, imagenPerfil) {
     // Crear un objeto con los datos
     var userData = {
-      nombre: nombre,
-      apellido: apellido,
-      segundoNombre: document.getElementById("inpSegundoNombre").value,
-      segundoApellido: document.getElementById("inpSegundoApellido").value,
-      email: email,
-      telefono: telefono,
-      imagenPerfil: imagenPerfil,
+        nombre: nombre,
+        apellido: apellido,
+        segundoNombre: document.getElementById("inpSegundoNombre").value,
+        segundoApellido: document.getElementById("inpSegundoApellido").value,
+        email: email,
+        telefono: telefono,
+        imagenPerfil: imagenPerfil,
     };
-  
+
     // Guardar en el almacenamiento local
     localStorage.setItem("userData", JSON.stringify(userData));
-  
+
     // Informar al usuario que los cambios se han guardado correctamente.    
     var alertSuccess = document.querySelector('.alert.alert-success');
     alertSuccess.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta
-  
+
     // Mostrar la imagen de perfil si se proporciona una URL válida
     if (imagenPerfil && imagenPerfil.trim() !== "") {
-      mostrarImagenPerfil(imagenPerfil);
+        mostrarImagenPerfil(imagenPerfil);
     }
-  }
-  
-  // Función para mostrar la imagen de perfil
-  function mostrarImagenPerfil(url) {
+}
+
+// Función para mostrar la imagen de perfil
+function mostrarImagenPerfil(url) {
     var imgElement = document.getElementById("imagenDePerfil");
     if (imgElement) {
-      // Verificar si la URL de la imagen está presente
-      if (url && url.trim() !== "") {
-        imgElement.src = url;
-      } else {
-        // Si no hay URL, mostrar la imagen predeterminada
-        imgElement.src = "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp";
-      }
+        // Verificar si la URL de la imagen está presente
+        if (url && url.trim() !== "") {
+            imgElement.src = url;
+        } else {
+            // Si no hay URL, mostrar la imagen predeterminada
+            imgElement.src = "./img/img_perfil.png";
+        }
     }
-  }
- 
-      
+}
+
+
 const modoOscuroToggle = document.getElementById('modoOscuroToggle');
 
 const body = document.body
 
 // Agregar un evento de clic al interruptor del modo oscuro
 const cambiarModo = () => {
-  body.classList.toggle('modo-oscuro');
+    body.classList.toggle('modo-oscuro');
 
-  if (body.classList.contains('modo-oscuro')) {
-    localStorage.setItem('modo-oscuro', 'true');//Guardado en LocalStorage
-  } else {
-    localStorage.setItem('modo-oscuro', 'false');//Guardado en LocalStorage
-  }
+    if (body.classList.contains('modo-oscuro')) {
+        localStorage.setItem('modo-oscuro', 'true');//Guardado en LocalStorage
+    } else {
+        localStorage.setItem('modo-oscuro', 'false');//Guardado en LocalStorage
+    }
 };
 modoOscuroToggle.addEventListener('click', cambiarModo);
 
 
 const modoOscuroGuardado = localStorage.getItem('modo-oscuro');
 if (modoOscuroGuardado === 'true') {
-  body.classList.add('modo-oscuro'); 
+    body.classList.add('modo-oscuro');
 } else {
-  body.classList.remove('modo-oscuro');
+    body.classList.remove('modo-oscuro');
 }

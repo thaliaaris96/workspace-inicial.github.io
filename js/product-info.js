@@ -94,42 +94,42 @@ function FetchURLProducto() {
             let linkProdRel1 = document.getElementById("ProductoRelacionado1");
 
             // Se agrega un evento de click a los enlaces de productos relacionados para navegar entre ellos
-            linkProdRel0.addEventListener("click", function(){
+            linkProdRel0.addEventListener("click", function () {
                 localStorage.setItem("prodID", data.relatedProducts[0].id);
             });
-            linkProdRel1.addEventListener("click", function(){
+            linkProdRel1.addEventListener("click", function () {
                 localStorage.setItem("prodID", data.relatedProducts[1].id);
             });
         })
-        .catch(function(error){
+        .catch(function (error) {
             console.error("Ocurrio el siguiente error: ", error);
-        })); 
+        }));
 
-        // Esta función crea indicadores para el carrusel de imágenes en base al número de imágenes proporcionadas
-        function generateIndicators(num) {
-            let indicators = '';
-            for (let i = 0; i < num; i++) {
-                // Se establece la clase 'active' para el primer indicador
-                const activeClass = i === 0 ? 'active' : '';
-                indicators += `<div class="bbfoto">
+    // Esta función crea indicadores para el carrusel de imágenes en base al número de imágenes proporcionadas
+    function generateIndicators(num) {
+        let indicators = '';
+        for (let i = 0; i < num; i++) {
+            // Se establece la clase 'active' para el primer indicador
+            const activeClass = i === 0 ? 'active' : '';
+            indicators += `<div class="bbfoto">
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="${i}" class="${activeClass} " aria-label="Slide ${i + 1}"></button>
                 </div>`;
-            }
-            return indicators;
         }
+        return indicators;
+    }
 }
 
 // Función para obtener y mostrar comentarios desde la URL
-function FetchURLComentario(){
+function FetchURLComentario() {
     return (
         fetch(URLComentario)
-    .then (function(response2) {
-        return response2.json();
-    })
-    .then(function(data2){
-        let comentarios = ``;
-        for (let i = 0; i < data2.length; i++){
-            comentarios += `
+            .then(function (response2) {
+                return response2.json();
+            })
+            .then(function (data2) {
+                let comentarios = ``;
+                for (let i = 0; i < data2.length; i++) {
+                    comentarios += `
                 <div class="Comentario">
                     <p>
                         <strong class="nombreComentario">${data2[i].user}</strong>
@@ -149,21 +149,21 @@ function FetchURLComentario(){
                     </p>
                 </div>
             `;
-        }
-        contenidoProducto += `
+                }
+                contenidoProducto += `
             <section class="contenedorComentario">
             ` + comentarios + `
             </section>
         `;
-        contenedor.innerHTML = contenidoProducto;
-    })
-    .catch(function(error2){
-        console.error("Ocurrio el siguiente error: ", error2);
-    }));
+                contenedor.innerHTML = contenidoProducto;
+            })
+            .catch(function (error2) {
+                console.error("Ocurrio el siguiente error: ", error2);
+            }));
 }
 
 // Evento que se ejecuta cuando el documento HTML se ha cargado completamente
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
     console.log("Carga de FetchURLProducto()");
     FetchURLProducto()
         .then(function () {
@@ -173,6 +173,12 @@ document.addEventListener("DOMContentLoaded", function(){
         .catch(function (error) {
             console.error("Ha ocurrido algo con la carga de FetchURLComentario(): ", error);
         });
+    // Dropmenu
+    let mmail = localStorage.getItem('mail');
+    let spanM = document.getElementById('mailNB');
+    if (mmail != null) {
+        spanM.innerHTML = `${mmail}`;
+    }
 });
 
 // Función para convertir la puntuación en estrellas
@@ -189,7 +195,7 @@ function convertirPuntuacionEnEstrellas(puntuacion) {
 }
 
 // Evento de click en el botón para enviar un comentario
-btnSendComentario.addEventListener("click", function(e){
+btnSendComentario.addEventListener("click", function (e) {
     e.preventDefault();
     /* */
     let fechaActual = new Date();
@@ -198,8 +204,8 @@ btnSendComentario.addEventListener("click", function(e){
     /* */
     let valorComentario = InputComentario.value;
     let divAux = document.createElement("div");
-    let puntuacion = document.getElementById("puntuacion").value; 
-    let mailUsuario = localStorage.getItem('mail'); 
+    let puntuacion = document.getElementById("puntuacion").value;
+    let mailUsuario = localStorage.getItem('mail');
     let contenedorDeComentario = document.getElementsByClassName("contenedorComentario");
     let comentario = `
         <p>
@@ -227,8 +233,8 @@ btnSendComentario.addEventListener("click", function(e){
         Swal.fire({
             icon: 'error',
             title: 'Algo no está bien',
-            text: 
-            'El comentario no puede estar vacio, porfavor para evotar esto le pedimos que rellene el campo del comentario para que el mismo pueda ser publicado correctamente.',
+            text:
+                'El comentario no puede estar vacio, porfavor para evotar esto le pedimos que rellene el campo del comentario para que el mismo pueda ser publicado correctamente.',
         });
         console.error("El comentario no puede estar vacio");
     } else {
@@ -239,15 +245,8 @@ btnSendComentario.addEventListener("click", function(e){
     }
 });
 
-/*function toCart(){
-    window.location = "cart.html";
-    let idComprado = localStorage.getItem("prodID");
-    localStorage.setItem("idComprado", idComprado);
-};
-*/
-
 // Función para agregar el producto al carrito y redirigir a la página del carrito
-function toCart(){
+function toCart() {
     window.location = "cart.html";
     let idComprado = localStorage.getItem("prodID");
     console.log(idComprado)
@@ -256,7 +255,7 @@ function toCart(){
 
         const arrayCompras = [];
         localStorage.setItem('idComprado', JSON.stringify(arrayCompras));
-      }
+    }
     // Se obtiene el array de compras almacenado en el local storage
     const storedArray = JSON.parse(localStorage.getItem('idComprado'));
     // Se agrega el ID del producto actual al array de compras
@@ -264,28 +263,28 @@ function toCart(){
     // Se actualiza el array de compras en el local storage
     localStorage.setItem('idComprado', JSON.stringify(storedArray))
 };
-    
+
 const modoOscuroToggle = document.getElementById('modoOscuroToggle');
 
 const body = document.body
 
 // Agregar un evento de clic al interruptor del modo oscuro
 const cambiarModo = () => {
-  body.classList.toggle('modo-oscuro');
+    body.classList.toggle('modo-oscuro');
 
-  if (body.classList.contains('modo-oscuro')) {
-    localStorage.setItem('modo-oscuro', 'true');//Guardado en LocalStorage
-  } else {
-    localStorage.setItem('modo-oscuro', 'false');//Guardado en LocalStorage
-  }
+    if (body.classList.contains('modo-oscuro')) {
+        localStorage.setItem('modo-oscuro', 'true');//Guardado en LocalStorage
+    } else {
+        localStorage.setItem('modo-oscuro', 'false');//Guardado en LocalStorage
+    }
 };
 modoOscuroToggle.addEventListener('click', cambiarModo);
 
 
 const modoOscuroGuardado = localStorage.getItem('modo-oscuro');
 if (modoOscuroGuardado === 'true') {
-  body.classList.add('modo-oscuro'); 
+    body.classList.add('modo-oscuro');
 } else {
-  body.classList.remove('modo-oscuro');
+    body.classList.remove('modo-oscuro');
 }
 

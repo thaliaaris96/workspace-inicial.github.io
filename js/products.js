@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
 
-     // Agregar event listeners para los botones de ordenamiento
+    // Agregar event listeners para los botones de ordenamiento
     btnSortA.addEventListener("click", function () {
         sortProductos(ORDER_ASC_BY_PRICE, currentProductsArray);
     });
@@ -58,19 +58,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("rangeFilterPrice").addEventListener("click", function () {
         minPrice = document.getElementById("rangeFilterPriceMin").value;
         maxPrice = document.getElementById("rangeFilterPriceMax").value;
-    
+
         if ((minPrice !== undefined) && (minPrice !== "") && (parseInt(minPrice) >= 0)) {
             minPrice = parseInt(minPrice);
         } else {
-            minPrice = 0; 
+            minPrice = 0;
         }
-    
+
         if ((maxPrice !== undefined) && (maxPrice !== "") && (parseInt(maxPrice) >= 0)) {
             maxPrice = parseInt(maxPrice);
         } else {
-            maxPrice = Number.MAX_SAFE_INTEGER; 
+            maxPrice = Number.MAX_SAFE_INTEGER;
         }
-        
+
         showProductsList(currentProductsArray);
     });
 
@@ -128,7 +128,7 @@ function showProductsList(array) {
         let producto = array[i];
 
         if (((minPrice == undefined) || (minPrice != undefined && parseFloat(producto.cost) >= minPrice) &&
-           ((maxPrice == undefined) || maxPrice != undefined && parseFloat(producto.cost) <= maxPrice))) {
+            ((maxPrice == undefined) || maxPrice != undefined && parseFloat(producto.cost) <= maxPrice))) {
             htmlContentToAppend += `
                 <div onclick="setProdID(${producto.id})" class="list-group-item list-group-item-action cursor-active">
                     <div class="TarjetaProducto">
@@ -155,44 +155,44 @@ function showProductsList(array) {
 // Referencia al campo de búsqueda
 let inpBuscar = document.getElementById('buscador');
 // Crear una copia del arreglo original de productos para realizar búsquedas
-const originalProductsArray = [...currentProductsArray]; 
+const originalProductsArray = [...currentProductsArray];
 
 // Event listener para el campo de búsqueda
-inpBuscar.addEventListener('keyup', function() {
+inpBuscar.addEventListener('keyup', function () {
     const searchText = inpBuscar.value.toLowerCase();
 
     if (searchText === "") {
         showProductsList(originalProductsArray);
     }
     // Filtrar los productos según el texto de búsqueda
-    const filteredProducts = currentProductsArray.filter(product => 
+    const filteredProducts = currentProductsArray.filter(product =>
         (product.name.toLowerCase().includes(searchText)) || product.description.toLowerCase().includes(searchText));
 
-    
+
     showProductsList(filteredProducts);
 });
 
-    
+
 const modoOscuroToggle = document.getElementById('modoOscuroToggle');
 
 const body = document.body
 
 // Agregar un evento de clic al interruptor del modo oscuro
 const cambiarModo = () => {
-  body.classList.toggle('modo-oscuro');
+    body.classList.toggle('modo-oscuro');
 
-  if (body.classList.contains('modo-oscuro')) {
-    localStorage.setItem('modo-oscuro', 'true');//Guardado en LocalStorage
-  } else {
-    localStorage.setItem('modo-oscuro', 'false');//Guardado en LocalStorage
-  }
+    if (body.classList.contains('modo-oscuro')) {
+        localStorage.setItem('modo-oscuro', 'true');//Guardado en LocalStorage
+    } else {
+        localStorage.setItem('modo-oscuro', 'false');//Guardado en LocalStorage
+    }
 };
 modoOscuroToggle.addEventListener('click', cambiarModo);
 
 
 const modoOscuroGuardado = localStorage.getItem('modo-oscuro');
 if (modoOscuroGuardado === 'true') {
-  body.classList.add('modo-oscuro'); 
+    body.classList.add('modo-oscuro');
 } else {
-  body.classList.remove('modo-oscuro');
+    body.classList.remove('modo-oscuro');
 }

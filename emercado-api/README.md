@@ -1,0 +1,1 @@
+eMercado-API: Contenedor de JSONs para simular una API REST destinada al ecommerce e-Mercado. Estos archivos JSON proporcionan datos realistas y variados para facilitar el desarrollo y prueba de aplicaciones relacionadas con nuestro mercado en línea.

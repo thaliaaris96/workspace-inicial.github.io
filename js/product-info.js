@@ -1,6 +1,6 @@
 // Obtener URLs de los productos y comentarios basados en el ID de producto almacenado en el local storage
-let URLProducto = `https://japceibal.github.io/emercado-api/products/${localStorage.getItem('prodID')}.json`;
-let URLComentario = `https://japceibal.github.io/emercado-api/products_comments/${localStorage.getItem('prodID')}.json`;
+let URLProducto = `http://localhost:5500/emercado-api/products/${localStorage.getItem('prodID')}.json`;
+let URLComentario = `http://localhost:5500/emercado-api/products_comments/${localStorage.getItem('prodID')}.json`;
 // Referencias a elementos del DOM
 let contenedor = document.getElementById("contenedorProductInfo");
 let contenedorProdRel = document.getElementById("productosRelacionados");

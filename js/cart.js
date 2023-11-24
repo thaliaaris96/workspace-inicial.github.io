@@ -1,5 +1,6 @@
 // URL de la API que contiene los datos de los productos en el carrito
-let URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
+//let URL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
+let URL = "http://localhost:5500/emercado-api/user_cart/25801.json";
 // Elementos del DOM que se utilizan para mostrar la información del producto
 let imagen = document.getElementById("imgProdComprar");
 let nombre = document.getElementById("nomProdComprar");

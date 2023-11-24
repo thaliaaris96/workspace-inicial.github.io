@@ -7,7 +7,7 @@ const ORDER_ASC_BY_PRICE = "PriceAsc";
 const ORDER_DESC_BY_PRICE = "PriceDesc";
 const ORDER_DESC_BY_REL = "RelDesc";
 // URL de los productos basada en la categoría almacenada en el almacenamiento local
-const URL_PRODUCTOS = `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem('catID')}.json`
+const URL_PRODUCTOS = `http://localhost:5500/emercado-api/cats_products/${localStorage.getItem('catID')}.json`
 // Variables para almacenar productos y criterios de ordenamiento
 let currentProductsArray = [];
 let currentSortCriteria = undefined;

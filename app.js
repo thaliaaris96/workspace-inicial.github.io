@@ -2,6 +2,26 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const mysql = require('mysql');
+/**/
+
+/*
+let conexionBD = mysql.createConnection({
+    host: //aca hay que poner el host de la base de datos
+    user: //tu usuario de la bd
+    password: //tu contra
+    database: //nombre de la bd
+});
+conexionBD.connect(funcion(error) {
+    if (error) {
+        console.error("error de conexion: ", error);
+        throw error;
+    }
+    console.log("Conexion a la base de datos exitosa")
+    //aca puedo hacer manipulacion con la base de datos.
+})
+*/
+
 
 const app = express();
 const port = 5500;

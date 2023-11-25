@@ -65,7 +65,7 @@ async function fetchOtrosProductos() {
     let idComprado = JSON.parse(localStorage.getItem("idComprado")) || [];
     // Itera a través de los IDs y obtiene información de los productos
     idComprado.forEach(function (id) {
-        let URLProducto = `https://japceibal.github.io/emercado-api/products/${id}.json`;
+        let URLProducto = `http://localhost:5500/emercado-api/products/${id}.json`;
 
         fetch(URLProducto)
             .then(function (response) {

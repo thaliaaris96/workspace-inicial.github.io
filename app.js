@@ -6,7 +6,7 @@ const cors = require('cors');
 /**/
 
 const app = express();
-const port = 5500;
+const port = 3000;
 
 app.use(cors());
 app.options('/login', cors());

@@ -2,29 +2,14 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
-const mysql = require('mysql');
+const cors = require('cors');
 /**/
-
-/*
-let conexionBD = mysql.createConnection({
-    host: //aca hay que poner el host de la base de datos
-    user: //tu usuario de la bd
-    password: //tu contra
-    database: //nombre de la bd
-});
-conexionBD.connect(funcion(error) {
-    if (error) {
-        console.error("error de conexion: ", error);
-        throw error;
-    }
-    console.log("Conexion a la base de datos exitosa")
-    //aca puedo hacer manipulacion con la base de datos.
-})
-*/
-
 
 const app = express();
 const port = 5500;
+
+app.use(cors());
+app.options('/login', cors());
 
 app.use(bodyParser.json());
 
@@ -106,20 +91,42 @@ let usuarios = new Array();
 usuarios = [
     {
         id: 1,
-        nombreUsuario: "Juan",
-        contraUsuario: "Contra987"
+        nombreUsuario: "admin@prueba.com",
+        contraUsuario: "admin"
     },
     {
         id: 2,
-        nombreUsuario: "Pancho",
+        nombreUsuario: "Pancho@prueba.com",
         contraUsuario: "SupahPass257"
     }
 ];
 
-app.post("/login", function(req,res) {
-    let TheUsuarios = usuarios.find(usu => usu.nombreUsuario === nombreUsuario && usu.contraUsuario === contraUsuario);
+app.use(bodyParser.json());
+
+// Endpoint para autenticación y generación de token
+app.post('/login', (req, res) => {
+  const { nombreUsuario, contraUsuario } = req.body;
+
+  // Buscar al usuario en el array
+  const usuario = usuarios.find(
+    (u) => u.nombreUsuario === nombreUsuario && u.contraUsuario === contraUsuario
+  );
+
+  // Verificar si el usuario existe y la contraseña es correcta
+  if (usuario) {
+    // Generar token usando jsonwebtoken
+    const token = jwt.sign({ nombreUsuario }, 'secreto'); // Aquí debes usar una clave secreta más segura en un entorno de producción
+
+    // Devolver el token como respuesta
+    res.json({ token });
+  } else {
+    // Si la autenticación falla, devolver un error
+    res.status(401).json({ mensaje: 'Usuario o contraseña incorrectos' });
+  }
 });
 
 app.listen(port, function() {
     console.log(`Servidor se esta escuchando en el puerto ${port}`);
 })
+
+

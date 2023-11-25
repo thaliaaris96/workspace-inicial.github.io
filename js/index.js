@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
 const modoOscuroToggle = document.getElementById('modoOscuroToggle');
 
 const body = document.body

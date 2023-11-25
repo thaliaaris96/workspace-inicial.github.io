@@ -11,52 +11,54 @@ if (localStorage.getItem('recordarDatos') === 'true') {
   chkRecordar.checked = true;
 };
 
-// Agregar un evento de envío al formulario
-formulario.addEventListener('submit', function (event) {
-  event.preventDefault();
-
-  // Obtener el correo y la contraseña ingresados por el usuario
-  let mail = mailInput.value;
-  let contraseña = contraseñaInput.value;
-  localStorage.setItem('mail', mailInput.value);
-
-  // Verificar si se debe recordar la sesión
-  if (chkRecordar.checked) {
-
-    localStorage.setItem('registro', 'true');
-    localStorage.setItem('recordarDatos', 'true');
-    localStorage.setItem('guardadoMail', mail);
-    localStorage.setItem('guardadoContraseña', contraseña);
-  } else {
-
-    localStorage.removeItem('recordarDatos');
-    localStorage.removeItem('guardadoMail');
-    localStorage.removeItem('guardadoContraseña');
-    localStorage.setItem('registro', 'true');
-  }
-  window.location.href = 'index.html';
-});
-
-
-// Función para verificar la sesión del usuario
-function checkSession() {
-  const loggedIn = localStorage.getItem('loggedIn');
-  const isLoginPage = window.location.href.includes('login.html');
-
-  if (!loggedIn && !isLoginPage) {
-
-    // Si no está autenticado y no está en la página de inicio de sesión, redirigir a la página de inicio de sesión      
-    window.location.href = 'login.html';
-  } else if (loggedIn && isLoginPage) {
-
-    // Si está autenticado y está en la página de inicio de sesión, redirigir a la página de inicio
-    window.location.href = 'index.html';
-  }
-};
-
-// Verificar la sesión del usuario cuando la página se carga completamente
-window.addEventListener('load', checkSession);
-
+document.addEventListener("DOMContentLoaded", function(){
+  formulario.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    
+    let mailInput = document.getElementById('Mail');
+    let contraseñaInput = document.getElementById('Contraseña');
+    // Obtener el correo y la contraseña ingresados por el usuario
+    let mail = mailInput.value;
+    let contraseña = contraseñaInput.value;
+    localStorage.setItem('mail', mailInput.value);
+  
+    // Verificar si se debe recordar la sesión
+    if (chkRecordar.checked) {
+  
+      localStorage.setItem('registro', 'true');
+      localStorage.setItem('recordarDatos', 'true');
+      localStorage.setItem('guardadoMail', mail);
+      localStorage.setItem('guardadoContraseña', contraseña);
+    } else {
+  
+      localStorage.removeItem('recordarDatos');
+      localStorage.removeItem('guardadoMail');
+      localStorage.removeItem('guardadoContraseña');
+      localStorage.setItem('registro', 'true');
+    }
+      const nombreUsuario = mailInput.value;
+      const contraUsuario = contraseñaInput.value;
+    
+      const response = await fetch('http://localhost:5500/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nombreUsuario, contraUsuario }),
+      });
+    
+      const data = await response.json();
+    
+      if (response.ok) {
+        // Guardar el token en el almacenamiento local o de sesión
+        localStorage.setItem('token', data.token);
+        alert('Inicio de sesión exitoso');
+        window.location.href = 'index.html';
+      } else {
+        alert(`Error: ${data.mensaje}`);
+      }
+  });
+})
 
 // Referencias a elementos para el modo oscuro
 const modoOscuroToggle = document.getElementById('modoOscuroToggle');

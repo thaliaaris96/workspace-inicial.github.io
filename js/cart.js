@@ -16,6 +16,7 @@ let envio2 = document.getElementById("Seleccionradio2");
 let envio3 = document.getElementById("Seleccionradio3");
 let formCarrito = document.getElementById("formCarrito");
 
+
 // Función asincrónica para obtener el producto base del carrito
 async function fetchProductoBase() {
     try {
@@ -26,6 +27,7 @@ async function fetchProductoBase() {
         const product = data.articles[0];
         // Crea una fila de tabla con la información del producto
         console.log(product);
+        objComprados.push(product);
         let auxRow = document.createElement("tr");
         auxRow.innerHTML = `
             <th scope="row" id="imgProdComprar"><img src="${product.image}" alt="${product.name}"></th>
@@ -59,7 +61,7 @@ async function fetchProductoBase() {
         console.error("Ocurrió el siguiente error: ", error);
     }
 }
-
+let objComprados = [];
 // Función para obtener y mostrar otros productos en el carrito
 async function fetchOtrosProductos() {
     // Obtiene los IDs de productos comprados almacenados en el almacenamiento local
@@ -75,11 +77,10 @@ async function fetchOtrosProductos() {
             .then(function (data) {
                 // Crea una fila de tabla con información del producto
                 let auxRow = document.createElement("tr");
-                let objComprados = [];
-                objComprados.push(data);
-                console.log(data);
-                localStorage.setItem("objCarrito", JSON.stringify(objComprados));
                 if (idComprado) {
+                    objComprados.push(data);
+                    localStorage.setItem("objCarrito", JSON.stringify(objComprados));
+                    console.log("objComprados" + JSON.stringify(objComprados));
                     auxRow.innerHTML = `
                         <th scope="row" id="imgProdComprar"><img src="${data.images && data.images[0]}" alt="${data.name}"></th>
                         <td id="nomProdComprar">${data.name}</td>
@@ -126,6 +127,7 @@ async function fetchOtrosProductos() {
                 console.error("Ocurrió el siguiente error: ", error);
             });
     });
+
 }
 
 // Función para calcular y mostrar el total
@@ -262,36 +264,43 @@ function updateFormaDePagoText() {
     });
 })();
 
-function postCart()
-{
-    let objetosCart = localStorage.getItem('objCarrito');
-            const token = localStorage.getItem('token');
+function postCart() {
+    try {
+        let arrayDeProductos = JSON.parse(localStorage.getItem("objCarrito")) || [];
+        console.log(localStorage.getItem("objCarrito"));
+        console.log(JSON.stringify(arrayDeProductos));
+        const token = localStorage.getItem('token');
 
-            console.log('Enviando datos al servidor:', objetosCart);
+        console.log('Enviando datos al servidor:', arrayDeProductos);
 
-            fetch('http://localhost:3000/cart', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + token,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ objetosCart }),
-                mode: 'cors',
-            })
-            .then(response => {
-                if (!response.ok) {
-                    Swal.fire("Error", "Debe estar autenticado", "error");
-                    throw new Error(`Error en la respuesta del servidor: ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Respuesta del servidor:', data);
-            })
-            .catch(error => {
-                console.error('Error al enviar datos al servidor:', error);
-            });
+        fetch('http://localhost:3000/cart', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ arrayDeProductos }),
+            mode: 'cors',
+        })
+        .then(response => {
+            if (!response.ok) {
+                // SweetAlert debe estar definido en tu aplicación para evitar errores
+                Swal.fire("Error", "Debe estar autenticado", "error");
+                throw new Error(`Error en la respuesta del servidor: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Respuesta del servidor:', data);
+        })
+        .catch(error => {
+            console.error('Error al enviar datos al servidor:', error);
+        });
+    } catch (error) {
+        console.error('Error al procesar datos locales:', error);
+    }
 };
+
 
 // Evento que se dispara cuando la página se carga completamente
 document.addEventListener("DOMContentLoaded", function () {

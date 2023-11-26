@@ -120,7 +120,6 @@ app.post('/login', (req, res) => {
   if (usuario) {
     // Generar token usando jsonwebtoken
     const token = jwt.sign({ nombreUsuario }, 'secreto'); // Aquí debes usar una clave secreta más segura en un entorno de producción
-
     // Devolver el token como respuesta
     res.json({ token });
   } else {
@@ -131,7 +130,7 @@ app.post('/login', (req, res) => {
 
 app.use('/cart', (req, res, next) => {
     try{
-        const token = req.headers.authorization.split(' ')[1];
+        const token = req.headers["access-token"];
         const decoded = jwt.verify(token, 'secreto');
         console.log(decoded);
         next();

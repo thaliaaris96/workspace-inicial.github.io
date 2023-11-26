@@ -14,6 +14,7 @@ let contenedorDelEnvio = document.getElementById("MuestreoCostoEnvio");
 let envio1 = document.getElementById("Seleccionradio1");
 let envio2 = document.getElementById("Seleccionradio2");
 let envio3 = document.getElementById("Seleccionradio3");
+let formCarrito = document.getElementById("formCarrito");
 
 // Función asincrónica para obtener el producto base del carrito
 async function fetchProductoBase() {
@@ -254,15 +255,20 @@ function updateFormaDePagoText() {
         }
         // Si todos los formularios son válidos, muestra la alerta
         if (isFormValid) {
-            console.log("aca");
             var alertSuccess = document.querySelector('.alert.alert-success');
-            alertSuccess.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta 
-            
-            let objetosCart = localStorage.getItem('objCarrito');
+            alertSuccess.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta
+            postCart();
+        }
+    });
+})();
+
+function postCart()
+{
+    let objetosCart = localStorage.getItem('objCarrito');
             const token = localStorage.getItem('token');
-        
+
             console.log('Enviando datos al servidor:', objetosCart);
-        
+
             fetch('http://localhost:3000/cart', {
                 method: 'POST',
                 headers: {
@@ -284,14 +290,8 @@ function updateFormaDePagoText() {
             })
             .catch(error => {
                 console.error('Error al enviar datos al servidor:', error);
-            });    
-        } 
-        else
-        {
-            console.log("no ando");
-        }          
-    });
-})
+            });
+};
 
 // Evento que se dispara cuando la página se carga completamente
 document.addEventListener("DOMContentLoaded", function () {

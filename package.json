@@ -1,0 +1,23 @@
+{
+  "name": "workspace-inicial.github.io",
+  "version": "1.0.0",
+  "description": "<p>Proyecto de tienda en línea llamado E-comerce en desarrollo para el aprendizaje y la práctica. Este proyecto tiene como objetivo implementar una tienda en línea básica con funcionalidades progresivas.\r </p>\r <p>-Este proyecto se estará haciendo en equipos, en el cual todos colaboraran en la implementación de funcionalidades.\r </p>\r <p>-Todos deben actualizar y bajar los cambios realizados y tenerlos en su repositorio local, realizar los commits con la información correspondiente sobre los cambios realizados.\r </p>\r <h2>Uso</h2>\r <p>Accede a la tienda en línea ingresando en tu navegador a: </p>\r https://thaliaaris96.github.io/workspace-inicial.github.io/\r <h2>Funcionalidades</h2>\r <ul>\r <li>Explorar catálogo de productos</li>\r <li>Detectar si el cliente esta logeado y redirecionarlo al LogIn</li>\r <li>Guardar registro</li>\r <li>Buscar articulos a tiempo real</li>\r <li>Productos relacionados</li>\r <li>Ordenar de los productos por orden alfábetico de manera ascendente, descendente y por relevancia</li>\r <li>Ver y realizar nuevos comentarios</li>\r <li>Modo oscuro en toda la página</li>\r <li>Agregar objetos al carrito de compra</li>\r <li>Visualización del total a pagar en tiempo real</li>\r <li>Agregar formas de pago</li>\r </ul>\r <h2>Próximas Funcionalidades</h2>\r <ul>\r <li>Realizar cambios en el perfil usuario</li>\r <li>Apartado para que el usuario pueda vender un producto</li>\r </ul>\r <h2>Contribuidores</h2>\r <p>Queremos agradecer sinceramente a todas las personas que contribuyeron a este proyecto. Su dedicación y esfuerzo fueron fundamentales. ¡Gracias por hacerlo posible!, estas son: </p>\r <ul>\r <li>https://github.com/catrielmayo</li>\r <li>https://github.com/ignaciodorregolagurara</li>\r <li>https://github.com/thaliaaris96</li>\r <li>https://github.com/pedroserna22</li>\r <li>https://github.com/dreyeragustin</li>\r <li>https://github.com/agustinferr</li>\r <li>https://github.com/cecilialurati</li>\r <li>https://github.com/marianogago</li>\r </ul>\r <h2>Algunas imagenes del proyecto (Próximamente)</h2>\r <h3>LogIn del proyecto en modo oscuro</h3>\r <img src=\"img/imgProyecto1.jpg\" alt=\"Imagen del Proyecto 1\">\r <h3>Página principal responsive<h3>\r <img src=\"img/imgProyecto2.jpg\" alt=\"Imagen del Proyecto 2\">\r <h2>Proyecto Jóvenes a Programar (JAP) de CEIBAL 2023</h2>",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "mariadb": "^3.2.2",
+    "mysql": "^2.18.1"
+  }
+}

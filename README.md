@@ -21,14 +21,15 @@ https://thaliaaris96.github.io/workspace-inicial.github.io/
 <li>Agregar objetos al carrito de compra</li>
 <li>Visualización del total a pagar en tiempo real</li>
 <li>Agregar formas de pago</li>
-</ul>
-<h2>Próximas Funcionalidades</h2>
-<ul>
 <li>Realizar cambios en el perfil usuario</li>
 <li>Apartado para que el usuario pueda vender un producto</li>
 </ul>
+<h2>Próximas Funcionalidades</h2>
+<ul>
+<li>...</li>
+</ul>
 <h2>Contribuidores</h2>
-<p>Queremos agradecer sinceramente a todas las personas que contribuyeron a este proyecto. Su dedicación y esfuerzo fueron fundamentales. ¡Gracias por hacerlo posible!, estas son: </p>
+<p>Quero expresar mi más sincero agradecimiento a todas las personas que hicieron posible este proyecto. Su dedicación incansable y esfuerzo excepcional fueron los pilares fundamentales de nuestro éxito. Cada uno de ustedes desempeñó un papel crucial, contribuyendo con talento y pasión. Este proyecto no solo fue un logro colectivo, sino también un testimonio de lo que podemos lograr juntos: </p>
 <ul>
 <li>https://github.com/catrielmayo</li>
 <li>https://github.com/ignaciodorregolagurara</li>

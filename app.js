@@ -9,6 +9,10 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
+app.use(cors({
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+}));
 app.options('/login', cors());
 
 app.use(bodyParser.json());
@@ -125,8 +129,44 @@ app.post('/login', (req, res) => {
   }
 });
 
+app.use('/cart', (req, res, next) => {
+    try{
+        const token = req.headers.authorization.split(' ')[1];
+        const decoded = jwt.verify(token, 'secreto');
+        console.log(decoded);
+        next();
+    }
+    catch (error) {
+        res.status(401).json({ message: "No autorizado"})
+    }
+});
+
+const mariadb = require('mariadb');
+const pool = mariadb.createPool({host: "localhost", user: "root", password: "1234", database: "proyecto", connectionLimit: 10});
+
+app.post('/cart', async (req, res) => {
+    try
+    {
+        const con = await pool.getConnection();
+        const cartItems = req.body;
+        console.log(cartItems);
+        for(const item of cartItems)
+        {
+            await con.query('INSERT INTO carrito (id, name, unitCost, currency, image, count) VALUES (?, ?, ?, ?, ?, ?)', [item.id, item.name, item.unitCost, item.currency, item.image, item.count]);
+        }
+
+        con.release();
+        res.status(200).json({ message: 'Carrito actualizado con exito'});
+    }
+    catch (error)
+    {
+        console.error(error);
+        res.status(500).json({ error: 'Error al actualizar el carrito'});
+    }
+});
+
 app.listen(port, function() {
     console.log(`Servidor se esta escuchando en el puerto ${port}`);
-})
+});
 
 

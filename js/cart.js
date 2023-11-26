@@ -74,7 +74,10 @@ async function fetchOtrosProductos() {
             .then(function (data) {
                 // Crea una fila de tabla con información del producto
                 let auxRow = document.createElement("tr");
-
+                let objComprados = [];
+                objComprados.push(data);
+                console.log(data);
+                localStorage.setItem("objCarrito", JSON.stringify(objComprados));
                 if (idComprado) {
                     auxRow.innerHTML = `
                         <th scope="row" id="imgProdComprar"><img src="${data.images && data.images[0]}" alt="${data.name}"></th>
@@ -251,11 +254,44 @@ function updateFormaDePagoText() {
         }
         // Si todos los formularios son válidos, muestra la alerta
         if (isFormValid) {
+            console.log("aca");
             var alertSuccess = document.querySelector('.alert.alert-success');
-            alertSuccess.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta            
-        }
+            alertSuccess.classList.remove('d-none'); // Quita la clase 'd-none' para mostrar la alerta 
+            
+            let objetosCart = localStorage.getItem('objCarrito');
+            const token = localStorage.getItem('token');
+        
+            console.log('Enviando datos al servidor:', objetosCart);
+        
+            fetch('http://localhost:3000/cart', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ objetosCart }),
+                mode: 'cors',
+            })
+            .then(response => {
+                if (!response.ok) {
+                    Swal.fire("Error", "Debe estar autenticado", "error");
+                    throw new Error(`Error en la respuesta del servidor: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error al enviar datos al servidor:', error);
+            });    
+        } 
+        else
+        {
+            console.log("no ando");
+        }          
     });
-})();
+})
 
 // Evento que se dispara cuando la página se carga completamente
 document.addEventListener("DOMContentLoaded", function () {

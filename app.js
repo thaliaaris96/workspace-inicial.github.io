@@ -175,16 +175,8 @@ app.post('/cart', async (req, res) => {
         }
 
         for (const item of cartItems) {
-            if(item.id == '50924')
-            {
-                await con.query('INSERT INTO carrito (id, name, unitCost, currency, image, count) VALUES (?, ?, ?, ?, ?, ?)',
+            await con.query('INSERT INTO carrito (id, name, unitCost, currency, image, count) VALUES (?, ?, ?, ?, ?, ?)',
                 [item.id, item.name, item.unitCost, item.currency, item.image, item.count]);
-            }
-            else
-            {
-                await con.query('INSERT INTO carrito (id, name, unitCost, currency, image, count) VALUES (?, ?, ?, ?, ?, ?)',
-                [item.id, item.name, item.cost, item.currency, item.images, item.count]);
-            }
         }
 
         con.release();

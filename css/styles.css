@@ -627,10 +627,19 @@ select {
 }
 
 .mode {
-  height: 60px;
-  width: 60px;  
-  margin: 0 auto; 
-  display: block; 
+  height: auto;
+  width: 3em;
+  margin: 0 auto;
+  display: block;
+  margin-left: 17px; 
+}
+
+.model {
+  height: auto;
+  width: 4em;
+  margin: 0 auto;
+  display: block;
+  margin-left: 17px; 
 }
 
 body.modo-oscuro {

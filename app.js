@@ -144,7 +144,7 @@ app.post('/login', (req, res) => {
     // Verificar si el usuario existe y la contraseña es correcta
     if (usuario) {
         // Generar token usando jsonwebtoken
-        const token = jwt.sign({ nombreUsuario }, 'secreto', { expiresIn: '1h' }); // Se recomienda configurar un tiempo de expiración
+        const token = jwt.sign({ nombreUsuario }, 'secreto', { expiresIn: '1h' }); 
 
         // Devolver el token como respuesta
         res.json({ token });
@@ -167,7 +167,7 @@ app.use(express.json());
 app.post('/cart', async (req, res) => {
     try {
         const con = await pool.getConnection();
-        const cartItems = req.body.arrayDeProductos; // Asegúrate de que estás accediendo a la propiedad correcta
+        const cartItems = req.body.arrayDeProductos; 
         console.log(cartItems);
 
         if (!Array.isArray(cartItems) || cartItems.length === 0) {

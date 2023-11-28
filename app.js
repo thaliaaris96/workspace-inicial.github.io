@@ -165,8 +165,10 @@ const pool = mariadb.createPool({host: "localhost", user: "root", password: "123
 app.use(express.json());
 
 app.post('/cart', async (req, res) => {
+    let con; 
+
     try {
-        const con = await pool.getConnection();
+        con = await pool.getConnection();
         const cartItems = req.body.arrayDeProductos; 
         console.log(cartItems);
 
@@ -175,18 +177,31 @@ app.post('/cart', async (req, res) => {
         }
 
         for (const item of cartItems) {
+            if(item.name != 'Peugeot 208')
+            {
+            const { id, name, cost, currency, images } = item;
+            const image = Array.isArray(images) && images.length > 0 ? images[0] : '';
+        
             await con.query('INSERT INTO carrito (id, name, unitCost, currency, image, count) VALUES (?, ?, ?, ?, ?, ?)',
+                [id, name, cost, currency, image, "1"]);
+            }
+            else
+            {
+                await con.query('INSERT INTO carrito (id, name, unitCost, currency, image, count) VALUES (?, ?, ?, ?, ?, ?)',
                 [item.id, item.name, item.unitCost, item.currency, item.image, item.count]);
+            }
         }
-
-        con.release();
         res.status(200).json({ message: 'Carrito actualizado con éxito' });
+    
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error al actualizar el carrito' });
+    } finally {
+        if (con) {
+            con.release(); 
+        }
     }
 });
-
 
 app.listen(port, function() {
     console.log(`Servidor se esta escuchando en el puerto ${port}`);
